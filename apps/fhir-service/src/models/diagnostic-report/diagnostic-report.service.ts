@@ -1,0 +1,52 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DataSource, Repository } from 'typeorm';
+import { ConventionBasedSearchService } from '../../core/search/convention-based-search.service';
+import { GenericFhirService } from '../../fhir-generics/generic-fhir.service';
+import { DiagnosticReportHistory } from './entities/diagnostic-report-history.entity';
+import { DiagnosticReport } from './entities/diagnostic-report.entity';
+
+/**
+ * Concrete service for the DiagnosticReport resource.
+ * 
+ * This service is responsible for handling all business logic related to DiagnosticReport resources.
+ * It extends the GenericFhirService, which provides the implementation for all standard
+ * FHIR CRUD (Create, Read, Update, Delete) and search operations. This keeps the code
+ * here lean, consistent, and focused on DiagnosticReport-specific configurations.
+ */
+@Injectable()
+export class DiagnosticReportService extends GenericFhirService<DiagnosticReport, DiagnosticReportHistory> {
+
+  /**
+   * Sets the specific FHIR resource type that this service manages.
+   * The generic service uses this string to correctly handle resourceType properties.
+   */
+  protected readonly resourceType = 'DiagnosticReport';
+
+  /**
+   * The constructor injects all necessary dependencies.
+   * @param repo The TypeORM repository for the `DiagnosticReport` entity (the current table).
+   * @param historyRepo The TypeORM repository for the `DiagnosticReportHistory` entity.
+   * @param dataSource The main TypeORM DataSource, used for managing database transactions.
+   * @param searchService The shared, core search service for handling search logic.
+   */
+  constructor(
+    @InjectRepository(DiagnosticReport)
+    protected readonly repo: Repository<DiagnosticReport>,
+
+    @InjectRepository(DiagnosticReportHistory)
+    protected readonly historyRepo: Repository<DiagnosticReportHistory>,
+
+    protected readonly dataSource: DataSource,
+    protected readonly searchService: ConventionBasedSearchService,
+  ) {
+    // Pass the core dependencies up to the parent GenericFhirService constructor.
+    super(dataSource, searchService);
+
+    // Assign the specific repositories for this resource to the generic properties
+    // defined in the parent class. This "configures" the generic service to work
+    // with the DiagnosticReport and DiagnosticReportHistory tables.
+    this.currentRepo = repo;
+    this.historyRepo = historyRepo;
+  }
+}

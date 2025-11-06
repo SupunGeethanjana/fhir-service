@@ -1,0 +1,166 @@
+"SPECIALTYCODE","SPECIALTYDESCRIPTION","SPECIALTYNAME"
+"1",Radiologist,Radiologist
+"10",Gastroenterology,Gastroenterology
+"100",Obstetrics Medicine & Gestational Diebetic,Obstetrics Medicine & Gestational Diebetic
+"101",Preventive Medicine,Preventive Medicine
+"102",Women's Mental Health,Women's Mental Health
+"103",Respiratory & Pulmoary Hypertension,Respiratory & Pulmoary Hypertension
+"104",Endocrinology Thyroid,Endocrinology Thyroid
+"105",Surgical Oncology,Surgical Oncology 
+"106",Neuro Urology + Incontinence,Neuro Urology + Incontinence
+"107",Pediatric Laparoscopic Urology ,Pediatric Laparoscopic Urology
+"108",URO-Oncology & Endourology,URO-Oncology & Endourology
+"109",ENDO-Urology & General Urology,ENDO-Urology & General Urology
+"11",Endocrinologist,Endocrinologist
+"110",Reconstructive Urology,Reconstructive Urology
+"111",Pediatric Urology & Reconstructive Urology,Pediatric Urology & Reconstructive Urology
+"112",Diabetic Foot Surgery,Diabetic Foot Surgery
+"113",General Surgery & Colorectal Surgery ,General Surgery & Colorectal Surgery
+"114",Colorectal Surgery,Colorectal Surgery
+"115",Colorectal Surgery Hepatobiliary & Pancreatic Surgery,Colorectal Surgery Hepatobiliary & Pancreatic Surgery
+"116",Laparoscopy Bariatric & Endocrine Surgery,Laparoscopy Bariatric & Endocrine Surgery
+"117",General Surrey & Obesity,General Surrey & Obesity
+"118",General Surgery Hepatobiliary Pancreatic & Transplant,General Surgery Hepatobiliary Pancreatic & Transplant
+"119",Plastic Surgery - Hand & Peripheral Nerves,Plastic Surgery - Hand & Peripheral Nerves
+"12",Neurology,Neurology
+"120",Andrology/ Male Infertility,Andrology/ Male Infertility
+"121",Surgical Trauma ICU,Surgical Trauma ICU
+"122",Endourology-General Urology-Metabolic Stone,Endourology-General Urology-Metabolic Stone
+"123",Pediatric Neuro Surgery Clinic,Pediatric Neuro Surgery Clinic
+"124",Pediatric Endocrinology,Pediatric Endocrinology
+"125",Pediatric Neurology,Pediatric Neurology
+"126",Pediatric Nephrology,Pediatric Nephrology
+"127",Pediatric Infectious Diseases,Pediatric Infectious Diseases
+"128",Pediatric Gastroenterology,Pediatric Gastroenterology
+"129",Pediatric Allergy & Immunology,Pediatric Allergy & Immunology
+"13",Pediatric,Pediatric
+"130",Pediatric Pulmonology & Sleep Medicine,Pediatric Pulmonology & Sleep Medicine
+"131",Pediatric Endocrinology & Diabetes,Pediatric Endocrinology & Diabetes
+"132",Medical Genetic,Medical Genetic
+"133",Pediatric Neonatology,Pediatric Neonatology
+"134",Pediatric Rheumatology,Pediatric Rheumatology
+"135",Pediatric NEPHRO-Rheumatology,Pediatric NEPHRO-Rheumatology
+"136",Pediatric Cardiology,Pediatric Cardiology
+"137",Pediatric Neuromuscular Medicine,Pediatric Neuromuscular Medicine
+"138",Pediatric Pulmonology,Pediatric Pulmonology
+"139",Celiac Disease,Celiac Disease
+"14",Pediatrics,Pediatrics
+"140",Clinical Nutrition,Clinical Nutrition
+"141",Pediatric Metabolic,Pediatric Metabolic
+"142",Pediatric Infectious,Pediatric Infectious
+"143",Pediatric Autoinflammatory,Pediatric Autoinflammatory
+"144",PEDIATRIC GI,PEDIATRIC GI
+"145",Ophthalmology (Glaucoma),Ophthalmology (Glaucoma)
+"146",Pediatric Ophthalmology,Pediatric Ophthalmology
+"147",Vitreoretinal Disease & Surgery ,Vitreoretinal Disease & Surgery
+"148",Oculoplastic,Oculoplastic
+"149",Cornea & Anterior Segment,Cornea & Anterior Segment
+"15",Psychiatry,Psychiatry
+"150",Cornea & Refractive Eye Disease,Cornea & Refractive Eye Disease
+"1500",Phlebotomy,Phlebotomy
+"1501",Allergy & Immunology,Allergy & Immunology
+"1502",Bariatrics,Bariatrics
+"1503",Cardiology,Cardiology
+"1504",Endocrinology,Endocrinology
+"1505",Geriatric,Geriatric
+"1506",Infectious Diseases,Infectious Diseases
+"1507",Nephrology,Nephrology
+"1508",Obstetric medicine,Obstetric medicine
+"1509",Oncology,Oncology
+"151",Retina,Retina
+"1510",Psychiatry-,Psychiatry-
+"1511",Pulmonology,Pulmonology
+"1512",Rheumatology,Rheumatology
+"152",Trauma & Arthroplasty,Trauma & Arthroplasty
+"153",Orthopedic Oncology,Orthopedic Oncology
+"154",Orthopedic Surgery,Orthopedic Surgery
+"155",Surgical Dermatology & Cosmetics,Surgical Dermatology & Cosmetics
+"156",Benign Hematology ,Benign Hematology
+"157",Malignant Hematology,Malignant Hematology
+"158",Pediatric Hematology Oncology,Pediatric Hematology Oncology
+"159",Multiple Sclerosis,Multiple Sclerosis
+"16",Clinical Dietitian,Clinical Dietitian
+"160",Neurovascular Neurosurgery,Neurovascular Neurosurgery
+"161",Epilepsy,Epilepsy
+"162",Neurology-Multiple Sclerosis,Neurology-Multiple Sclerosis
+"163",Neuromuscular & Neurophysiology,Neuromuscular & Neurophysiology
+"164",Movement Disorders,Movement Disorders
+"165",Stoke,Stoke
+"166",Heart Failure,Heart Failure
+"167",Cardiac Electrophysiology,Cardiac Electrophysiology
+"168",Cardiosurgery,Cardiosurgery
+"169",Intensive Coronary Care & Interventional Cardiology,Intensive Coronary Care & Interventional Cardiology
+"17",Nephrologist,Nephrologist
+"170",Interventional Cardiology,Interventional Cardiology
+"171",Head & Neck Tumors,Head & Neck Tumors
+"172",Pediatric ENT,Pediatric ENT
+"173",Rhinology & Skull Base Surgery,Rhinology & Skull Base Surgery
+"174",Facial Plastic Surgery & Rhinology,Facial Plastic Surgery & Rhinology
+"175",Otology & Neurotology,Otology & Neurotology
+"176",Head & Neck Oncology & Facial Plastic,Head & Neck Oncology & Facial Plastic
+"177",Chronic Pain Management,Chronic Pain Management
+"178",Pediatric Physical Medicine & Rehabilitation,Pediatric Physical Medicine & Rehabilitation
+"179",Radiation Oncology,Radiation Oncology
+"18",Oncologist,Oncologist
+"180",Adolescent Nutrition - Obesity  ,Adolescent Nutrition - Obesity  
+"181",Nuclear Oncology,Nuclear Oncology
+"182",Pediatric Dentistry,Pediatric Dentistry
+"183",Gastroenterology & Hepatology,Gastroenterology & Hepatology
+"184",Gastroenterology & Nutrition,Gastroenterology & Nutrition
+"185",Ovarian CA Counselling,Ovarian CA Counselling
+"186",Pediatric Densitry - Children With Special Needs ,Pediatric Densitry - Children With Special Needs
+"187",Audiology,Audiology
+"19",Venereologist,Venereologist
+"2", Cardiologist, Cardiologist
+"20",Urology,Urology
+"21",Hematology,Hematology
+"22",Anesthesia,Anesthesia
+"23",Neurosurgery,Neurosurgery
+"25",Ophthalmology,Ophthalmology
+"27",anaesthetist,anaesthetist
+"3",ENT,ENT
+"30",Internal medicine,Internal medicine
+"31",Physiotherapy,Physiotherapy
+"32",Orthopedic,Orthopedic
+"33",Ophthalmologist 33,Ophthalmologist 33
+"333",Cardiac Surgery,Cardiac Surgery
+"35",Hematologist ,Hematologist 
+"36",Optometry ,Optometry 
+"37",Intensive Care Unit,Intensive Care Unit
+"39",Pulmonologist,Pulmonologist
+"4",Plastic Surgeon,Plastic Surgeon
+"40",Social Worker,Social Worker
+"41",Surgery,Surgery
+"42",Radioloigy,Radioloigy
+"43",Thoracic Surgery ,Thoracic Surgery 
+"44",General Surgery,General Surgery
+"45",Plastic Surgery ,Plastic Surgery 
+"46",Vascular Surgery,Vascular Surgery
+"47",Maxillo Facial Surgery,Maxillo Facial Surgery
+"48",Infectious Disease,Infectious Disease
+"49",Emergency unit ,Emergency unit 
+"5",General Dental Practitioner,General Dental Practitioner
+"50",Clinical Pharmacist ,Clinical Pharmacist 
+"51",Infection Control ,Infection Control 
+"52",Medical ,Medical 
+"53",Family Medicine ,Family Medicine 
+"54",Intern,Intern
+"55",Residents,Residents
+"56",Pediatric Surgery ,Pediatric Surgery 
+"57",Fellowship,Fellowship
+"58",Student ,Student 
+"6",Gynecology,Gynecology
+"66",Dental,Dental
+"7",Cardiologist,Cardiologist
+"8",Surgeon,Surgeon
+"9",Dermatology,Dermatology
+"90",Occupational Therapist ,Occupational Therapist 
+"91",Hepatology,Hepatology
+"92",Respirology,Respirology
+"93",Physchiatric,Physchiatric
+"94",Sleep Medicine,Sleep Medicine
+"95",Respairatory,Respairatory
+"96",Hyper Lipdemia,Hyper Lipdemia
+"97",Women's Health,Women's Health
+"98",Thyroid Cancer,Thyroid Cancer
+"99",Inflammatory Bowel Disease,Inflammatory Bowel Disease

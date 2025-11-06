@@ -1,0 +1,139 @@
+{
+    "GraphQL Query Examples": {
+        "description": "Examples of how to use the FHIR GraphQL API",
+        "endpoint": "POST http://localhost:3000/graphql",
+        "playground": "http://localhost:3000/graphql",
+        "basicQuery": {
+            "description": "Get basic patient information by MRN",
+            "query": "query GetBasicPatientData($mrn: String!, $system: String) { patientByMrn(mrn: $mrn, system: $system) { patient { id resourceType versionId lastUpdated resource } } }",
+            "variables": {
+                "mrn": "000000002",
+                "system": "http://myhospital.org/mrn"
+            }
+        },
+        "comprehensiveQuery": {
+            "description": "Get all patient data including related resources",
+            "query": "query GetPatientByMrn($mrn: String!, $system: String) { patientByMrn(mrn: $mrn, system: $system) { patient { id resourceType resource lastUpdated } encounters { id resource lastUpdated } conditions { id resource lastUpdated } observations { id resource lastUpdated } allergies { id resource lastUpdated } medications { id resource lastUpdated } procedures { id resource lastUpdated } familyHistory { id resource lastUpdated } diagnosticReports { id resource lastUpdated } medicationRequests { id resource lastUpdated } serviceRequests { id resource lastUpdated } appointments { id resource lastUpdated } compositions { id resource lastUpdated } } }",
+            "variables": {
+                "mrn": "000000002",
+                "system": "http://myhospital.org/mrn"
+            }
+        },
+        "clinicalSummaryQuery": {
+            "description": "Get patient with key clinical data for summary view",
+            "query": "query GetPatientClinicalSummary($mrn: String!, $system: String) { patientByMrn(mrn: $mrn, system: $system) { patient { id resourceType resource lastUpdated } encounters { id resource lastUpdated } conditions { id resource lastUpdated } allergies { id resource lastUpdated } medications { id resource lastUpdated } observations { id resource lastUpdated } } }",
+            "variables": {
+                "mrn": "000000002",
+                "system": "http://myhospital.org/mrn"
+            }
+        },
+        "curlExamples": {
+            "basicQuery": {
+                "description": "curl example for basic query",
+                "command": "curl -X POST http://localhost:3000/graphql -H \"Content-Type: application/json\" -d '{\"query\": \"query GetBasicPatientData($mrn: String!, $system: String) { patientByMrn(mrn: $mrn, system: $system) { patient { id resourceType resource lastUpdated } } }\", \"variables\": {\"mrn\": \"000000002\", \"system\": \"http://myhospital.org/mrn\"}}'"
+            },
+            "comprehensiveQuery": {
+                "description": "curl example for comprehensive query",
+                "command": "curl -X POST http://localhost:3000/graphql -H \"Content-Type: application/json\" -d @comprehensive-query.json"
+            }
+        },
+        "httpExamples": {
+            "headers": {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            "basicRequest": {
+                "method": "POST",
+                "url": "http://localhost:3000/graphql",
+                "body": {
+                    "query": "query GetBasicPatientData($mrn: String!, $system: String) { patientByMrn(mrn: $mrn, system: $system) { patient { id resourceType resource lastUpdated } } }",
+                    "variables": {
+                        "mrn": "000000002",
+                        "system": "http://myhospital.org/mrn"
+                    }
+                }
+            }
+        },
+        "testVariables": {
+            "description": "Test variables for different scenarios",
+            "scenarios": {
+                "sarahSmith": {
+                    "mrn": "000000002",
+                    "system": "http://myhospital.org/mrn",
+                    "description": "Sarah Smith from the comprehensive transaction bundle"
+                },
+                "withoutSystem": {
+                    "mrn": "000000002",
+                    "description": "Query without specifying system (system is nullable)"
+                },
+                "differentSystem": {
+                    "mrn": "12345",
+                    "system": "http://anotherhospital.org/mrn",
+                    "description": "Different hospital system"
+                }
+            }
+        },
+        "expectedResponse": {
+            "description": "Example of expected response structure",
+            "structure": {
+                "data": {
+                    "patientByMrn": {
+                        "patient": {
+                            "id": "string (UUID)",
+                            "resourceType": "Patient",
+                            "resource": "FHIR Patient Resource JSON",
+                            "lastUpdated": "ISO DateTime string"
+                        },
+                        "encounters": [
+                            {
+                                "id": "string (UUID)",
+                                "resource": "FHIR Encounter Resource JSON",
+                                "lastUpdated": "ISO DateTime string"
+                            }
+                        ],
+                        "conditions": "Array of Condition resources",
+                        "observations": "Array of Observation resources",
+                        "allergies": "Array of AllergyIntolerance resources",
+                        "medications": "Array of MedicationStatement resources",
+                        "procedures": "Array of Procedure resources",
+                        "familyHistory": "Array of FamilyMemberHistory resources",
+                        "diagnosticReports": "Array of DiagnosticReport resources",
+                        "medicationRequests": "Array of MedicationRequest resources",
+                        "serviceRequests": "Array of ServiceRequest resources",
+                        "appointments": "Array of Appointment resources",
+                        "compositions": "Array of Composition resources"
+                    }
+                }
+            }
+        },
+        "errorHandling": {
+            "description": "Common error scenarios and responses",
+            "scenarios": {
+                "patientNotFound": {
+                    "query": "Same as above",
+                    "variables": {
+                        "mrn": "NONEXISTENT",
+                        "system": "http://myhospital.org/mrn"
+                    },
+                    "expectedError": {
+                        "errors": [
+                            {
+                                "message": "Patient not found with MRN: NONEXISTENT",
+                                "extensions": {
+                                    "code": "NOT_FOUND"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "invalidMrn": {
+                    "variables": {
+                        "mrn": "",
+                        "system": "http://myhospital.org/mrn"
+                    },
+                    "expectedError": "Validation error for empty MRN"
+                }
+            }
+        }
+    }
+}

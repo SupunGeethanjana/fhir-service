@@ -1,0 +1,676 @@
+{
+    "resourceType": "Bundle",
+    "id": "yousef-new-clinical-data-uuid-bundle",
+    "type": "transaction",
+    "meta": {
+        "profile": [
+            "http://hl7.org/fhir/StructureDefinition/Bundle"
+        ],
+        "tag": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                "code": "HTEST",
+                "display": "New clinical data using UUID references"
+            }
+        ]
+    },
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:patient-yousef-existing",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "patient-yousef-existing",
+                "active": true,
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR"
+                                }
+                            ]
+                        },
+                        "system": "http://moh.gov.sa/mrn",
+                        "value": "SA-10123456"
+                    },
+                    {
+                        "use": "official",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "NI"
+                                }
+                            ]
+                        },
+                        "system": "http://saudi.gov.sa/national-id",
+                        "value": "2099292567"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Al-Dossari",
+                        "given": [
+                            "Yousef",
+                            "Ahmed"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1992-11-25",
+                "address": [
+                    {
+                        "use": "home",
+                        "text": "Al-Fayhaa District, Abha, Saudi Arabia",
+                        "city": "Abha",
+                        "country": "SA"
+                    }
+                ],
+                "communication": [
+                    {
+                        "language": {
+                            "coding": [
+                                {
+                                    "system": "urn:ietf:bcp:47",
+                                    "code": "ar-SA"
+                                }
+                            ]
+                        },
+                        "preferred": true
+                    }
+                ]
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Patient/patient-yousef-existing",
+                "ifMatch": "*"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:encounter-followup-yousef-uuid",
+            "resource": {
+                "resourceType": "Encounter",
+                "id": "encounter-followup-yousef-uuid",
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB",
+                    "display": "ambulatory"
+                },
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "390906007",
+                                "display": "Follow-up encounter"
+                            }
+                        ]
+                    }
+                ],
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-existing",
+                    "display": "Yousef Ahmed Al-Dossari"
+                },
+                "period": {
+                    "start": "2025-08-01T14:30:00+03:00",
+                    "end": "2025-08-01T15:15:00+03:00"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "390906007",
+                                "display": "Follow-up encounter"
+                            }
+                        ],
+                        "text": "IBS follow-up - assessment of dietary modifications and symptom improvement"
+                    }
+                ],
+                "location": [
+                    {
+                        "location": {
+                            "display": "Gastroenterology Clinic, King Faisal Medical City, Abha"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Encounter"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:practitioner-dr-sarah-gastro-uuid",
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "practitioner-dr-sarah-gastro-uuid",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "http://scfhs.org.sa/license",
+                        "value": "SCFHS-GASTRO-2024-078"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "القحطاني",
+                        "given": [
+                            "سارة",
+                            "محمد"
+                        ],
+                        "prefix": [
+                            "د."
+                        ],
+                        "text": "د. سارة محمد القحطاني"
+                    },
+                    {
+                        "use": "usual",
+                        "family": "Al-Qahtani",
+                        "given": [
+                            "Sarah",
+                            "Mohammed"
+                        ],
+                        "prefix": [
+                            "Dr."
+                        ],
+                        "text": "Dr. Sarah Mohammed Al-Qahtani"
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "+966-17-234-5678",
+                        "use": "work"
+                    }
+                ],
+                "qualification": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+                                    "code": "MD",
+                                    "display": "Doctor of Medicine"
+                                }
+                            ]
+                        },
+                        "issuer": {
+                            "display": "King Saud University Medical School"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Practitioner"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:condition-ibs-improvement-uuid",
+            "resource": {
+                "resourceType": "Condition",
+                "id": "condition-ibs-improvement-uuid",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active",
+                            "display": "Active"
+                        }
+                    ]
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                            "code": "confirmed",
+                            "display": "Confirmed"
+                        }
+                    ]
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                                "code": "encounter-diagnosis",
+                                "display": "Encounter Diagnosis"
+                            }
+                        ]
+                    }
+                ],
+                "severity": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "255604002",
+                            "display": "Mild"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                            "code": "K58.9",
+                            "display": "Irritable bowel syndrome without diarrhea"
+                        }
+                    ],
+                    "text": "متلازمة القولون العصبي - تحسن مع العلاج"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-existing"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-followup-yousef-uuid"
+                },
+                "recordedDate": "2025-08-01T14:45:00+03:00",
+                "note": [
+                    {
+                        "text": "Patient reports 60% improvement in symptoms since starting FODMAP diet and psyllium supplement. Bowel movements more regular, less bloating. Stress management techniques helping significantly."
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:vital-signs-weight-yousef-uuid",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "vital-signs-weight-yousef-uuid",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "Vital Signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7",
+                            "display": "Body weight"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-existing"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-followup-yousef-uuid"
+                },
+                "effectiveDateTime": "2025-08-01T14:35:00+03:00",
+                "valueQuantity": {
+                    "value": 82.5,
+                    "unit": "kg",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "kg"
+                },
+                "note": [
+                    {
+                        "text": "Weight stable since last visit. No significant weight loss or gain."
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:vital-signs-bp-followup-yousef-uuid",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "vital-signs-bp-followup-yousef-uuid",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs",
+                                "display": "Vital Signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "85354-9",
+                            "display": "Blood pressure panel with all children optional"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-existing"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-followup-yousef-uuid"
+                },
+                "effectiveDateTime": "2025-08-01T14:35:00+03:00",
+                "performer": [
+                    {
+                        "reference": "urn:uuid:practitioner-dr-sarah-gastro-uuid"
+                    }
+                ],
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 122,
+                            "unit": "mmHg",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 76,
+                            "unit": "mmHg",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:lab-request-inflammatory-markers-uuid",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "id": "lab-request-inflammatory-markers-uuid",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "108252007",
+                                "display": "Laboratory procedure"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "30522-7",
+                            "display": "C reactive protein"
+                        }
+                    ],
+                    "text": "فحص علامات الالتهاب (CRP, ESR)"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-existing"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-followup-yousef-uuid"
+                },
+                "occurrenceDateTime": "2025-08-02T08:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-dr-sarah-gastro-uuid"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "10743008",
+                                "display": "Irritable bowel syndrome"
+                            }
+                        ],
+                        "text": "Rule out inflammatory bowel disease"
+                    }
+                ],
+                "note": [
+                    {
+                        "text": "Baseline inflammatory markers to exclude IBD given family history and symptom progression"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:specimen-blood-yousef-uuid",
+            "resource": {
+                "resourceType": "Specimen",
+                "id": "specimen-blood-yousef-uuid",
+                "identifier": [
+                    {
+                        "system": "http://abha-hospital.sa/specimen",
+                        "value": "SPEC-2025-YAD-UUID-001"
+                    }
+                ],
+                "status": "available",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "119297000",
+                            "display": "Blood specimen"
+                        }
+                    ],
+                    "text": "عينة دم وريدي"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-existing"
+                },
+                "request": [
+                    {
+                        "reference": "urn:uuid:lab-request-inflammatory-markers-uuid"
+                    }
+                ],
+                "collection": {
+                    "collectedDateTime": "2025-08-02T08:15:00+03:00",
+                    "collector": {
+                        "display": "أحمد سالم - فني المختبر"
+                    },
+                    "method": {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "28520004",
+                                "display": "Venipuncture"
+                            }
+                        ]
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Specimen"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:lab-result-crp-yousef-uuid",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "lab-result-crp-yousef-uuid",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "Laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "1988-5",
+                            "display": "C reactive protein [Mass/volume] in Serum or Plasma"
+                        }
+                    ],
+                    "text": "البروتين التفاعلي C"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-existing"
+                },
+                "effectiveDateTime": "2025-08-02T11:30:00+03:00",
+                "issued": "2025-08-02T14:00:00+03:00",
+                "performer": [
+                    {
+                        "display": "مختبر مستشفى الملك فيصل الطبي - أبها"
+                    }
+                ],
+                "valueQuantity": {
+                    "value": 2.1,
+                    "unit": "mg/L",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "mg/L"
+                },
+                "interpretation": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                                "code": "N",
+                                "display": "Normal"
+                            }
+                        ]
+                    }
+                ],
+                "referenceRange": [
+                    {
+                        "low": {
+                            "value": 0,
+                            "unit": "mg/L"
+                        },
+                        "high": {
+                            "value": 3.0,
+                            "unit": "mg/L"
+                        }
+                    }
+                ],
+                "specimen": {
+                    "reference": "urn:uuid:specimen-blood-yousef-uuid"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-request-probiotic-yousef-uuid",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "id": "medication-request-probiotic-yousef-uuid",
+                "status": "active",
+                "intent": "order",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "1234567",
+                            "display": "Lactobacillus acidophilus"
+                        }
+                    ],
+                    "text": "بروبيوتيك (لاكتوباسيلوس أسيدوفيلوس)"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-existing"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-followup-yousef-uuid"
+                },
+                "authoredOn": "2025-08-01T15:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-dr-sarah-gastro-uuid"
+                },
+                "reasonReference": [
+                    {
+                        "reference": "urn:uuid:condition-ibs-improvement-uuid"
+                    }
+                ],
+                "dosageInstruction": [
+                    {
+                        "text": "كبسولة واحدة يومياً مع الطعام لمدة 3 أشهر",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 1,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral route"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dispenseRequest": {
+                    "numberOfRepeatsAllowed": 2,
+                    "quantity": {
+                        "value": 90,
+                        "unit": "capsules"
+                    },
+                    "expectedSupplyDuration": {
+                        "value": 90,
+                        "unit": "days",
+                        "system": "http://unitsofmeasure.org",
+                        "code": "d"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        }
+    ]
+}

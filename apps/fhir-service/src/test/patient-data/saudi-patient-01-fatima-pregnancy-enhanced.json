@@ -1,0 +1,1010 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:patient-fatima-alzahra-01",
+            "resource": {
+                "resourceType": "Patient",
+                "active": true,
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR"
+                                }
+                            ]
+                        },
+                        "system": "http://moh.gov.sa/mrn",
+                        "value": "SA-01234567"
+                    },
+                    {
+                        "use": "official",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "NI"
+                                }
+                            ]
+                        },
+                        "system": "http://saudi.gov.sa/national-id",
+                        "value": "2088765432"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Al-Zahra",
+                        "given": [
+                            "Fatima",
+                            "Abdullah"
+                        ]
+                    }
+                ],
+                "gender": "female",
+                "birthDate": "1995-08-12",
+                "address": [
+                    {
+                        "use": "home",
+                        "text": "Al-Malaz District, Riyadh, Saudi Arabia",
+                        "city": "Riyadh",
+                        "country": "SA"
+                    }
+                ],
+                "communication": [
+                    {
+                        "language": {
+                            "coding": [
+                                {
+                                    "system": "urn:ietf:bcp:47",
+                                    "code": "ar-SA"
+                                }
+                            ]
+                        },
+                        "preferred": true
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:encounter-prenatal-01",
+            "resource": {
+                "resourceType": "Encounter",
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "period": {
+                    "start": "2025-07-23T09:00:00+03:00",
+                    "end": "2025-07-23T10:30:00+03:00"
+                },
+                "reasonCode": [
+                    {
+                        "text": "Severe morning sickness and inability to keep food down for 3 days"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Encounter"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:condition-hyperemesis-01",
+            "resource": {
+                "resourceType": "Condition",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                            "code": "O21.0",
+                            "display": "Mild hyperemesis gravidarum"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:condition-pregnancy-01",
+            "resource": {
+                "resourceType": "Condition",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                            "code": "Z34.00",
+                            "display": "Encounter for supervision of normal first pregnancy, unspecified trimester"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-weight-01",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "valueQuantity": {
+                    "value": 58,
+                    "unit": "kg"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-bp-01",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "85354-9",
+                            "display": "Blood pressure panel with all children optional"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 100,
+                            "unit": "mmHg"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 60,
+                            "unit": "mmHg"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-heart-rate-01",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8867-4",
+                            "display": "Heart rate"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "valueQuantity": {
+                    "value": 98,
+                    "unit": "beats/min"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-fetal-heart-rate-01",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "11948-7",
+                            "display": "Fetal heart rate"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "valueQuantity": {
+                    "value": 150,
+                    "unit": "beats/min"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-history-mother-diabetes-01",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "MTH",
+                            "display": "Mother"
+                        }
+                    ]
+                },
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                                    "code": "E11",
+                                    "display": "Type 2 diabetes mellitus"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-history-sister-hyperemesis-01",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "SIS",
+                            "display": "Sister"
+                        }
+                    ]
+                },
+                "condition": [
+                    {
+                        "code": {
+                            "text": "Severe morning sickness during pregnancy"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-history-grandmother-hypertension-01",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "MGRMTH",
+                            "display": "Maternal grandmother"
+                        }
+                    ]
+                },
+                "condition": [
+                    {
+                        "code": {
+                            "text": "Hypertension"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-ultrasound-01",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "imaging"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "11525-3",
+                            "display": "Obstetric ultrasound"
+                        }
+                    ],
+                    "text": "First Trimester Ultrasound"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "occurrenceDateTime": "2025-08-01T10:00:00+03:00",
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "Dating scan and nuchal translucency screening at 12-13 weeks gestation"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-prenatal-labs-01",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Complete Prenatal Laboratory Panel"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "occurrenceDateTime": "2025-07-30T08:00:00+03:00",
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "CBC, blood type and screen, rubella immunity, hepatitis B surface antigen, syphilis screening, HIV, glucose challenge test"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-genetic-counseling-01",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "referral"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Genetic Counseling"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "Due to family history of diabetes, genetic counseling recommended for gestational diabetes risk assessment"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-req-ondansetron-01",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "161",
+                            "display": "Ondansetron"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "dosageInstruction": [
+                    {
+                        "text": "8mg orally three times daily as needed for nausea",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 3,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "asNeededBoolean": true,
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral route"
+                                }
+                            ]
+                        },
+                        "doseAndRate": [
+                            {
+                                "doseQuantity": {
+                                    "value": 8,
+                                    "unit": "mg"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "dispenseRequest": {
+                    "quantity": {
+                        "value": 30,
+                        "unit": "tablets"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-req-vitamin-b6-01",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "8661",
+                            "display": "Pyridoxine"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "dosageInstruction": [
+                    {
+                        "text": "25mg orally twice daily",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 2,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral route"
+                                }
+                            ]
+                        },
+                        "doseAndRate": [
+                            {
+                                "doseQuantity": {
+                                    "value": 25,
+                                    "unit": "mg"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "dispenseRequest": {
+                    "quantity": {
+                        "value": 60,
+                        "unit": "tablets"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-req-prenatal-vitamins-01",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "medicationCodeableConcept": {
+                    "text": "Prenatal Vitamins with Folic Acid"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "dosageInstruction": [
+                    {
+                        "text": "One tablet daily with food",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 1,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral route"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dispenseRequest": {
+                    "quantity": {
+                        "value": 90,
+                        "unit": "tablets"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:appointment-followup-01",
+            "resource": {
+                "resourceType": "Appointment",
+                "status": "booked",
+                "serviceCategory": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-category",
+                                "code": "27",
+                                "display": "Obstetrics"
+                            }
+                        ]
+                    }
+                ],
+                "serviceType": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-type",
+                                "code": "540",
+                                "display": "Obstetrics"
+                            }
+                        ]
+                    }
+                ],
+                "appointmentType": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+                            "code": "FOLLOWUP",
+                            "display": "Follow-up"
+                        }
+                    ]
+                },
+                "reasonCode": [
+                    {
+                        "text": "Prenatal follow-up for hyperemesis gravidarum"
+                    }
+                ],
+                "start": "2025-07-30T09:00:00+03:00",
+                "end": "2025-07-30T09:30:00+03:00",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:patient-fatima-alzahra-01"
+                        },
+                        "status": "accepted"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Appointment"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:appointment-ultrasound-01",
+            "resource": {
+                "resourceType": "Appointment",
+                "status": "booked",
+                "serviceCategory": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-category",
+                                "code": "17",
+                                "display": "Radiology"
+                            }
+                        ]
+                    }
+                ],
+                "serviceType": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-type",
+                                "code": "394",
+                                "display": "Radiology"
+                            }
+                        ]
+                    }
+                ],
+                "appointmentType": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+                            "code": "ROUTINE",
+                            "display": "Routine"
+                        }
+                    ]
+                },
+                "reasonCode": [
+                    {
+                        "text": "First trimester dating ultrasound and nuchal translucency screening"
+                    }
+                ],
+                "start": "2025-08-01T10:00:00+03:00",
+                "end": "2025-08-01T10:45:00+03:00",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:patient-fatima-alzahra-01"
+                        },
+                        "status": "accepted"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Appointment"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:composition-prenatal-01",
+            "resource": {
+                "resourceType": "Composition",
+                "status": "final",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "11506-3",
+                            "display": "Provider-unspecified progress note"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-fatima-alzahra-01"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-prenatal-01"
+                },
+                "date": "2025-07-23T10:00:00+03:00",
+                "title": "Prenatal Care Visit - Hyperemesis Gravidarum",
+                "section": [
+                    {
+                        "title": "Chief Complaint",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10154-3",
+                                    "display": "Chief complaint"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Severe morning sickness and inability to keep food down for 3 days</div>"
+                        }
+                    },
+                    {
+                        "title": "Subjective",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "61150-9",
+                                    "display": "Subjective"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">28-year-old primigravida at 10 weeks gestation presents with severe nausea and vomiting for 3 days. Unable to tolerate any solid food and minimal liquids. Vomiting occurs 8-10 times daily. Feels dizzy when standing. Denies fever, abdominal pain, or vaginal bleeding. Last menstrual period 10 weeks ago. This is her first pregnancy. Family history significant for maternal diabetes and sister with severe morning sickness during pregnancy.</div>"
+                        }
+                    },
+                    {
+                        "title": "Objective",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "61149-1",
+                                    "display": "Objective"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Vital Signs: BP 100/60 mmHg, HR 98 bpm, Temp 36.8°C. Weight: 58kg (3kg loss from pre-pregnancy). Appears dehydrated but alert. Mucous membranes slightly dry. Abdomen soft, uterus appropriate size for 10 weeks gestational age. Fetal heart rate: 150 bpm (normal). No signs of vaginal bleeding. Fundal height appropriate for gestational age.</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:obs-weight-01"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-bp-01"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-heart-rate-01"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-fetal-heart-rate-01"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Assessment",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "51847-2",
+                                    "display": "Assessment"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">1. Mild hyperemesis gravidarum in primigravida at 10 weeks gestation (ICD-10: O21.0)<br/>2. Mild dehydration secondary to poor oral intake<br/>3. Normal first trimester pregnancy progression<br/>4. Increased risk for gestational diabetes due to family history</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:condition-hyperemesis-01"
+                            },
+                            {
+                                "reference": "urn:uuid:condition-pregnancy-01"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Planning",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "18776-5",
+                                    "display": "Plan"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Medications:</b></p><ul><li>Ondansetron 8mg PO TID PRN nausea</li><li>Vitamin B6 (Pyridoxine) 25mg PO BID</li><li>Prenatal vitamins with folic acid daily</li></ul><p><b>Diagnostic Orders:</b></p><ul><li>Complete prenatal laboratory panel (CBC, blood type, rubella immunity, hepatitis B, syphilis, HIV, glucose screening)</li><li>First trimester ultrasound with nuchal translucency screening at 12-13 weeks</li></ul><p><b>Referrals:</b></p><ul><li>Genetic counseling due to family history of diabetes</li></ul><p><b>Follow-up:</b></p><ul><li>Return in 1 week for symptom reassessment</li><li>Ultrasound appointment scheduled for 12-13 weeks gestation</li><li>Emergency return if unable to keep fluids down or signs of severe dehydration</li></ul><p><b>Education:</b></p><ul><li>Small frequent meals, dry crackers before rising</li><li>Adequate hydration when tolerated</li><li>Signs and symptoms requiring immediate medical attention</li></ul></div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:medication-req-ondansetron-01"
+                            },
+                            {
+                                "reference": "urn:uuid:medication-req-vitamin-b6-01"
+                            },
+                            {
+                                "reference": "urn:uuid:medication-req-prenatal-vitamins-01"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-prenatal-labs-01"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-ultrasound-01"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-genetic-counseling-01"
+                            },
+                            {
+                                "reference": "urn:uuid:appointment-followup-01"
+                            },
+                            {
+                                "reference": "urn:uuid:appointment-ultrasound-01"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Family History",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10157-2",
+                                    "display": "Family history"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Mother: Type 2 diabetes mellitus (increases risk for gestational diabetes). Sister: Severe morning sickness during pregnancy (genetic predisposition to hyperemesis gravidarum). Maternal grandmother: Hypertension. No family history of birth defects, genetic disorders, or pregnancy complications. Family history counseling recommended due to diabetes risk.</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:family-history-mother-diabetes-01"
+                            },
+                            {
+                                "reference": "urn:uuid:family-history-sister-hyperemesis-01"
+                            },
+                            {
+                                "reference": "urn:uuid:family-history-grandmother-hypertension-01"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Composition"
+            }
+        }
+    ]
+}

@@ -1,0 +1,633 @@
+# ===================================================================
+# Master Database Changelog for FHIR Service - Version 3.1.0
+# This single file contains the complete, version-controlled history
+# of the database schema with all SQL embedded directly.
+#
+# Version: 3.1.0
+# Updated: August 5, 2025
+# Recent Changes: Fixed search parameter expressions to use JSONPath format
+# ===================================================================
+
+databaseChangeLog:
+  # ===================================================================
+  # Core Infrastructure Setup
+  # ===================================================================
+  
+  - changeSet:
+      id: 1-create-fhir-schema-and-extensions
+      author: system-architect
+      comment: Create the 'fhir' schema and enable required PostgreSQL extensions.
+      changes:
+        - sql:
+            sql: |
+              -- Create the FHIR schema namespace
+              CREATE SCHEMA IF NOT EXISTS fhir;
+              
+              -- Enable required PostgreSQL extensions
+              CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+              CREATE EXTENSION IF NOT EXISTS "pg_trgm";
+
+  # ===================================================================
+  # Search Parameters Table
+  # ===================================================================
+  
+  - changeSet:
+      id: 2-create-fhir-search-params-table
+      author: app-dev
+      comment: Creates the core table to drive data-driven search functionality.
+      changes:
+        - sql:
+            sql: |
+              CREATE TABLE IF NOT EXISTS fhir.fhir_search_params (
+                  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+                  resource_type VARCHAR(255) NOT NULL,
+                  name VARCHAR(255) NOT NULL,
+                  type VARCHAR(50) NOT NULL,
+                  expression TEXT NOT NULL,
+                  description TEXT,
+                  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                  UNIQUE(resource_type, name)
+              );
+              
+              -- Create indexes for performance
+              CREATE INDEX IF NOT EXISTS idx_search_params_resource_type ON fhir.fhir_search_params(resource_type);
+              CREATE INDEX IF NOT EXISTS idx_search_params_name ON fhir.fhir_search_params(name);
+              CREATE INDEX IF NOT EXISTS idx_search_params_type ON fhir.fhir_search_params(type);
+
+  # ===================================================================
+  # FHIR Resources Table
+  # ===================================================================
+  
+  - changeSet:
+      id: 3-create-fhir-resources-table
+      author: fhir-dev
+      comment: Create the main FHIR resources table for storing all resource types.
+      changes:
+        - sql:
+            sql: |
+              CREATE TABLE IF NOT EXISTS fhir.fhir_resources (
+                  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+                  resource_type VARCHAR(255) NOT NULL,
+                  resource_id VARCHAR(255) NOT NULL,
+                  version_id VARCHAR(255) DEFAULT '1',
+                  resource JSONB NOT NULL,
+                  meta JSONB,
+                  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                  deleted_at TIMESTAMP NULL,
+                  UNIQUE(resource_type, resource_id)
+              );
+              
+              -- Create indexes for better performance
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_resource_type ON fhir.fhir_resources(resource_type);
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_resource_id ON fhir.fhir_resources(resource_id);
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_created_at ON fhir.fhir_resources(created_at);
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_updated_at ON fhir.fhir_resources(updated_at);
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_deleted_at ON fhir.fhir_resources(deleted_at) WHERE deleted_at IS NOT NULL;
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_resource_gin ON fhir.fhir_resources USING GIN(resource);
+
+  # ===================================================================
+  # Bundle Transaction Logging
+  # ===================================================================
+  
+  - changeSet:
+      id: 4-create-bundle-log-table
+      author: transaction-team
+      comment: Create bundle transaction logging table for audit and monitoring.
+      changes:
+        - sql:
+            sql: |
+              CREATE TABLE IF NOT EXISTS fhir.bundle_log (
+                  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+                  txid UUID NOT NULL UNIQUE,
+                  bundle_type VARCHAR(50) NOT NULL,
+                  resource_count INT NOT NULL DEFAULT 0,
+                  submitted_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  completed_at TIMESTAMPTZ,
+                  processing_duration_ms INT,
+                  status VARCHAR(20) NOT NULL DEFAULT 'processing',
+                  submitted_by VARCHAR(255),
+                  source_system VARCHAR(255),
+                  error_details JSONB,
+                  bundle_summary JSONB NOT NULL,
+                  created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+              );
+              
+              -- Indexes for bundle_log table
+              CREATE INDEX IF NOT EXISTS idx_bundle_log_txid ON fhir.bundle_log(txid);
+              CREATE INDEX IF NOT EXISTS idx_bundle_log_status ON fhir.bundle_log(status);
+              CREATE INDEX IF NOT EXISTS idx_bundle_log_submitted_at ON fhir.bundle_log(submitted_at);
+              CREATE INDEX IF NOT EXISTS idx_bundle_log_bundle_type ON fhir.bundle_log(bundle_type);
+              CREATE INDEX IF NOT EXISTS idx_bundle_log_submitted_by ON fhir.bundle_log(submitted_by);
+              CREATE INDEX IF NOT EXISTS idx_bundle_log_source_system ON fhir.bundle_log(source_system);
+              CREATE INDEX IF NOT EXISTS idx_bundle_log_summary_gin ON fhir.bundle_log USING GIN(bundle_summary);
+
+  # ===================================================================
+  # Search Parameters Data - JSONPath Format
+  # ===================================================================
+  
+  - changeSet:
+      id: 5-insert-search-parameters-jsonpath
+      author: search-team
+      comment: Insert FHIR search parameters with JSONPath expressions compatible with GenericSearchService.convertToJsonbQuery() method.
+      changes:
+        - sql:
+            sql: |
+              -- Clear existing search parameters and insert updated ones with JSONPath expressions
+              DELETE FROM fhir.fhir_search_params;
+              
+              -- Patient Search Parameters (JSONPath format)
+              INSERT INTO fhir.fhir_search_params (resource_type, name, type, expression, description) VALUES
+              ('Patient', '_id', 'token', '$.id', 'Search by the logical id of the resource'),
+              ('Patient', 'identifier', 'token', '$.identifier[*].value', 'Search by a patient identifier (e.g., MRN)'),
+              ('Patient', 'name', 'string', '$.name[*].family', 'Search by patient family name'),
+              ('Patient', 'family', 'string', '$.name[*].family', 'Search by patient family name'),
+              ('Patient', 'given', 'string', '$.name[*].given[*]', 'Search by patient given name'),
+              ('Patient', 'gender', 'token', '$.gender', 'Search by patient gender'),
+              ('Patient', 'birthdate', 'date', '$.birthDate', 'Search by patient birth date'),
+              ('Patient', 'active', 'token', '$.active', 'Search by patient active status'),
+              ('Patient', 'phone', 'token', '$.telecom[?(@.system=="phone")].value', 'Search by patient phone number'),
+              ('Patient', 'email', 'token', '$.telecom[?(@.system=="email")].value', 'Search by patient email address'),
+              ('Patient', 'address', 'string', '$.address[*].text', 'Search by patient address'),
+              ('Patient', 'address-city', 'string', '$.address[*].city', 'Search by patient city'),
+              ('Patient', 'address-state', 'string', '$.address[*].state', 'Search by patient state'),
+              ('Patient', 'address-postalcode', 'string', '$.address[*].postalCode', 'Search by patient postal code'),
+              ('Patient', 'address-country', 'string', '$.address[*].country', 'Search by patient country'),
+              ('Patient', 'deceased', 'token', '$.deceasedBoolean', 'Search by patient deceased status'),
+              ('Patient', 'general-practitioner', 'reference', '$.generalPractitioner[*].reference', 'Search by general practitioner'),
+              ('Patient', 'organization', 'reference', '$.managingOrganization.reference', 'Search by managing organization'),
+              ('Patient', 'link', 'reference', '$.link[*].other.reference', 'Search by linked patient'),
+              ('Patient', 'language', 'token', '$.communication[*].language.coding[*].code', 'Search by patient language');
+              
+              -- Observation Search Parameters (JSONPath format)
+              INSERT INTO fhir.fhir_search_params (resource_type, name, type, expression, description) VALUES
+              ('Observation', '_id', 'token', '$.id', 'Search by the logical id of the resource'),
+              ('Observation', 'code', 'token', '$.code.coding[*].code', 'Search by the observation code'),
+              ('Observation', 'date', 'date', '$.effectiveDateTime', 'Search by the observation date'),
+              ('Observation', 'effective', 'date', '$.effectiveDateTime', 'Search by the observation effective date'),
+              ('Observation', 'subject', 'reference', '$.subject.reference', 'Search by the subject reference'),
+              ('Observation', 'patient', 'reference', '$.subject.reference', 'Search by the patient reference'),
+              ('Observation', 'status', 'token', '$.status', 'Search by observation status'),
+              ('Observation', 'category', 'token', '$.category[*].coding[*].code', 'Search by observation category'),
+              ('Observation', 'value-string', 'string', '$.valueString', 'Search by observation value (string)'),
+              ('Observation', 'value-quantity', 'quantity', '$.valueQuantity.value', 'Search by observation value (quantity)'),
+              ('Observation', 'value-code', 'token', '$.valueCodeableConcept.coding[*].code', 'Search by observation value (coded)'),
+              ('Observation', 'value-concept', 'token', '$.valueCodeableConcept.coding[*].code', 'Search by observation value concept'),
+              ('Observation', 'encounter', 'reference', '$.encounter.reference', 'Search by encounter reference'),
+              ('Observation', 'performer', 'reference', '$.performer[*].reference', 'Search by observation performer'),
+              ('Observation', 'method', 'token', '$.method.coding[*].code', 'Search by observation method'),
+              ('Observation', 'device', 'reference', '$.device.reference', 'Search by observation device'),
+              ('Observation', 'specimen', 'reference', '$.specimen.reference', 'Search by observation specimen'),
+              ('Observation', 'component-code', 'token', '$.component[*].code.coding[*].code', 'Search by component code'),
+              ('Observation', 'component-value-string', 'string', '$.component[*].valueString', 'Search by component value (string)'),
+              ('Observation', 'component-value-quantity', 'quantity', '$.component[*].valueQuantity.value', 'Search by component value (quantity)');
+              
+              -- CodeSystem Search Parameters (JSONPath format - FIXED)
+              INSERT INTO fhir.fhir_search_params (resource_type, name, type, expression, description) VALUES
+              ('CodeSystem', '_id', 'token', '$.id', 'Search by the logical id of the resource'),
+              ('CodeSystem', 'identifier', 'token', '$.identifier[*].value', 'Search by code system identifier'),
+              ('CodeSystem', 'name', 'string', '$.name', 'Search by code system name'),
+              ('CodeSystem', 'title', 'string', '$.title', 'Search by code system title'),
+              ('CodeSystem', 'url', 'uri', '$.url', 'Search by code system canonical URL'),
+              ('CodeSystem', 'version', 'token', '$.version', 'Search by code system version'),
+              ('CodeSystem', 'status', 'token', '$.status', 'Search by code system publication status'),
+              ('CodeSystem', 'publisher', 'string', '$.publisher', 'Search by code system publisher'),
+              ('CodeSystem', 'description', 'string', '$.description', 'Search by code system description'),
+              ('CodeSystem', 'date', 'date', '$.date', 'Search by code system publication date'),
+              ('CodeSystem', 'jurisdiction', 'token', '$.jurisdiction[*].coding[*].code', 'Search by code system jurisdiction'),
+              ('CodeSystem', 'content', 'token', '$.content', 'Search by code system content mode'),
+              ('CodeSystem', 'supplements', 'uri', '$.supplements', 'Search by code system supplements'),
+              ('CodeSystem', 'language', 'token', '$.language', 'Search by code system language');
+              
+              -- Encounter Search Parameters (JSONPath format)
+              INSERT INTO fhir.fhir_search_params (resource_type, name, type, expression, description) VALUES
+              ('Encounter', '_id', 'token', '$.id', 'Search by the logical id of the resource'),
+              ('Encounter', 'subject', 'reference', '$.subject.reference', 'Search by the subject of the encounter'),
+              ('Encounter', 'patient', 'reference', '$.subject.reference', 'Search by the patient of the encounter'),
+              ('Encounter', 'date', 'date', '$.period.start', 'Search by encounter start date'),
+              ('Encounter', 'period', 'date', '$.period.start', 'Search by encounter period'),
+              ('Encounter', 'status', 'token', '$.status', 'Search by encounter status'),
+              ('Encounter', 'class', 'token', '$.class.code', 'Search by encounter class'),
+              ('Encounter', 'type', 'token', '$.type[*].coding[*].code', 'Search by encounter type'),
+              ('Encounter', 'service-provider', 'reference', '$.serviceProvider.reference', 'Search by service provider'),
+              ('Encounter', 'participant', 'reference', '$.participant[*].individual.reference', 'Search by encounter participant'),
+              ('Encounter', 'practitioner', 'reference', '$.participant[*].individual.reference', 'Search by encounter practitioner'),
+              ('Encounter', 'location', 'reference', '$.location[*].location.reference', 'Search by encounter location'),
+              ('Encounter', 'diagnosis', 'reference', '$.diagnosis[*].condition.reference', 'Search by encounter diagnosis'),
+              ('Encounter', 'reason-code', 'token', '$.reasonCode[*].coding[*].code', 'Search by encounter reason code'),
+              ('Encounter', 'reason-reference', 'reference', '$.reasonReference[*].reference', 'Search by encounter reason reference'),
+              ('Encounter', 'length', 'quantity', '$.length.value', 'Search by encounter length');
+              
+              -- Condition Search Parameters (JSONPath format)
+              INSERT INTO fhir.fhir_search_params (resource_type, name, type, expression, description) VALUES
+              ('Condition', '_id', 'token', '$.id', 'Search by the logical id of the resource'),
+              ('Condition', 'code', 'token', '$.code.coding[*].code', 'Search by condition code'),
+              ('Condition', 'subject', 'reference', '$.subject.reference', 'Search by condition subject'),
+              ('Condition', 'patient', 'reference', '$.subject.reference', 'Search by condition patient'),
+              ('Condition', 'clinical-status', 'token', '$.clinicalStatus.coding[*].code', 'Search by condition clinical status'),
+              ('Condition', 'verification-status', 'token', '$.verificationStatus.coding[*].code', 'Search by condition verification status'),
+              ('Condition', 'category', 'token', '$.category[*].coding[*].code', 'Search by condition category'),
+              ('Condition', 'severity', 'token', '$.severity.coding[*].code', 'Search by condition severity'),
+              ('Condition', 'onset-date', 'date', '$.onsetDateTime', 'Search by condition onset date'),
+              ('Condition', 'onset-age', 'quantity', '$.onsetAge.value', 'Search by condition onset age'),
+              ('Condition', 'abatement-date', 'date', '$.abatementDateTime', 'Search by condition abatement date'),
+              ('Condition', 'recorded-date', 'date', '$.recordedDate', 'Search by condition recorded date'),
+              ('Condition', 'encounter', 'reference', '$.encounter.reference', 'Search by encounter reference'),
+              ('Condition', 'recorder', 'reference', '$.recorder.reference', 'Search by condition recorder'),
+              ('Condition', 'asserter', 'reference', '$.asserter.reference', 'Search by condition asserter'),
+              ('Condition', 'evidence', 'token', '$.evidence[*].code[*].coding[*].code', 'Search by condition evidence'),
+              ('Condition', 'evidence-detail', 'reference', '$.evidence[*].detail[*].reference', 'Search by condition evidence detail');
+              
+              -- Procedure Search Parameters (JSONPath format)
+              INSERT INTO fhir.fhir_search_params (resource_type, name, type, expression, description) VALUES
+              ('Procedure', '_id', 'token', '$.id', 'Search by the logical id of the resource'),
+              ('Procedure', 'code', 'token', '$.code.coding[*].code', 'Search by procedure code'),
+              ('Procedure', 'subject', 'reference', '$.subject.reference', 'Search by procedure subject'),
+              ('Procedure', 'patient', 'reference', '$.subject.reference', 'Search by procedure patient'),
+              ('Procedure', 'status', 'token', '$.status', 'Search by procedure status'),
+              ('Procedure', 'category', 'token', '$.category.coding[*].code', 'Search by procedure category'),
+              ('Procedure', 'date', 'date', '$.performedDateTime', 'Search by procedure date'),
+              ('Procedure', 'performed', 'date', '$.performedDateTime', 'Search by procedure performed date'),
+              ('Procedure', 'encounter', 'reference', '$.encounter.reference', 'Search by encounter reference'),
+              ('Procedure', 'performer', 'reference', '$.performer[*].actor.reference', 'Search by procedure performer'),
+              ('Procedure', 'location', 'reference', '$.location.reference', 'Search by procedure location'),
+              ('Procedure', 'reason-code', 'token', '$.reasonCode[*].coding[*].code', 'Search by procedure reason code'),
+              ('Procedure', 'reason-reference', 'reference', '$.reasonReference[*].reference', 'Search by procedure reason reference'),
+              ('Procedure', 'based-on', 'reference', '$.basedOn[*].reference', 'Search by procedure based on'),
+              ('Procedure', 'part-of', 'reference', '$.partOf[*].reference', 'Search by procedure part of'),
+              ('Procedure', 'instantiates-canonical', 'reference', '$.instantiatesCanonical[*]', 'Search by procedure instantiates canonical'),
+              ('Procedure', 'instantiates-uri', 'uri', '$.instantiatesUri[*]', 'Search by procedure instantiates URI');
+              
+              -- Organization Search Parameters (JSONPath format)
+              INSERT INTO fhir.fhir_search_params (resource_type, name, type, expression, description) VALUES
+              ('Organization', '_id', 'token', '$.id', 'Search by the logical id of the resource'),
+              ('Organization', 'identifier', 'token', '$.identifier[*].value', 'Search by organization identifier'),
+              ('Organization', 'name', 'string', '$.name', 'Search by organization name'),
+              ('Organization', 'alias', 'string', '$.alias[*]', 'Search by organization alias'),
+              ('Organization', 'active', 'token', '$.active', 'Search by organization active status'),
+              ('Organization', 'type', 'token', '$.type[*].coding[*].code', 'Search by organization type'),
+              ('Organization', 'address', 'string', '$.address[*].text', 'Search by organization address'),
+              ('Organization', 'address-city', 'string', '$.address[*].city', 'Search by organization city'),
+              ('Organization', 'address-state', 'string', '$.address[*].state', 'Search by organization state'),
+              ('Organization', 'address-postalcode', 'string', '$.address[*].postalCode', 'Search by organization postal code'),
+              ('Organization', 'address-country', 'string', '$.address[*].country', 'Search by organization country'),
+              ('Organization', 'endpoint', 'reference', '$.endpoint[*].reference', 'Search by organization endpoint'),
+              ('Organization', 'partof', 'reference', '$.partOf.reference', 'Search by organization part of');
+              
+              -- Practitioner Search Parameters (JSONPath format)
+              INSERT INTO fhir.fhir_search_params (resource_type, name, type, expression, description) VALUES
+              ('Practitioner', '_id', 'token', '$.id', 'Search by the logical id of the resource'),
+              ('Practitioner', 'identifier', 'token', '$.identifier[*].value', 'Search by practitioner identifier'),
+              ('Practitioner', 'name', 'string', '$.name[*].family', 'Search by practitioner name'),
+              ('Practitioner', 'family', 'string', '$.name[*].family', 'Search by practitioner family name'),
+              ('Practitioner', 'given', 'string', '$.name[*].given[*]', 'Search by practitioner given name'),
+              ('Practitioner', 'active', 'token', '$.active', 'Search by practitioner active status'),
+              ('Practitioner', 'gender', 'token', '$.gender', 'Search by practitioner gender'),
+              ('Practitioner', 'birthdate', 'date', '$.birthDate', 'Search by practitioner birth date'),
+              ('Practitioner', 'phone', 'token', '$.telecom[?(@.system=="phone")].value', 'Search by practitioner phone'),
+              ('Practitioner', 'email', 'token', '$.telecom[?(@.system=="email")].value', 'Search by practitioner email'),
+              ('Practitioner', 'address', 'string', '$.address[*].text', 'Search by practitioner address'),
+              ('Practitioner', 'communication', 'token', '$.communication[*].coding[*].code', 'Search by practitioner communication language');
+
+  # ===================================================================
+  # Update Functions and Triggers
+  # ===================================================================
+  
+  - changeSet:
+      id: 6-create-update-triggers
+      author: system-dev
+      comment: Create update trigger for updated_at timestamps.
+      changes:
+        - sql:
+            sql: |
+              -- Create update trigger for updated_at timestamps
+              CREATE OR REPLACE FUNCTION update_updated_at_column()
+              RETURNS TRIGGER AS $$
+              BEGIN
+                  NEW.updated_at = CURRENT_TIMESTAMP;
+                  RETURN NEW;
+              END;
+              $$ language 'plpgsql';
+              
+              CREATE TRIGGER update_fhir_resources_updated_at BEFORE UPDATE ON fhir.fhir_resources
+                  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+              
+              CREATE TRIGGER update_fhir_search_params_updated_at BEFORE UPDATE ON fhir.fhir_search_params
+                  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+  # ===================================================================
+  # Permissions
+  # ===================================================================
+  
+  - changeSet:
+      id: 7-grant-permissions
+      author: security-team
+      comment: Grant necessary permissions on FHIR schema and tables.
+      changes:
+        - sql:
+            sql: |
+              -- Grant permissions
+              GRANT USAGE ON SCHEMA fhir TO PUBLIC;
+              GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA fhir TO PUBLIC;
+              GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA fhir TO PUBLIC;
+
+# ===================================================================
+# FUTURE CHANGES - All new changesets should be appended below this line.
+# 
+# Guidelines for new changesets:
+# 1. Always increment the changeset ID number sequentially  
+# 2. Use descriptive IDs that indicate the change purpose
+# 3. Include detailed comments explaining the change
+# 4. Use preConditions when appropriate to avoid duplicate operations
+# 5. Tag major architectural changes for easy rollback identification
+# ===================================================================
+
+  # ===================================================================
+  # ConventionBasedSearchService Optimization Indexes
+  # ===================================================================
+  
+  - changeSet:
+      id: 8-create-convention-based-search-indexes
+      author: search-optimization-team
+      comment: Create functional indexes to optimize ConventionBasedSearchService performance for FHIR search operations.
+      tags:
+        - performance
+        - search-optimization
+        - convention-based-search
+      changes:
+        - sql:
+            sql: |
+              -- ===================================================================
+              -- Functional Indexes for ConventionBasedSearchService
+              -- These indexes optimize common FHIR search parameter queries
+              -- by creating indexes on frequently accessed JSONB paths
+              -- ===================================================================
+              
+              -- CodeSystem functional indexes for common search parameters
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_codesystem_status 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'status'))
+              WHERE resource_type = 'CodeSystem';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_codesystem_name 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'name'))
+              WHERE resource_type = 'CodeSystem';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_codesystem_url 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'url'))
+              WHERE resource_type = 'CodeSystem';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_codesystem_title 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'title'))
+              WHERE resource_type = 'CodeSystem';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_codesystem_version 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'version'))
+              WHERE resource_type = 'CodeSystem';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_codesystem_publisher 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'publisher'))
+              WHERE resource_type = 'CodeSystem';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_codesystem_identifier_value 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'identifier' -> 0 ->> 'value'))
+              WHERE resource_type = 'CodeSystem';
+
+              -- ValueSet functional indexes for common search parameters  
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_valueset_status 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'status'))
+              WHERE resource_type = 'ValueSet';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_valueset_name 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'name'))
+              WHERE resource_type = 'ValueSet';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_valueset_url 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'url'))
+              WHERE resource_type = 'ValueSet';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_valueset_title 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'title'))
+              WHERE resource_type = 'ValueSet';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_valueset_version 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'version'))
+              WHERE resource_type = 'ValueSet';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_valueset_publisher 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'publisher'))
+              WHERE resource_type = 'ValueSet';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_valueset_identifier_value 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'identifier' -> 0 ->> 'value'))
+              WHERE resource_type = 'ValueSet';
+
+              -- Patient functional indexes for common search parameters
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_patient_name_family 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'name' -> 0 ->> 'family'))
+              WHERE resource_type = 'Patient';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_patient_name_given 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'name' -> 0 -> 'given' -> 0))
+              WHERE resource_type = 'Patient';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_patient_gender 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'gender'))
+              WHERE resource_type = 'Patient';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_patient_birthdate 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'birthDate'))
+              WHERE resource_type = 'Patient';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_patient_active 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'active'))
+              WHERE resource_type = 'Patient';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_patient_identifier_value 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'identifier' -> 0 ->> 'value'))
+              WHERE resource_type = 'Patient';
+
+              -- Observation functional indexes for common search parameters
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_observation_status 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'status'))
+              WHERE resource_type = 'Observation';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_observation_code 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'code' -> 'coding' -> 0 ->> 'code'))
+              WHERE resource_type = 'Observation';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_observation_effective_datetime 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'effectiveDateTime'))
+              WHERE resource_type = 'Observation';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_observation_subject_reference 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'subject' ->> 'reference'))
+              WHERE resource_type = 'Observation';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_observation_category 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'category' -> 0 -> 'coding' -> 0 ->> 'code'))
+              WHERE resource_type = 'Observation';
+
+              -- Organization functional indexes for common search parameters
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_organization_name 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'name'))
+              WHERE resource_type = 'Organization';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_organization_active 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'active'))
+              WHERE resource_type = 'Organization';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_organization_identifier_value 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'identifier' -> 0 ->> 'value'))
+              WHERE resource_type = 'Organization';
+
+              -- Encounter functional indexes for common search parameters
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_encounter_status 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'status'))
+              WHERE resource_type = 'Encounter';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_encounter_class 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'class' ->> 'code'))
+              WHERE resource_type = 'Encounter';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_encounter_subject_reference 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'subject' ->> 'reference'))
+              WHERE resource_type = 'Encounter';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_encounter_period_start 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'period' ->> 'start'))
+              WHERE resource_type = 'Encounter';
+
+              -- Condition functional indexes for common search parameters
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_condition_subject_reference 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'subject' ->> 'reference'))
+              WHERE resource_type = 'Condition';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_condition_code 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'code' -> 'coding' -> 0 ->> 'code'))
+              WHERE resource_type = 'Condition';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_condition_clinical_status 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'clinicalStatus' -> 'coding' -> 0 ->> 'code'))
+              WHERE resource_type = 'Condition';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_condition_verification_status 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'verificationStatus' -> 'coding' -> 0 ->> 'code'))
+              WHERE resource_type = 'Condition';
+
+              -- Procedure functional indexes for common search parameters
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_procedure_subject_reference 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'subject' ->> 'reference'))
+              WHERE resource_type = 'Procedure';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_procedure_code 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'code' -> 'coding' -> 0 ->> 'code'))
+              WHERE resource_type = 'Procedure';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_procedure_status 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'status'))
+              WHERE resource_type = 'Procedure';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_procedure_performed_datetime 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'performedDateTime'))
+              WHERE resource_type = 'Procedure';
+
+              -- Location functional indexes for common search parameters
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_location_name 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'name'))
+              WHERE resource_type = 'Location';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_location_status 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'status'))
+              WHERE resource_type = 'Location';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_location_identifier_value 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'identifier' -> 0 ->> 'value'))
+              WHERE resource_type = 'Location';
+
+              -- Generic identifier index for all resource types
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_generic_identifier_value 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'identifier' -> 0 ->> 'value'));
+              
+              -- Generic status index for all resource types
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_generic_status 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'status'));
+              
+              -- Generic id index for all resource types  
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_generic_id 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'id'));
+
+  - changeSet:
+      id: 9-create-additional-search-indexes
+      author: search-optimization-team
+      comment: Create additional indexes for less common but important search parameters.
+      tags:
+        - performance
+        - search-optimization
+        - extended-search
+      changes:
+        - sql:
+            sql: |
+              -- Additional indexes for advanced search scenarios
+              
+              -- MedicationRequest functional indexes
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_medication_request_subject_reference 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'subject' ->> 'reference'))
+              WHERE resource_type = 'MedicationRequest';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_medication_request_status 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'status'))
+              WHERE resource_type = 'MedicationRequest';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_medication_request_intent 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'intent'))
+              WHERE resource_type = 'MedicationRequest';
+
+              -- DiagnosticReport functional indexes
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_diagnostic_report_subject_reference 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'subject' ->> 'reference'))
+              WHERE resource_type = 'DiagnosticReport';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_diagnostic_report_status 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'status'))
+              WHERE resource_type = 'DiagnosticReport';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_diagnostic_report_code 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'code' -> 'coding' -> 0 ->> 'code'))
+              WHERE resource_type = 'DiagnosticReport';
+
+              -- Practitioner functional indexes
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_practitioner_name_family 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'name' -> 0 ->> 'family'))
+              WHERE resource_type = 'Practitioner';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_practitioner_name_given 
+              ON fhir.fhir_resources USING BTREE ((resource -> 'name' -> 0 -> 'given' -> 0))
+              WHERE resource_type = 'Practitioner';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_practitioner_active 
+              ON fhir.fhir_resources USING BTREE ((resource ->> 'active'))
+              WHERE resource_type = 'Practitioner';
+
+              -- Composite indexes for common multi-field searches
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_patient_name_gender 
+              ON fhir.fhir_resources USING BTREE (resource_type, (resource -> 'name' -> 0 ->> 'family'), (resource ->> 'gender'))
+              WHERE resource_type = 'Patient';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_observation_subject_status 
+              ON fhir.fhir_resources USING BTREE (resource_type, (resource -> 'subject' ->> 'reference'), (resource ->> 'status'))
+              WHERE resource_type = 'Observation';
+
+              -- Text search indexes for name fields (using pg_trgm extension)
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_patient_name_family_trgm 
+              ON fhir.fhir_resources USING GIN ((resource -> 'name' -> 0 ->> 'family') gin_trgm_ops)
+              WHERE resource_type = 'Patient';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_practitioner_name_family_trgm 
+              ON fhir.fhir_resources USING GIN ((resource -> 'name' -> 0 ->> 'family') gin_trgm_ops)
+              WHERE resource_type = 'Practitioner';
+              
+              CREATE INDEX IF NOT EXISTS idx_fhir_resources_organization_name_trgm 
+              ON fhir.fhir_resources USING GIN ((resource ->> 'name') gin_trgm_ops)
+              WHERE resource_type = 'Organization';

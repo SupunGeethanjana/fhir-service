@@ -1,0 +1,709 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:patient-nora-alshammari-05",
+            "resource": {
+                "resourceType": "Patient",
+                "active": true,
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR"
+                                }
+                            ]
+                        },
+                        "system": "http://moh.gov.sa/mrn",
+                        "value": "SA-05678901"
+                    },
+                    {
+                        "use": "official",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "NI"
+                                }
+                            ]
+                        },
+                        "system": "http://saudi.gov.sa/national-id",
+                        "value": "2087292234"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Al-Shammari",
+                        "given": [
+                            "Nora",
+                            "Faisal"
+                        ]
+                    }
+                ],
+                "gender": "female",
+                "birthDate": "1972-09-22",
+                "address": [
+                    {
+                        "use": "home",
+                        "text": "Al-Naseem District, Tabuk, Saudi Arabia",
+                        "city": "Tabuk",
+                        "country": "SA"
+                    }
+                ],
+                "communication": [
+                    {
+                        "language": {
+                            "coding": [
+                                {
+                                    "system": "urn:ietf:bcp:47",
+                                    "code": "ar-SA"
+                                }
+                            ]
+                        },
+                        "preferred": true
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:encounter-mental-health-05",
+            "resource": {
+                "resourceType": "Encounter",
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-nora-alshammari-05"
+                },
+                "period": {
+                    "start": "2025-07-23T14:00:00+03:00",
+                    "end": "2025-07-23T15:00:00+03:00"
+                },
+                "reasonCode": [
+                    {
+                        "text": "Persistent feelings of sadness, loss of interest in daily activities, and sleep disturbances for 2 months"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Encounter"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:condition-major-depression-05",
+            "resource": {
+                "resourceType": "Condition",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                            "code": "F32.2",
+                            "display": "Major depressive disorder, single episode, severe without psychotic features"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-nora-alshammari-05"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-phq9-score-05",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "44261-6",
+                            "display": "Patient Health Questionnaire 9 item (PHQ-9) total score [Reported]"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-nora-alshammari-05"
+                },
+                "valueQuantity": {
+                    "value": 18,
+                    "system": "http://unitsofmeasure.org",
+                    "code": "{score}"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-bp-05",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "85354-9",
+                            "display": "Blood pressure panel with all children optional"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-nora-alshammari-05"
+                },
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 110,
+                            "unit": "mmHg"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 70,
+                            "unit": "mmHg"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-nora-sister-05",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-nora-alshammari-05"
+                },
+                "date": "2025-07-23",
+                "name": "Salma Bint Faisal (Sister)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "SIS",
+                            "display": "sister"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "female"
+                        }
+                    ]
+                },
+                "bornDate": "1975-04-10",
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "87512008",
+                                    "display": "Postpartum depression"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 28,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Severe postpartum depression after birth of second child lasting 8 months. Required hospitalization and medication. Recovered fully with treatment and had no recurrence with subsequent pregnancies."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-nora-father-05",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-nora-alshammari-05"
+                },
+                "date": "2025-07-23",
+                "name": "Ahmed Bin Omar (Father)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "FTH",
+                            "display": "father"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "male"
+                        }
+                    ]
+                },
+                "bornDate": "1940-07-15",
+                "deceasedAge": {
+                    "value": 75,
+                    "unit": "years",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "a"
+                },
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "286759002",
+                                    "display": "Mood disorder"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 40,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "History of significant mood swings and periods of social withdrawal throughout adulthood. Never formally diagnosed or treated due to cultural barriers. Family described him as having 'difficult periods' with irritability and sadness."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-counseling-05",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "referral"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Psychological Counseling"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-nora-alshammari-05"
+                },
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "Cognitive behavioral therapy for major depression and coping strategies for recent life stressors"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-lab-depression-05",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Depression Screening Laboratory Panel"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-nora-alshammari-05"
+                },
+                "occurrenceDateTime": "2025-07-25T08:00:00+03:00",
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "TSH, vitamin B12, vitamin D, CBC to rule out medical causes of depression"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-req-sertraline-05",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "36437",
+                            "display": "Sertraline"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-nora-alshammari-05"
+                },
+                "dosageInstruction": [
+                    {
+                        "text": "50mg orally once daily in the morning",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 1,
+                                "period": 1,
+                                "periodUnit": "d",
+                                "when": [
+                                    "MORN"
+                                ]
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral route"
+                                }
+                            ]
+                        },
+                        "doseAndRate": [
+                            {
+                                "doseQuantity": {
+                                    "value": 50,
+                                    "unit": "mg"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "dispenseRequest": {
+                    "quantity": {
+                        "value": 90,
+                        "unit": "tablets"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:appointment-followup-mental-health-05",
+            "resource": {
+                "resourceType": "Appointment",
+                "status": "booked",
+                "serviceCategory": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-category",
+                                "code": "7",
+                                "display": "Mental Health"
+                            }
+                        ]
+                    }
+                ],
+                "serviceType": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-type",
+                                "code": "409",
+                                "display": "Mental Health"
+                            }
+                        ]
+                    }
+                ],
+                "appointmentType": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+                            "code": "FOLLOWUP",
+                            "display": "Follow-up"
+                        }
+                    ]
+                },
+                "reasonCode": [
+                    {
+                        "text": "Follow-up for major depression and medication adjustment"
+                    }
+                ],
+                "start": "2025-08-06T14:00:00+03:00",
+                "end": "2025-08-06T14:30:00+03:00",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:patient-nora-alshammari-05"
+                        },
+                        "status": "accepted"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Appointment"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:composition-mental-health-05",
+            "resource": {
+                "resourceType": "Composition",
+                "status": "final",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "11506-3",
+                            "display": "Provider-unspecified progress note"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-nora-alshammari-05"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-mental-health-05"
+                },
+                "date": "2025-07-23T14:30:00+03:00",
+                "title": "Mental Health Assessment - Major Depressive Disorder",
+                "section": [
+                    {
+                        "title": "Chief Complaint",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10154-3",
+                                    "display": "Chief complaint"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Persistent feelings of sadness, loss of interest in daily activities, and sleep disturbances for 2 months</div>"
+                        }
+                    },
+                    {
+                        "title": "Subjective",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "61150-9",
+                                    "display": "Subjective"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">52-year-old Saudi female teacher presents with 2-month history of persistent sadness, anhedonia, and significant functional impairment. Reports early morning awakening (4 AM), appetite loss with 5kg weight loss, fatigue, difficulty concentrating at work, feelings of worthlessness and guilt. Triggered by recent job stress and marital difficulties. Denies suicidal ideation but reports passive death wishes. Family history significant for sister's postpartum depression and father's undiagnosed mood disorder.</div>"
+                        }
+                    },
+                    {
+                        "title": "Objective",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "61149-1",
+                                    "display": "Objective"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Mental Status: Alert, oriented x3. Appears sad with poor eye contact. Speech slow and soft. Mood depressed, affect congruent. Thought process linear, no psychosis. PHQ-9 score: 18 (severe depression). Vital signs: BP 110/70, HR 68, normal temperature. Weight loss evident, appears tired.</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:obs-phq9-score-05"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-bp-05"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Assessment",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "51847-2",
+                                    "display": "Assessment"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">1. Major depressive disorder, single episode, severe without psychotic features (ICD-10: F32.2)<br/>2. Precipitated by psychosocial stressors (work stress, marital difficulties)<br/>3. Significant functional impairment in occupational and social domains<br/>4. Family history of mood disorders (genetic predisposition)<br/>5. No current suicidal risk but requires close monitoring</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:condition-major-depression-05"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Planning",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "18776-5",
+                                    "display": "Plan"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Medications:</b></p><ul><li>Sertraline 50mg daily (SSRI for depression treatment)</li></ul><p><b>Diagnostic Orders:</b></p><ul><li>Depression screening labs (TSH, B12, Vitamin D, CBC) to rule out medical causes</li></ul><p><b>Referrals:</b></p><ul><li>Psychological counseling for cognitive behavioral therapy</li></ul><p><b>Follow-up:</b></p><ul><li>Mental health follow-up in 2 weeks for medication response assessment</li><li>Weekly phone check-ins for first month</li><li>Emergency contact if suicidal thoughts develop</li></ul><p><b>Education:</b></p><ul><li>Depression education and symptom monitoring</li><li>Medication compliance and side effects</li><li>Stress management techniques</li><li>Family support and involvement</li></ul></div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:medication-req-sertraline-05"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-lab-depression-05"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-counseling-05"
+                            },
+                            {
+                                "reference": "urn:uuid:appointment-followup-mental-health-05"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Family History",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10157-2",
+                                    "display": "Family history"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Significant family history of mood disorders. Sister experienced severe postpartum depression requiring hospitalization and medication, but recovered fully. Father had undiagnosed mood disorder with periods of social withdrawal and irritability throughout adulthood, reflecting cultural barriers to mental health treatment. Family history indicates genetic predisposition to mood disorders requiring ongoing monitoring and early intervention strategies.</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:family-member-nora-sister-05"
+                            },
+                            {
+                                "reference": "urn:uuid:family-member-nora-father-05"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Composition"
+            }
+        }
+    ]
+}

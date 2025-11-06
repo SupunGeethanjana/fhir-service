@@ -1,0 +1,1244 @@
+{
+    "resourceType": "Bundle",
+    "id": "saudi-patient-all-resources-bundle",
+    "type": "transaction",
+    "timestamp": "2025-08-18T10:00:00+03:00",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:patient-001",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "patient-001",
+                "text": {
+                    "status": "generated",
+                    "div": "<div><b>Patient Summary:</b> Ahmed Mohammed Al-Mutairi, a 40-year-old Saudi male with a history of type 2 diabetes, regularly follows up for chronic disease management. No known drug allergies except penicillin. Lives in Riyadh, married, two children.</div>"
+                },
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "http://moh.gov.sa/fhir/sid/national-id",
+                        "value": "1123456789"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/mrn",
+                        "value": "MRN-SAU-001234"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Al-Mutairi",
+                        "given": [
+                            "Ahmed",
+                            "Mohammed"
+                        ],
+                        "text": "Ahmed Mohammed Al-Mutairi"
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "+966501234567",
+                        "use": "mobile"
+                    },
+                    {
+                        "system": "email",
+                        "value": "ahmed.mutairi@email.com",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1985-01-01",
+                "address": [
+                    {
+                        "line": [
+                            "123 King Fahad Road"
+                        ],
+                        "city": "Riyadh",
+                        "postalCode": "11564",
+                        "country": "SA"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "M",
+                            "display": "Married"
+                        }
+                    ]
+                },
+                "contact": [
+                    {
+                        "relationship": [
+                            {
+                                "coding": [
+                                    {
+                                        "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+                                        "code": "N"
+                                    }
+                                ]
+                            }
+                        ],
+                        "name": {
+                            "text": "Fatimah Al-Mutairi"
+                        },
+                        "telecom": [
+                            {
+                                "system": "phone",
+                                "value": "+966501234568"
+                            }
+                        ],
+                        "gender": "female"
+                    }
+                ],
+                "communication": [
+                    {
+                        "language": {
+                            "coding": [
+                                {
+                                    "system": "urn:ietf:bcp:47",
+                                    "code": "ar",
+                                    "display": "Arabic"
+                                }
+                            ]
+                        },
+                        "preferred": true
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:encounter-001",
+            "resource": {
+                "resourceType": "Encounter",
+                "id": "encounter-001",
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "participant": [
+                    {
+                        "individual": {
+                            "reference": "urn:uuid:practitioner-001"
+                        }
+                    }
+                ],
+                "period": {
+                    "start": "2025-08-10T08:00:00+03:00",
+                    "end": "2025-08-10T09:00:00+03:00"
+                },
+                "reasonCode": [
+                    {
+                        "text": "Routine diabetes follow-up"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Encounter"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:encounter-002",
+            "resource": {
+                "resourceType": "Encounter",
+                "id": "encounter-002",
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "participant": [
+                    {
+                        "individual": {
+                            "reference": "urn:uuid:practitioner-001"
+                        }
+                    }
+                ],
+                "period": {
+                    "start": "2025-08-17T10:00:00+03:00",
+                    "end": "2025-08-17T10:30:00+03:00"
+                },
+                "reasonCode": [
+                    {
+                        "text": "Acute headache and fever"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Encounter"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:encounter-003",
+            "resource": {
+                "resourceType": "Encounter",
+                "id": "encounter-003",
+                "status": "in-progress",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "participant": [
+                    {
+                        "individual": {
+                            "reference": "urn:uuid:practitioner-001"
+                        }
+                    }
+                ],
+                "period": {
+                    "start": "2025-08-18T09:00:00+03:00"
+                },
+                "reasonCode": [
+                    {
+                        "text": "Annual physical exam"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Encounter"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:practitioner-001",
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "practitioner-001",
+                "text": {
+                    "status": "generated",
+                    "div": "<div><b>Dr. Saad Al Harbi</b>, General Practitioner, 10 years experience in primary care. Speaks Arabic and English.</div>"
+                },
+                "name": [
+                    {
+                        "family": "Al Harbi",
+                        "given": [
+                            "Saad"
+                        ],
+                        "prefix": [
+                            "Dr."
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "+966501234569",
+                        "use": "work"
+                    }
+                ],
+                "qualification": [
+                    {
+                        "code": {
+                            "text": "General Practitioner"
+                        },
+                        "period": {
+                            "start": "2015-01-01"
+                        },
+                        "issuer": {
+                            "display": "Saudi Commission for Health Specialties"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Practitioner"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:organization-001",
+            "resource": {
+                "resourceType": "Organization",
+                "id": "organization-001",
+                "text": {
+                    "status": "generated",
+                    "div": "<div><b>King Saud Medical City</b> - Major tertiary care hospital in Riyadh, Saudi Arabia.</div>"
+                },
+                "name": "King Saud Medical City",
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                                "code": "prov",
+                                "display": "Healthcare Provider"
+                            }
+                        ]
+                    }
+                ],
+                "address": [
+                    {
+                        "line": [
+                            "King Fahad Road"
+                        ],
+                        "city": "Riyadh",
+                        "country": "SA"
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "+966114355555"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Organization"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:observation-001",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "observation-001",
+                "status": "final",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8302-2",
+                            "display": "Body height"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-001"
+                },
+                "performer": [
+                    {
+                        "reference": "urn:uuid:practitioner-001"
+                    }
+                ],
+                "valueQuantity": {
+                    "value": 172,
+                    "unit": "cm"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:condition-001",
+            "resource": {
+                "resourceType": "Condition",
+                "id": "condition-001",
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-001"
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "44054006",
+                            "display": "Diabetes mellitus type 2"
+                        }
+                    ]
+                },
+                "onsetDateTime": "2020-01-01"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:procedure-001",
+            "resource": {
+                "resourceType": "Procedure",
+                "id": "procedure-001",
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-001"
+                },
+                "performer": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:practitioner-001"
+                        }
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "386053000",
+                            "display": "Evaluation procedure"
+                        }
+                    ]
+                },
+                "performedDateTime": "2025-08-10T08:30:00+03:00"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Procedure"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:immunization-001",
+            "resource": {
+                "resourceType": "Immunization",
+                "id": "immunization-001",
+                "status": "completed",
+                "vaccineCode": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/cvx",
+                            "code": "207",
+                            "display": "COVID-19"
+                        }
+                    ]
+                },
+                "patient": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-001"
+                },
+                "occurrenceDateTime": "2025-08-10T08:45:00+03:00",
+                "primarySource": true
+            },
+            "request": {
+                "method": "POST",
+                "url": "Immunization"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-request-001",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "id": "medication-request-001",
+                "status": "active",
+                "intent": "order",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.whocc.no/atc",
+                            "code": "A10BA02",
+                            "display": "Metformin"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-001"
+                },
+                "requester": {
+                    "reference": "urn:uuid:practitioner-001"
+                },
+                "authoredOn": "2025-08-10T08:50:00+03:00"
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:service-request-001",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "id": "service-request-001",
+                "status": "active",
+                "intent": "order",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "4548-4",
+                            "display": "Hemoglobin A1c"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-001"
+                },
+                "requester": {
+                    "reference": "urn:uuid:practitioner-001"
+                },
+                "authoredOn": "2025-08-10T08:55:00+03:00"
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:specimen-001",
+            "resource": {
+                "resourceType": "Specimen",
+                "id": "specimen-001",
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "collection": {
+                    "collectedDateTime": "2025-08-10T09:00:00+03:00"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Specimen"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:diagnostic-report-001",
+            "resource": {
+                "resourceType": "DiagnosticReport",
+                "id": "diagnostic-report-001",
+                "status": "final",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "4548-4",
+                            "display": "Hemoglobin A1c"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-001"
+                },
+                "performer": [
+                    {
+                        "reference": "urn:uuid:organization-001"
+                    }
+                ],
+                "specimen": [
+                    {
+                        "reference": "urn:uuid:specimen-001"
+                    }
+                ],
+                "result": [
+                    {
+                        "reference": "urn:uuid:observation-001"
+                    }
+                ],
+                "issued": "2025-08-10T09:30:00+03:00",
+                "conclusion": "HbA1c within target range. No complications detected.",
+                "text": {
+                    "status": "generated",
+                    "div": "<div><b>Lab Report:</b> HbA1c 6.8% - Good glycemic control.</div>"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "DiagnosticReport"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:allergy-intolerance-001",
+            "resource": {
+                "resourceType": "AllergyIntolerance",
+                "id": "allergy-intolerance-001",
+                "patient": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "91936005",
+                            "display": "Allergy to penicillin"
+                        }
+                    ]
+                },
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+                            "code": "active"
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "AllergyIntolerance"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:care-plan-001",
+            "resource": {
+                "resourceType": "CarePlan",
+                "id": "care-plan-001",
+                "status": "active",
+                "intent": "plan",
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-001"
+                },
+                "activity": [
+                    {
+                        "detail": {
+                            "kind": "ServiceRequest",
+                            "reference": {
+                                "reference": "urn:uuid:service-request-001"
+                            }
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "CarePlan"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-history-001",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "id": "family-member-history-001",
+                "patient": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "MTH",
+                            "display": "Mother"
+                        }
+                    ]
+                },
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "73211009",
+                                    "display": "Diabetes mellitus"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:appointment-001",
+            "resource": {
+                "resourceType": "Appointment",
+                "id": "appointment-001",
+                "status": "booked",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:patient-001"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:practitioner-001"
+                        }
+                    }
+                ],
+                "slot": [
+                    {
+                        "reference": "urn:uuid:slot-001"
+                    }
+                ],
+                "basedOn": [
+                    {
+                        "reference": "urn:uuid:schedule-001"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Appointment"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:care-team-001",
+            "resource": {
+                "resourceType": "CareTeam",
+                "id": "care-team-001",
+                "status": "active",
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "participant": [
+                    {
+                        "member": {
+                            "reference": "urn:uuid:practitioner-001"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "CareTeam"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:claim-001",
+            "resource": {
+                "resourceType": "Claim",
+                "id": "claim-001",
+                "status": "active",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/claim-type",
+                            "code": "professional"
+                        }
+                    ]
+                },
+                "patient": {
+                    "reference": "urn:uuid:patient-001"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Claim"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:code-system-001",
+            "resource": {
+                "resourceType": "CodeSystem",
+                "id": "code-system-001",
+                "status": "active",
+                "content": "complete"
+            },
+            "request": {
+                "method": "POST",
+                "url": "CodeSystem"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:composition-001",
+            "resource": {
+                "resourceType": "Composition",
+                "id": "composition-001",
+                "status": "final",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "34109-9",
+                            "display": "Outpatient Note"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-001"
+                },
+                "date": "2025-08-10T10:00:00+03:00",
+                "author": [
+                    {
+                        "reference": "urn:uuid:practitioner-001"
+                    }
+                ],
+                "title": "SOAP Note - Diabetes Follow-up",
+                "section": [
+                    {
+                        "title": "Subjective",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Patient reports feeling well, no new symptoms. Adheres to medication and diet.</div>"
+                        }
+                    },
+                    {
+                        "title": "Objective",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>BP: 130/80 mmHg, Weight: 80kg, HbA1c: 6.8%. No foot ulcers.</div>"
+                        }
+                    },
+                    {
+                        "title": "Assessment",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Type 2 Diabetes, well controlled.</div>"
+                        }
+                    },
+                    {
+                        "title": "Plan",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Continue current medications. Next follow-up in 3 months.</div>"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Composition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:composition-002",
+            "resource": {
+                "resourceType": "Composition",
+                "id": "composition-002",
+                "status": "final",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "34109-9",
+                            "display": "Outpatient Note"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-002"
+                },
+                "date": "2025-08-17T10:30:00+03:00",
+                "author": [
+                    {
+                        "reference": "urn:uuid:practitioner-001"
+                    }
+                ],
+                "title": "SOAP Note - Acute Headache",
+                "section": [
+                    {
+                        "title": "Subjective",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Patient complains of severe headache and fever for 2 days. No neck stiffness or photophobia.</div>"
+                        }
+                    },
+                    {
+                        "title": "Objective",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Temp: 38.5°C, BP: 120/75 mmHg, Neuro exam normal.</div>"
+                        }
+                    },
+                    {
+                        "title": "Assessment",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Likely viral infection. No signs of meningitis.</div>"
+                        }
+                    },
+                    {
+                        "title": "Plan",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Supportive care, paracetamol, return if symptoms worsen.</div>"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Composition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:composition-003",
+            "resource": {
+                "resourceType": "Composition",
+                "id": "composition-003",
+                "status": "preliminary",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "34109-9",
+                            "display": "Outpatient Note"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-003"
+                },
+                "date": "2025-08-18T09:30:00+03:00",
+                "author": [
+                    {
+                        "reference": "urn:uuid:practitioner-001"
+                    }
+                ],
+                "title": "SOAP Note - Annual Physical Exam",
+                "section": [
+                    {
+                        "title": "Subjective",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Patient presents for annual checkup. No complaints.</div>"
+                        }
+                    },
+                    {
+                        "title": "Objective",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Vitals stable. Physical exam unremarkable.</div>"
+                        }
+                    },
+                    {
+                        "title": "Assessment",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Healthy adult male. No acute issues.</div>"
+                        }
+                    },
+                    {
+                        "title": "Plan",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Continue healthy lifestyle. Routine labs ordered.</div>"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Composition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:coverage-001",
+            "resource": {
+                "resourceType": "Coverage",
+                "id": "coverage-001",
+                "status": "active",
+                "beneficiary": {
+                    "reference": "urn:uuid:patient-001"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Coverage"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:device-001",
+            "resource": {
+                "resourceType": "Device",
+                "id": "device-001",
+                "status": "active",
+                "patient": {
+                    "reference": "urn:uuid:patient-001"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Device"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:document-reference-001",
+            "resource": {
+                "resourceType": "DocumentReference",
+                "id": "document-reference-001",
+                "status": "current",
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "date": "2025-08-10T10:10:00+03:00"
+            },
+            "request": {
+                "method": "POST",
+                "url": "DocumentReference"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:explanation-of-benefit-001",
+            "resource": {
+                "resourceType": "ExplanationOfBenefit",
+                "id": "explanation-of-benefit-001",
+                "status": "active",
+                "patient": {
+                    "reference": "urn:uuid:patient-001"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ExplanationOfBenefit"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:goal-001",
+            "resource": {
+                "resourceType": "Goal",
+                "id": "goal-001",
+                "lifecycleStatus": "active",
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                },
+                "description": {
+                    "text": "Maintain HbA1c below 7%"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Goal"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:imaging-study-001",
+            "resource": {
+                "resourceType": "ImagingStudy",
+                "id": "imaging-study-001",
+                "status": "available",
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ImagingStudy"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:location-001",
+            "resource": {
+                "resourceType": "Location",
+                "id": "location-001",
+                "status": "active",
+                "name": "Outpatient Clinic"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Location"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-001",
+            "resource": {
+                "resourceType": "Medication",
+                "id": "medication-001",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.whocc.no/atc",
+                            "code": "A10BA02",
+                            "display": "Metformin"
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-administration-001",
+            "resource": {
+                "resourceType": "MedicationAdministration",
+                "id": "medication-administration-001",
+                "status": "completed",
+                "medicationReference": {
+                    "reference": "urn:uuid:medication-001"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationAdministration"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-statement-001",
+            "resource": {
+                "resourceType": "MedicationStatement",
+                "id": "medication-statement-001",
+                "status": "active",
+                "medicationReference": {
+                    "reference": "urn:uuid:medication-001"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-001"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationStatement"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:practitioner-role-001",
+            "resource": {
+                "resourceType": "PractitionerRole",
+                "id": "practitioner-role-001",
+                "practitioner": {
+                    "reference": "urn:uuid:practitioner-001"
+                },
+                "organization": {
+                    "reference": "urn:uuid:organization-001"
+                },
+                "code": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/practitioner-role",
+                                "code": "doctor"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "PractitionerRole"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:provenance-001",
+            "resource": {
+                "resourceType": "Provenance",
+                "id": "provenance-001",
+                "target": [
+                    {
+                        "reference": "urn:uuid:patient-001"
+                    }
+                ],
+                "recorded": "2025-08-10T10:20:00+03:00",
+                "agent": [
+                    {
+                        "who": {
+                            "reference": "urn:uuid:practitioner-001"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Provenance"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:schedule-001",
+            "resource": {
+                "resourceType": "Schedule",
+                "id": "schedule-001",
+                "actor": [
+                    {
+                        "reference": "urn:uuid:practitioner-001"
+                    },
+                    {
+                        "reference": "urn:uuid:patient-001"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Schedule"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:slot-001",
+            "resource": {
+                "resourceType": "Slot",
+                "id": "slot-001",
+                "identifier": [
+                    {
+                        "system": "http://hospital.sa/slots",
+                        "value": "SLOT-20250820-0900"
+                    }
+                ],
+                "serviceCategory": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-category",
+                                "code": "17",
+                                "display": "General Practice"
+                            }
+                        ]
+                    }
+                ],
+                "serviceType": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "408443003",
+                                "display": "General medical practice service"
+                            }
+                        ]
+                    }
+                ],
+                "specialty": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "408443003",
+                                "display": "General practice"
+                            }
+                        ]
+                    }
+                ],
+                "appointmentType": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+                            "code": "WALKIN",
+                            "display": "A previously unscheduled walk-in visit"
+                        }
+                    ]
+                },
+                "schedule": {
+                    "reference": "urn:uuid:schedule-001"
+                },
+                "status": "free",
+                "start": "2025-08-20T09:00:00+03:00",
+                "end": "2025-08-20T09:30:00+03:00",
+                "overbooked": false,
+                "comment": "Morning slot for general practice appointments."
+            },
+            "request": {
+                "method": "POST",
+                "url": "Slot"
+            }
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "query": "query GetMedications($params: JSON) {\n  getMedications(params: $params)\n}",
+    "variables": {
+        "params": {
+            "code": "5640",
+            "status": "active"
+        }
+    },
+    "description": "Get all active Ibuprofen medications (RxNorm 5640)"
+}

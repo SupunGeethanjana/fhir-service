@@ -1,0 +1,20 @@
+{
+    "typescript.suggest.jsdoc.generateReturns": true,
+    "typescript.suggest.includeAutomaticOptionalChainCompletions": true,
+    "typescript.preferences.includeDocumentationComments": true,
+    "typescript.suggest.autoImports": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "typescript.preferences.quoteStyle": "single",
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/.nx": true
+    }
+}

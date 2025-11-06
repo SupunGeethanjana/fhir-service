@@ -1,0 +1,1562 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:patient-maryam-alotaibi-09",
+            "resource": {
+                "resourceType": "Patient",
+                "active": true,
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "system": "http://moh.gov.sa/mrn",
+                        "value": "SA-09012345"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Al-Otaibi",
+                        "given": [
+                            "Maryam",
+                            "Khalid"
+                        ]
+                    }
+                ],
+                "gender": "female",
+                "birthDate": "1988-07-30",
+                "address": [
+                    {
+                        "use": "home",
+                        "text": "King Faisal District, Al-Ahsa, Saudi Arabia",
+                        "city": "Al-Ahsa",
+                        "country": "SA"
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "+966-50-901-2345",
+                        "use": "mobile"
+                    },
+                    {
+                        "system": "email",
+                        "value": "maryam.alotaibi@email.sa"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "M",
+                            "display": "Married"
+                        }
+                    ]
+                },
+                "contact": [
+                    {
+                        "relationship": [
+                            {
+                                "coding": [
+                                    {
+                                        "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+                                        "code": "C",
+                                        "display": "Emergency Contact"
+                                    }
+                                ]
+                            }
+                        ],
+                        "name": {
+                            "use": "official",
+                            "family": "Al-Otaibi",
+                            "given": [
+                                "Khalid"
+                            ]
+                        },
+                        "telecom": [
+                            {
+                                "system": "phone",
+                                "value": "+966-50-901-2346",
+                                "use": "mobile"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:practitioner-endocrinologist-09",
+            "resource": {
+                "resourceType": "Practitioner",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "http://moh.gov.sa/license",
+                        "value": "ENDO-901234"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Al-Mansouri",
+                        "given": [
+                            "Dr. Fatima"
+                        ]
+                    }
+                ],
+                "qualification": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+                                    "code": "MD",
+                                    "display": "Doctor of Medicine"
+                                }
+                            ]
+                        },
+                        "period": {
+                            "start": "2010-06-01"
+                        },
+                        "issuer": {
+                            "display": "King Faisal University Medical School"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Practitioner"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:encounter-endocrine-09",
+            "resource": {
+                "resourceType": "Encounter",
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB",
+                    "display": "ambulatory"
+                },
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "185349003",
+                                "display": "Encounter for check up"
+                            }
+                        ]
+                    }
+                ],
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "participant": [
+                    {
+                        "individual": {
+                            "reference": "urn:uuid:practitioner-endocrinologist-09"
+                        }
+                    }
+                ],
+                "period": {
+                    "start": "2025-07-23T09:30:00+03:00",
+                    "end": "2025-07-23T10:30:00+03:00"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "40930008",
+                                "display": "Hypothyroidism"
+                            }
+                        ],
+                        "text": "Fatigue, weight gain, and feeling cold despite summer heat"
+                    }
+                ],
+                "serviceProvider": {
+                    "display": "Al-Ahsa Endocrine Clinic"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Encounter"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:condition-hypothyroid-09",
+            "resource": {
+                "resourceType": "Condition",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active"
+                        }
+                    ]
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                            "code": "confirmed"
+                        }
+                    ]
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                                "code": "problem-list-item"
+                            }
+                        ]
+                    }
+                ],
+                "severity": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "6736007",
+                            "display": "Moderate"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                            "code": "E03.9",
+                            "display": "Hypothyroidism, unspecified"
+                        },
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "40930008",
+                            "display": "Hypothyroidism"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "onsetDateTime": "2024-01-23",
+                "recordedDate": "2025-07-23T09:30:00+03:00"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-tsh-09",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "Laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "3016-3",
+                            "display": "Thyrotropin [Units/volume] in Serum or Plasma"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "effectiveDateTime": "2025-07-20T08:00:00+03:00",
+                "performer": [
+                    {
+                        "reference": "urn:uuid:practitioner-endocrinologist-09"
+                    }
+                ],
+                "valueQuantity": {
+                    "value": 12.5,
+                    "unit": "mIU/L",
+                    "system": "http://unitsofmeasure.org"
+                },
+                "interpretation": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                                "code": "H",
+                                "display": "High"
+                            }
+                        ]
+                    }
+                ],
+                "referenceRange": [
+                    {
+                        "low": {
+                            "value": 0.4,
+                            "unit": "mIU/L"
+                        },
+                        "high": {
+                            "value": 4.0,
+                            "unit": "mIU/L"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-t4-09",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "Laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "3024-7",
+                            "display": "Thyroxine (T4) free [Mass/volume] in Serum or Plasma"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "effectiveDateTime": "2025-07-20T08:00:00+03:00",
+                "performer": [
+                    {
+                        "reference": "urn:uuid:practitioner-endocrinologist-09"
+                    }
+                ],
+                "valueQuantity": {
+                    "value": 0.6,
+                    "unit": "ng/dL",
+                    "system": "http://unitsofmeasure.org"
+                },
+                "interpretation": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                                "code": "L",
+                                "display": "Low"
+                            }
+                        ]
+                    }
+                ],
+                "referenceRange": [
+                    {
+                        "low": {
+                            "value": 0.8,
+                            "unit": "ng/dL"
+                        },
+                        "high": {
+                            "value": 1.8,
+                            "unit": "ng/dL"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-cholesterol-09",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "Laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "2093-3",
+                            "display": "Cholesterol [Mass/volume] in Serum or Plasma"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "effectiveDateTime": "2025-07-20T08:00:00+03:00",
+                "performer": [
+                    {
+                        "reference": "urn:uuid:practitioner-endocrinologist-09"
+                    }
+                ],
+                "valueQuantity": {
+                    "value": 250,
+                    "unit": "mg/dL",
+                    "system": "http://unitsofmeasure.org"
+                },
+                "interpretation": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                                "code": "H",
+                                "display": "High"
+                            }
+                        ]
+                    }
+                ],
+                "referenceRange": [
+                    {
+                        "high": {
+                            "value": 200,
+                            "unit": "mg/dL"
+                        },
+                        "text": "Desirable: <200 mg/dL"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:service-request-thyroid-antibodies-09",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "108252007",
+                                "display": "Laboratory procedure"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8099-6",
+                            "display": "Thyroid peroxidase Ab [Units/volume] in Serum"
+                        }
+                    ],
+                    "text": "Thyroid antibody testing (Anti-TPO, Anti-Thyroglobulin)"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "occurrenceDateTime": "2025-07-25T08:00:00+03:00",
+                "authoredOn": "2025-07-23T10:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-endocrinologist-09"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "40930008",
+                                "display": "Hypothyroidism"
+                            }
+                        ],
+                        "text": "To determine if hypothyroidism is autoimmune (Hashimoto's thyroiditis)"
+                    }
+                ],
+                "note": [
+                    {
+                        "text": "Test for Anti-TPO and Anti-Thyroglobulin antibodies to confirm autoimmune etiology given family history of thyroid disease."
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:service-request-follow-up-labs-09",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "108252007",
+                                "display": "Laboratory procedure"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "3016-3",
+                            "display": "Thyrotropin [Units/volume] in Serum or Plasma"
+                        }
+                    ],
+                    "text": "TSH and Free T4 follow-up"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "occurrenceDateTime": "2025-09-03T08:00:00+03:00",
+                "authoredOn": "2025-07-23T10:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-endocrinologist-09"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "182836005",
+                                "display": "Review of medication"
+                            }
+                        ]
+                    }
+                ],
+                "note": [
+                    {
+                        "text": "Recheck TSH and Free T4 in 6 weeks after starting levothyroxine to assess treatment response and adjust dosage if needed."
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:service-request-nutritionist-09",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "386053000",
+                                "display": "Evaluation procedure"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "418995006",
+                            "display": "Feeding and dietary counseling"
+                        }
+                    ],
+                    "text": "Nutritionist consultation for weight management"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "authoredOn": "2025-07-23T10:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-endocrinologist-09"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "8943002",
+                                "display": "Weight gain"
+                            }
+                        ]
+                    }
+                ],
+                "note": [
+                    {
+                        "text": "Dietary counseling for hypothyroidism-related weight gain. Focus on metabolism-boosting foods and portion control."
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-request-levothyroxine-09",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                                "code": "outpatient"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "10582",
+                            "display": "Levothyroxine"
+                        }
+                    ],
+                    "text": "Levothyroxine 50 mcg tablets"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "authoredOn": "2025-07-23T10:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-endocrinologist-09"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "40930008",
+                                "display": "Hypothyroidism"
+                            }
+                        ]
+                    }
+                ],
+                "dosageInstruction": [
+                    {
+                        "text": "Take 50 mcg once daily on empty stomach, 30-60 minutes before breakfast",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 1,
+                                "period": 1,
+                                "periodUnit": "d",
+                                "when": [
+                                    "MORN"
+                                ]
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral"
+                                }
+                            ]
+                        },
+                        "doseAndRate": [
+                            {
+                                "doseQuantity": {
+                                    "value": 50,
+                                    "unit": "mcg",
+                                    "system": "http://unitsofmeasure.org"
+                                }
+                            }
+                        ],
+                        "additionalInstruction": [
+                            {
+                                "coding": [
+                                    {
+                                        "system": "http://snomed.info/sct",
+                                        "code": "311504000",
+                                        "display": "With or after food"
+                                    }
+                                ],
+                                "text": "Take on empty stomach at least 30 minutes before food"
+                            }
+                        ]
+                    }
+                ],
+                "dispenseRequest": {
+                    "validityPeriod": {
+                        "start": "2025-07-23",
+                        "end": "2026-07-23"
+                    },
+                    "numberOfRepeatsAllowed": 11,
+                    "quantity": {
+                        "value": 90,
+                        "unit": "tablets",
+                        "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"
+                    },
+                    "expectedSupplyDuration": {
+                        "value": 90,
+                        "unit": "days",
+                        "system": "http://unitsofmeasure.org"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-request-iron-supplement-09",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                                "code": "outpatient"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "6047",
+                            "display": "Iron supplement"
+                        }
+                    ],
+                    "text": "Ferrous sulfate 325mg tablets"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "authoredOn": "2025-07-23T10:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-endocrinologist-09"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "271737000",
+                                "display": "Anemia"
+                            }
+                        ]
+                    }
+                ],
+                "dosageInstruction": [
+                    {
+                        "text": "Take 325mg once daily with food",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 1,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral"
+                                }
+                            ]
+                        },
+                        "doseAndRate": [
+                            {
+                                "doseQuantity": {
+                                    "value": 325,
+                                    "unit": "mg",
+                                    "system": "http://unitsofmeasure.org"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "dispenseRequest": {
+                    "validityPeriod": {
+                        "start": "2025-07-23",
+                        "end": "2025-10-23"
+                    },
+                    "numberOfRepeatsAllowed": 2,
+                    "quantity": {
+                        "value": 90,
+                        "unit": "tablets",
+                        "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"
+                    },
+                    "expectedSupplyDuration": {
+                        "value": 90,
+                        "unit": "days",
+                        "system": "http://unitsofmeasure.org"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-request-vitamin-d-09",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                                "code": "outpatient"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "11256",
+                            "display": "Vitamin D"
+                        }
+                    ],
+                    "text": "Vitamin D3 1000 IU tablets"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "authoredOn": "2025-07-23T10:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-endocrinologist-09"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "34713006",
+                                "display": "Vitamin D deficiency"
+                            }
+                        ]
+                    }
+                ],
+                "dosageInstruction": [
+                    {
+                        "text": "Take 1000 IU once daily with food",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 1,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral"
+                                }
+                            ]
+                        },
+                        "doseAndRate": [
+                            {
+                                "doseQuantity": {
+                                    "value": 1000,
+                                    "unit": "IU",
+                                    "system": "http://unitsofmeasure.org"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "dispenseRequest": {
+                    "validityPeriod": {
+                        "start": "2025-07-23",
+                        "end": "2025-10-23"
+                    },
+                    "numberOfRepeatsAllowed": 2,
+                    "quantity": {
+                        "value": 90,
+                        "unit": "tablets",
+                        "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"
+                    },
+                    "expectedSupplyDuration": {
+                        "value": 90,
+                        "unit": "days",
+                        "system": "http://unitsofmeasure.org"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:appointment-followup-09",
+            "resource": {
+                "resourceType": "Appointment",
+                "status": "booked",
+                "serviceCategory": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-category",
+                                "code": "17",
+                                "display": "General Practice"
+                            }
+                        ]
+                    }
+                ],
+                "serviceType": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "394583002",
+                                "display": "Endocrinology"
+                            }
+                        ]
+                    }
+                ],
+                "appointmentType": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+                            "code": "FOLLOWUP",
+                            "display": "Follow up"
+                        }
+                    ]
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "40930008",
+                                "display": "Hypothyroidism"
+                            }
+                        ],
+                        "text": "Follow-up to assess levothyroxine treatment response"
+                    }
+                ],
+                "description": "6-week follow-up to review lab results and adjust thyroid medication if needed",
+                "start": "2025-09-03T09:30:00+03:00",
+                "end": "2025-09-03T10:00:00+03:00",
+                "minutesDuration": 30,
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                        },
+                        "required": "required",
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:practitioner-endocrinologist-09"
+                        },
+                        "required": "required",
+                        "status": "accepted"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Appointment"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:appointment-lab-followup-09",
+            "resource": {
+                "resourceType": "Appointment",
+                "status": "booked",
+                "serviceCategory": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-category",
+                                "code": "8",
+                                "display": "Laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "serviceType": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "108252007",
+                                "display": "Laboratory procedure"
+                            }
+                        ]
+                    }
+                ],
+                "appointmentType": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+                            "code": "ROUTINE",
+                            "display": "Routine"
+                        }
+                    ]
+                },
+                "reasonReference": [
+                    {
+                        "reference": "urn:uuid:service-request-follow-up-labs-09"
+                    }
+                ],
+                "description": "Blood work for TSH and Free T4 follow-up",
+                "start": "2025-09-03T08:00:00+03:00",
+                "end": "2025-09-03T08:30:00+03:00",
+                "minutesDuration": 30,
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                        },
+                        "required": "required",
+                        "status": "accepted"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Appointment"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:composition-endocrine-09",
+            "resource": {
+                "resourceType": "Composition",
+                "status": "final",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "11506-3",
+                            "display": "Provider-unspecified Progress note"
+                        }
+                    ]
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://loinc.org",
+                                "code": "LP173421-1",
+                                "display": "Report"
+                            }
+                        ]
+                    }
+                ],
+                "subject": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-endocrine-09"
+                },
+                "date": "2025-07-23T10:00:00+03:00",
+                "author": [
+                    {
+                        "reference": "urn:uuid:practitioner-endocrinologist-09"
+                    }
+                ],
+                "title": "Endocrine Evaluation",
+                "section": [
+                    {
+                        "title": "Chief Complaint",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10154-3",
+                                    "display": "Chief complaint Narrative - Reported"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Fatigue, weight gain, and feeling cold despite summer heat</div>"
+                        }
+                    },
+                    {
+                        "title": "History of Present Illness",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10164-2",
+                                    "display": "History of Present illness Narrative"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">37-year-old Saudi woman presents with 6-month history of increasing fatigue, 10kg weight gain despite unchanged diet, feeling cold when others are comfortable, dry skin, and hair thinning. Also reports constipation, heavy menstrual periods, and difficulty concentrating at work. Symptoms developed gradually after her second pregnancy 18 months ago. Family history of thyroid disease in mother. Previous normal thyroid function during pregnancy. No chest pain, palpitations, or heat intolerance. Sleep quality poor with frequent awakening.</div>"
+                        }
+                    },
+                    {
+                        "title": "Physical Examination",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "29545-1",
+                                    "display": "Physical findings Narrative"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Weight: 75kg (up from 65kg baseline). Height: 160cm. BMI: 29.3. BP: 140/85 mmHg, HR: 58 bpm, Temp: 36.2°C. Appears tired with puffy face and dry skin. Thyroid gland not enlarged or nodular. Slow relaxation phase of deep tendon reflexes noted. Hair appears dry and brittle. No periorbital edema. Cardiovascular and respiratory examinations normal.</div>"
+                        }
+                    },
+                    {
+                        "title": "Laboratory Results",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "26436-6",
+                                    "display": "Laboratory studies (set)"
+                                }
+                            ]
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:obs-tsh-09"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-t4-09"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-cholesterol-09"
+                            }
+                        ],
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">TSH: 12.5 mIU/L (elevated, normal 0.4-4.0)<br/>Free T4: 0.6 ng/dL (low, normal 0.8-1.8)<br/>Total Cholesterol: 250 mg/dL (elevated, goal &lt;200)<br/>Results consistent with primary hypothyroidism.</div>"
+                        }
+                    },
+                    {
+                        "title": "Assessment and Plan",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "51847-2",
+                                    "display": "Evaluation + Plan note"
+                                }
+                            ]
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:condition-hypothyroid-09"
+                            },
+                            {
+                                "reference": "urn:uuid:medication-request-levothyroxine-09"
+                            },
+                            {
+                                "reference": "urn:uuid:medication-request-iron-supplement-09"
+                            },
+                            {
+                                "reference": "urn:uuid:medication-request-vitamin-d-09"
+                            },
+                            {
+                                "reference": "urn:uuid:service-request-thyroid-antibodies-09"
+                            },
+                            {
+                                "reference": "urn:uuid:service-request-follow-up-labs-09"
+                            },
+                            {
+                                "reference": "urn:uuid:service-request-nutritionist-09"
+                            },
+                            {
+                                "reference": "urn:uuid:appointment-lab-followup-09"
+                            },
+                            {
+                                "reference": "urn:uuid:appointment-followup-09"
+                            }
+                        ],
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><strong>Assessment:</strong> Primary hypothyroidism, likely postpartum thyroiditis progressing to permanent hypothyroidism. Classic symptoms and laboratory findings consistent with thyroid hormone deficiency.</p><p><strong>Plan:</strong></p><ol><li>Start levothyroxine 50 mcg daily on empty stomach, 30-60 minutes before breakfast</li><li>Thyroid antibody testing (Anti-TPO, Anti-Thyroglobulin) to confirm autoimmune etiology</li><li>Recheck TSH and Free T4 in 6 weeks to assess treatment response and adjust dosage</li><li>Iron supplementation 325mg daily with food for fatigue and heavy periods</li><li>Vitamin D3 1000 IU daily for bone health and mood</li><li>Nutritionist consultation for weight management and metabolism support</li><li>Regular exercise as tolerated - start with low-impact activities</li><li>Monitor for medication interactions, especially calcium and iron separation</li><li>Follow-up appointment in 6 weeks with lab results</li><li>Patient education on thyroid hormone replacement and lifestyle modifications</li></ol></div>"
+                        }
+                    },
+                    {
+                        "title": "Family History",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10157-6",
+                                    "display": "History of family member diseases Narrative"
+                                }
+                            ]
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:family-member-maryam-mother-09"
+                            },
+                            {
+                                "reference": "urn:uuid:family-member-maryam-grandmother-09"
+                            },
+                            {
+                                "reference": "urn:uuid:family-member-maryam-sister-09"
+                            },
+                            {
+                                "reference": "urn:uuid:family-member-maryam-aunt-09"
+                            }
+                        ],
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Strong family history of thyroid disorders suggesting genetic predisposition. Mother has Hashimoto's thyroiditis diagnosed in her 40s, well-controlled with levothyroxine. Maternal grandmother had goiter and suspected thyroid problems but never formally diagnosed. Younger sister recently diagnosed with hyperthyroidism (Graves' disease). Maternal aunt has hypothyroidism and diabetes. Pattern suggests autoimmune thyroid disease inheritance through maternal line.</div>"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Composition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-maryam-mother-09",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "date": "2025-07-23",
+                "name": "Noura Bint Abdulaziz (Mother)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "MTH",
+                            "display": "mother"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "female"
+                        }
+                    ]
+                },
+                "bornDate": "1960-03-12",
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "21983002",
+                                    "display": "Hashimoto thyroiditis"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 42,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Hashimoto's thyroiditis diagnosed at age 42 following fatigue and weight gain. Anti-TPO antibodies positive. Well-controlled on levothyroxine 75 mcg daily with regular monitoring. TSH levels maintained in normal range."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-maryam-grandmother-09",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "date": "2025-07-23",
+                "name": "Khadija Bint Mohammed (Maternal Grandmother)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "MGRMTH",
+                            "display": "maternal grandmother"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "female"
+                        }
+                    ]
+                },
+                "bornDate": "1935-08-22",
+                "deceasedAge": {
+                    "value": 80,
+                    "unit": "years",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "a"
+                },
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "3716002",
+                                    "display": "Goiter"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 50,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Developed visible goiter in her 50s with symptoms of fatigue and cold intolerance. Never received formal thyroid testing due to limited medical resources in rural area. Family suspects hypothyroidism based on symptoms."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-maryam-sister-09",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "date": "2025-07-23",
+                "name": "Amal Bint Khalid (Younger Sister)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "SIS",
+                            "display": "sister"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "female"
+                        }
+                    ]
+                },
+                "bornDate": "1990-12-15",
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "353295004",
+                                    "display": "Graves' disease"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 32,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Graves' disease diagnosed 2 years ago presenting with palpitations, weight loss, and anxiety. TSI antibodies positive. Currently managed with methimazole and propranolol. Considering radioactive iodine treatment."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-maryam-aunt-09",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-maryam-alotaibi-09"
+                },
+                "date": "2025-07-23",
+                "name": "Huda Bint Abdulaziz (Maternal Aunt)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "MAUNT",
+                            "display": "maternal aunt"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "female"
+                        }
+                    ]
+                },
+                "bornDate": "1965-06-08",
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "40930008",
+                                    "display": "Hypothyroidism"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 45,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Hypothyroidism diagnosed at age 45. Takes levothyroxine 100 mcg daily. Also has Type 2 diabetes mellitus, suggesting possible autoimmune predisposition affecting multiple endocrine organs."
+                            }
+                        ]
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "44054006",
+                                    "display": "Type 2 diabetes mellitus"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 50,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Type 2 diabetes mellitus diagnosed 10 years ago. Managed with metformin and lifestyle modifications. Regular endocrine follow-up for both thyroid and diabetes."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        }
+    ]
+}

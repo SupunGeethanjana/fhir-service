@@ -1,0 +1,1297 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:patient-abdullah-alharbi-08",
+            "resource": {
+                "resourceType": "Patient",
+                "active": true,
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "system": "http://moh.gov.sa/mrn",
+                        "value": "SA-08901234"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Al-Harbi",
+                        "given": [
+                            "Abdullah",
+                            "Salman"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "2005-04-18",
+                "address": [
+                    {
+                        "use": "home",
+                        "text": "Al-Rawdah District, Jeddah, Saudi Arabia",
+                        "city": "Jeddah",
+                        "country": "SA"
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "+966-50-890-1234",
+                        "use": "mobile"
+                    },
+                    {
+                        "system": "email",
+                        "value": "abdullah.alharbi@email.sa"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "S",
+                            "display": "Never Married"
+                        }
+                    ]
+                },
+                "contact": [
+                    {
+                        "relationship": [
+                            {
+                                "coding": [
+                                    {
+                                        "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+                                        "code": "C",
+                                        "display": "Emergency Contact"
+                                    }
+                                ]
+                            }
+                        ],
+                        "name": {
+                            "use": "official",
+                            "family": "Al-Harbi",
+                            "given": [
+                                "Khalid"
+                            ]
+                        },
+                        "telecom": [
+                            {
+                                "system": "phone",
+                                "value": "+966-50-890-1235",
+                                "use": "mobile"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:practitioner-sports-medicine-08",
+            "resource": {
+                "resourceType": "Practitioner",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "http://moh.gov.sa/license",
+                        "value": "SPORT-890123"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Al-Rashid",
+                        "given": [
+                            "Dr. Ahmad"
+                        ]
+                    }
+                ],
+                "qualification": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+                                    "code": "MD",
+                                    "display": "Doctor of Medicine"
+                                }
+                            ]
+                        },
+                        "period": {
+                            "start": "2012-06-01"
+                        },
+                        "issuer": {
+                            "display": "King Abdulaziz University Medical School"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Practitioner"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:encounter-sports-medicine-08",
+            "resource": {
+                "resourceType": "Encounter",
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB",
+                    "display": "ambulatory"
+                },
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "185349003",
+                                "display": "Encounter for check up"
+                            }
+                        ]
+                    }
+                ],
+                "subject": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "participant": [
+                    {
+                        "individual": {
+                            "reference": "urn:uuid:practitioner-sports-medicine-08"
+                        }
+                    }
+                ],
+                "period": {
+                    "start": "2025-07-23T15:30:00+03:00",
+                    "end": "2025-07-23T16:30:00+03:00"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "204066008",
+                                "display": "Tear of meniscus of knee"
+                            }
+                        ],
+                        "text": "Knee pain and swelling after football match injury"
+                    }
+                ],
+                "serviceProvider": {
+                    "display": "Jeddah Sports Medicine Center"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Encounter"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:condition-knee-injury-08",
+            "resource": {
+                "resourceType": "Condition",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active"
+                        }
+                    ]
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                            "code": "provisional"
+                        }
+                    ]
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                                "code": "problem-list-item"
+                            }
+                        ]
+                    }
+                ],
+                "severity": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "6736007",
+                            "display": "Moderate"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                            "code": "S83.202A",
+                            "display": "Unspecified tear of unspecified meniscus, current injury, left knee, initial encounter"
+                        },
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "204066008",
+                            "display": "Tear of meniscus of knee"
+                        }
+                    ]
+                },
+                "bodySite": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "7569003",
+                                "display": "Left knee"
+                            }
+                        ]
+                    }
+                ],
+                "subject": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-sports-medicine-08"
+                },
+                "onsetDateTime": "2025-07-21T19:00:00+03:00",
+                "recordedDate": "2025-07-23T15:30:00+03:00"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-knee-exam-08",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "exam",
+                                "display": "Exam"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "116309007",
+                            "display": "Examination of knee"
+                        }
+                    ],
+                    "text": "Knee Examination"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-sports-medicine-08"
+                },
+                "effectiveDateTime": "2025-07-23T15:45:00+03:00",
+                "performer": [
+                    {
+                        "reference": "urn:uuid:practitioner-sports-medicine-08"
+                    }
+                ],
+                "valueString": "Left knee swollen with effusion. Positive McMurray test. Limited range of motion. Stable ligaments.",
+                "bodySite": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "7569003",
+                            "display": "Left knee"
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-mcmurray-test-08",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "exam",
+                                "display": "Exam"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "310816009",
+                            "display": "McMurray test"
+                        }
+                    ],
+                    "text": "McMurray Test"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-sports-medicine-08"
+                },
+                "effectiveDateTime": "2025-07-23T15:50:00+03:00",
+                "performer": [
+                    {
+                        "reference": "urn:uuid:practitioner-sports-medicine-08"
+                    }
+                ],
+                "valueCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "10828004",
+                            "display": "Positive"
+                        }
+                    ]
+                },
+                "interpretation": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                                "code": "A",
+                                "display": "Abnormal"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-pain-scale-08",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "survey",
+                                "display": "Survey"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72133-2",
+                            "display": "Pain severity - 0-10 verbal numeric rating [Score] - Reported"
+                        }
+                    ],
+                    "text": "Pain Scale (0-10)"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-sports-medicine-08"
+                },
+                "effectiveDateTime": "2025-07-23T15:35:00+03:00",
+                "performer": [
+                    {
+                        "reference": "urn:uuid:practitioner-sports-medicine-08"
+                    }
+                ],
+                "valueQuantity": {
+                    "value": 6,
+                    "unit": "score",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "{score}"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:service-request-mri-knee-08",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "103693007",
+                                "display": "Diagnostic procedure"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "113091000",
+                            "display": "Magnetic resonance imaging of knee"
+                        }
+                    ],
+                    "text": "MRI left knee"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-sports-medicine-08"
+                },
+                "occurrenceDateTime": "2025-07-25T14:00:00+03:00",
+                "authoredOn": "2025-07-23T16:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-sports-medicine-08"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "204066008",
+                                "display": "Tear of meniscus of knee"
+                            }
+                        ],
+                        "text": "Suspected meniscal tear - confirm diagnosis and assess extent"
+                    }
+                ],
+                "bodySite": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "7569003",
+                                "display": "Left knee"
+                            }
+                        ]
+                    }
+                ],
+                "note": [
+                    {
+                        "text": "MRI to confirm suspected meniscal tear and rule out other ligamentous injuries. Clinical findings suggest medial meniscus involvement."
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:service-request-physiotherapy-08",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "386053000",
+                                "display": "Evaluation procedure"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "91251008",
+                            "display": "Physical therapy procedure"
+                        }
+                    ],
+                    "text": "Physiotherapy for knee injury rehabilitation"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-sports-medicine-08"
+                },
+                "occurrenceDateTime": "2025-07-30T10:00:00+03:00",
+                "authoredOn": "2025-07-23T16:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-sports-medicine-08"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "204066008",
+                                "display": "Tear of meniscus of knee"
+                            }
+                        ]
+                    }
+                ],
+                "note": [
+                    {
+                        "text": "Focus on quadriceps strengthening, range of motion exercises, and functional rehabilitation. Avoid pivoting activities until cleared."
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:service-request-sports-education-08",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "409073007",
+                                "display": "Education"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "281036007",
+                            "display": "Sports injury education"
+                        }
+                    ],
+                    "text": "Sports injury prevention and RICE protocol education"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-sports-medicine-08"
+                },
+                "authoredOn": "2025-07-23T16:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-sports-medicine-08"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "417163006",
+                                "display": "Traumatic injury"
+                            }
+                        ]
+                    }
+                ],
+                "note": [
+                    {
+                        "text": "Education on proper warm-up techniques, injury prevention, RICE protocol application, and when to return to sports activities."
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-request-ibuprofen-08",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/medicationrequest-category",
+                                "code": "outpatient"
+                            }
+                        ]
+                    }
+                ],
+                "priority": "routine",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "5640",
+                            "display": "Ibuprofen"
+                        }
+                    ],
+                    "text": "Ibuprofen 400mg tablets"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-sports-medicine-08"
+                },
+                "authoredOn": "2025-07-23T16:00:00+03:00",
+                "requester": {
+                    "reference": "urn:uuid:practitioner-sports-medicine-08"
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "22253000",
+                                "display": "Pain"
+                            }
+                        ]
+                    }
+                ],
+                "dosageInstruction": [
+                    {
+                        "text": "Take 400mg three times daily with food for pain and inflammation",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 3,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral"
+                                }
+                            ]
+                        },
+                        "doseAndRate": [
+                            {
+                                "doseQuantity": {
+                                    "value": 400,
+                                    "unit": "mg",
+                                    "system": "http://unitsofmeasure.org"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "dispenseRequest": {
+                    "validityPeriod": {
+                        "start": "2025-07-23",
+                        "end": "2025-10-23"
+                    },
+                    "numberOfRepeatsAllowed": 1,
+                    "quantity": {
+                        "value": 60,
+                        "unit": "tablets",
+                        "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"
+                    },
+                    "expectedSupplyDuration": {
+                        "value": 20,
+                        "unit": "days",
+                        "system": "http://unitsofmeasure.org"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:appointment-followup-08",
+            "resource": {
+                "resourceType": "Appointment",
+                "status": "booked",
+                "serviceCategory": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-category",
+                                "code": "17",
+                                "display": "General Practice"
+                            }
+                        ]
+                    }
+                ],
+                "serviceType": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "394609007",
+                                "display": "Sports medicine"
+                            }
+                        ]
+                    }
+                ],
+                "appointmentType": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+                            "code": "FOLLOWUP",
+                            "display": "Follow up"
+                        }
+                    ]
+                },
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "204066008",
+                                "display": "Tear of meniscus of knee"
+                            }
+                        ],
+                        "text": "Follow-up with MRI results and treatment plan review"
+                    }
+                ],
+                "description": "Follow-up appointment to review MRI results and discuss treatment options",
+                "start": "2025-07-30T15:30:00+03:00",
+                "end": "2025-07-30T16:00:00+03:00",
+                "minutesDuration": 30,
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                        },
+                        "required": "required",
+                        "status": "accepted"
+                    },
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:practitioner-sports-medicine-08"
+                        },
+                        "required": "required",
+                        "status": "accepted"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Appointment"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:appointment-mri-08",
+            "resource": {
+                "resourceType": "Appointment",
+                "status": "booked",
+                "serviceCategory": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-category",
+                                "code": "8",
+                                "display": "Diagnostic Imaging"
+                            }
+                        ]
+                    }
+                ],
+                "serviceType": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "113091000",
+                                "display": "Magnetic resonance imaging"
+                            }
+                        ]
+                    }
+                ],
+                "appointmentType": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+                            "code": "ROUTINE",
+                            "display": "Routine"
+                        }
+                    ]
+                },
+                "reasonReference": [
+                    {
+                        "reference": "urn:uuid:service-request-mri-knee-08"
+                    }
+                ],
+                "description": "MRI scan of left knee to assess meniscal tear",
+                "start": "2025-07-25T14:00:00+03:00",
+                "end": "2025-07-25T15:00:00+03:00",
+                "minutesDuration": 60,
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                        },
+                        "required": "required",
+                        "status": "accepted"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Appointment"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:composition-sports-medicine-08",
+            "resource": {
+                "resourceType": "Composition",
+                "status": "final",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "11506-3",
+                            "display": "Provider-unspecified Progress note"
+                        }
+                    ]
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://loinc.org",
+                                "code": "LP173421-1",
+                                "display": "Report"
+                            }
+                        ]
+                    }
+                ],
+                "subject": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-sports-medicine-08"
+                },
+                "date": "2025-07-23T16:00:00+03:00",
+                "author": [
+                    {
+                        "reference": "urn:uuid:practitioner-sports-medicine-08"
+                    }
+                ],
+                "title": "Sports Medicine Evaluation",
+                "section": [
+                    {
+                        "title": "Chief Complaint",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10154-3",
+                                    "display": "Chief complaint Narrative - Reported"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Knee pain and swelling after football match injury</div>"
+                        }
+                    },
+                    {
+                        "title": "History of Present Illness",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10164-2",
+                                    "display": "History of Present illness Narrative"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">20-year-old Saudi university student and football player injured left knee during match 2 days ago. Planted foot and twisted while being tackled. Immediate pain and swelling. Able to walk but with limp. Pain rated 6/10, worse with twisting movements. No locking but feels unstable. Previously healthy with no knee problems. Regular football training 5 days/week. No previous significant injuries. Concerned about impact on university football scholarship.</div>"
+                        }
+                    },
+                    {
+                        "title": "Physical Examination",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "29545-1",
+                                    "display": "Physical findings Narrative"
+                                }
+                            ]
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:obs-knee-exam-08"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-mcmurray-test-08"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-pain-scale-08"
+                            }
+                        ],
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Left knee visibly swollen with moderate effusion. Tenderness along medial joint line. Positive McMurray test suggesting meniscal tear. Lachman and drawer tests negative (stable ACL). Range of motion limited - flexion to 90 degrees due to pain and swelling. Antalgic gait present. Pain score 6/10.</div>"
+                        }
+                    },
+                    {
+                        "title": "Assessment and Plan",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "51847-2",
+                                    "display": "Evaluation + Plan note"
+                                }
+                            ]
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:condition-knee-injury-08"
+                            },
+                            {
+                                "reference": "urn:uuid:service-request-mri-knee-08"
+                            },
+                            {
+                                "reference": "urn:uuid:service-request-physiotherapy-08"
+                            },
+                            {
+                                "reference": "urn:uuid:service-request-sports-education-08"
+                            },
+                            {
+                                "reference": "urn:uuid:medication-request-ibuprofen-08"
+                            },
+                            {
+                                "reference": "urn:uuid:appointment-mri-08"
+                            },
+                            {
+                                "reference": "urn:uuid:appointment-followup-08"
+                            }
+                        ],
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><strong>Assessment:</strong> Probable medial meniscus tear, left knee, secondary to sports injury. Stable knee ligaments. Moderate knee effusion limiting function.</p><p><strong>Plan:</strong></p><ol><li>MRI left knee scheduled for July 25th to confirm meniscal tear extent</li><li>Rest from football activities - no pivoting sports until cleared</li><li>RICE protocol (Rest, Ice, Compression, Elevation) - ice 15-20 minutes every 2-3 hours</li><li>Ibuprofen 400mg TID with food for pain and inflammation</li><li>Physiotherapy referral for strengthening and mobility exercises</li><li>Knee brace during activities for support and stability</li><li>Sports injury prevention education and RICE protocol training</li><li>Follow-up in 1 week with MRI results to discuss treatment options</li><li>Gradual return to sports protocol once cleared by physiotherapy</li></ol></div>"
+                        }
+                    },
+                    {
+                        "title": "Family History",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10157-6",
+                                    "display": "History of family member diseases Narrative"
+                                }
+                            ]
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:family-member-abdullah-father-08"
+                            },
+                            {
+                                "reference": "urn:uuid:family-member-abdullah-uncle-08"
+                            },
+                            {
+                                "reference": "urn:uuid:family-member-abdullah-brother-08"
+                            },
+                            {
+                                "reference": "urn:uuid:family-member-abdullah-mother-08"
+                            }
+                        ],
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Family history relevant to musculoskeletal health and sports injuries. Father was former professional football player who had multiple knee surgeries and developed early arthritis. Paternal uncle has chronic back pain from construction work. Older brother is also athletic (basketball) with history of ankle injuries but no knee problems. Mother has osteoporosis but no significant joint issues. Family demonstrates pattern of joint problems related to high physical activity levels and occupational factors.</div>"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Composition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-abdullah-father-08",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "date": "2025-07-23",
+                "name": "Khalid Bin Ahmed (Father)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "FTH",
+                            "display": "father"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "male"
+                        }
+                    ]
+                },
+                "bornDate": "1975-04-20",
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "239873007",
+                                    "display": "Osteoarthritis of knee"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 35,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Former professional football player (1995-2010) who developed early osteoarthritis in both knees following multiple injuries and surgeries. Had 3 arthroscopic procedures and 1 ACL reconstruction. Currently manages with physiotherapy, weight control, and occasional cortisone injections."
+                            }
+                        ]
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "204066008",
+                                    "display": "Tear of meniscus of knee"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 28,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Multiple meniscal tears throughout football career requiring 2 partial meniscectomies. These contributed to development of secondary osteoarthritis."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-abdullah-uncle-08",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "date": "2025-07-23",
+                "name": "Mohammed Bin Ahmed (Paternal Uncle)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "PUNCLE",
+                            "display": "paternal uncle"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "male"
+                        }
+                    ]
+                },
+                "bornDate": "1970-08-15",
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "279039007",
+                                    "display": "Low back pain"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 40,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Chronic lower back pain from 25 years of heavy construction work. Has disc degeneration at L4-L5 level. Manages with physiotherapy, ergonomic modifications, and occasional pain medication. Unable to perform heavy lifting."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-abdullah-brother-08",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "date": "2025-07-23",
+                "name": "Omar Bin Khalid (Older Brother)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "BRO",
+                            "display": "brother"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "male"
+                        }
+                    ]
+                },
+                "bornDate": "2000-06-12",
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "44465007",
+                                    "display": "Sprain of ankle"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 19,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Basketball player who has had 2 significant ankle sprains requiring physiotherapy and rehabilitation. No knee injuries. Currently plays university-level basketball with ankle taping for support."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-abdullah-mother-08",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-abdullah-alharbi-08"
+                },
+                "date": "2025-07-23",
+                "name": "Fatima Bint Salem (Mother)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "MTH",
+                            "display": "mother"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "female"
+                        }
+                    ]
+                },
+                "bornDate": "1980-11-05",
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "64859006",
+                                    "display": "Osteoporosis"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 42,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Early-onset osteoporosis diagnosed at age 42 following DEXA scan. Likely related to calcium deficiency and limited sun exposure. Takes calcium and vitamin D supplements with regular bone density monitoring. No fractures to date."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        }
+    ]
+}

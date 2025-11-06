@@ -1,0 +1,1479 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:patient-omar-bin-khalid-02",
+            "resource": {
+                "resourceType": "Patient",
+                "active": true,
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR"
+                                }
+                            ]
+                        },
+                        "system": "http://moh.gov.sa/mrn",
+                        "value": "SA-02345678"
+                    },
+                    {
+                        "use": "official",
+                        "system": "http://saudi.gov.sa/national-id",
+                        "value": "1054321987"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Bin Khalid",
+                        "given": [
+                            "Omar",
+                            "Abdulaziz"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1965-02-20",
+                "address": [
+                    {
+                        "use": "home",
+                        "text": "King Abdulaziz District, Jeddah, Saudi Arabia",
+                        "city": "Jeddah",
+                        "country": "SA"
+                    }
+                ],
+                "communication": [
+                    {
+                        "language": {
+                            "coding": [
+                                {
+                                    "system": "urn:ietf:bcp:47",
+                                    "code": "ar-SA"
+                                }
+                            ]
+                        },
+                        "preferred": true
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:encounter-diabetes-02",
+            "resource": {
+                "resourceType": "Encounter",
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB",
+                    "display": "ambulatory"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "period": {
+                    "start": "2025-07-23T11:00:00+03:00",
+                    "end": "2025-07-23T12:00:00+03:00"
+                },
+                "reasonCode": [
+                    {
+                        "text": "Excessive thirst, frequent urination, and unexplained weight loss for 2 weeks"
+                    }
+                ],
+                "diagnosis": [
+                    {
+                        "condition": {
+                            "reference": "urn:uuid:diag-type2-diabetes-02"
+                        },
+                        "use": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/diagnosis-role",
+                                    "code": "DD",
+                                    "display": "Discharge diagnosis"
+                                }
+                            ]
+                        },
+                        "rank": 1
+                    },
+                    {
+                        "condition": {
+                            "reference": "urn:uuid:diag-hypertension-02"
+                        },
+                        "use": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/diagnosis-role",
+                                    "code": "DD"
+                                }
+                            ]
+                        },
+                        "rank": 2
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Encounter"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:pmh-prediabetes-02",
+            "resource": {
+                "resourceType": "Condition",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "resolved"
+                        }
+                    ]
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                                "code": "problem-list-item"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Family History of Diabetes"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "onsetString": "Known risk factor"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:social-smoking-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "social-history"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "72166-2",
+                            "display": "Tobacco smoking status"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "valueCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "77176002",
+                            "display": "Smoker"
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:social-alcohol-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "social-history"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Alcohol Use"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "valueString": "Occasional"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:social-exercise-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "social-history"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Exercise"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "valueString": "Sedentary lifestyle"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:social-occupation-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "social-history"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Occupation"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "valueString": "Businessman"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-history-father-diabetes-02",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "FTH"
+                        }
+                    ]
+                },
+                "condition": [
+                    {
+                        "code": {
+                            "text": "Type 2 Diabetes Mellitus"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-history-brother1-diabetes-02",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "BRO"
+                        }
+                    ]
+                },
+                "condition": [
+                    {
+                        "code": {
+                            "text": "Type 2 Diabetes Mellitus"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-history-brother2-diabetes-02",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "BRO"
+                        }
+                    ]
+                },
+                "condition": [
+                    {
+                        "code": {
+                            "text": "Type 2 Diabetes Mellitus"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-history-mother-htn-02",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "MTH"
+                        }
+                    ]
+                },
+                "condition": [
+                    {
+                        "code": {
+                            "text": "Hypertension"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-bp-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "85354-9",
+                            "display": "Blood Pressure"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "effectiveDateTime": "2025-07-23T11:30:00+03:00",
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 145,
+                            "unit": "mm[Hg]"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 90,
+                            "unit": "mm[Hg]"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-hr-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8867-4",
+                            "display": "Heart rate"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "effectiveDateTime": "2025-07-23T11:30:00+03:00",
+                "valueQuantity": {
+                    "value": 88,
+                    "unit": "beats/minute"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-weight-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "29463-7",
+                            "display": "Body weight"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "effectiveDateTime": "2025-07-23T11:30:00+03:00",
+                "valueQuantity": {
+                    "value": 88,
+                    "unit": "kg"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-height-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "8302-2",
+                            "display": "Body height"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "effectiveDateTime": "2025-07-23T11:30:00+03:00",
+                "valueQuantity": {
+                    "value": 172,
+                    "unit": "cm"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-bmi-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "39156-5",
+                            "display": "Body mass index"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "effectiveDateTime": "2025-07-23T11:30:00+03:00",
+                "valueQuantity": {
+                    "value": 29.7,
+                    "unit": "kg/m2"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-general-exam-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "exam"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "General Physical Exam"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "valueString": "Patient appears well but tired. Mucous membranes dry suggesting mild dehydration."
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-random-glucose-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "interpretation": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                                "code": "H",
+                                "display": "High"
+                            }
+                        ]
+                    }
+                ],
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "2345-7",
+                            "display": "Glucose [Mass/volume] in Serum or Plasma"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "effectiveDateTime": "2025-07-23T11:30:00+03:00",
+                "valueQuantity": {
+                    "value": 285,
+                    "unit": "mg/dL"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-hba1c-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "interpretation": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                                "code": "H",
+                                "display": "High"
+                            }
+                        ]
+                    }
+                ],
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "4548-4",
+                            "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "effectiveDateTime": "2025-07-23T11:30:00+03:00",
+                "valueQuantity": {
+                    "value": 11.2,
+                    "unit": "%"
+                },
+                "note": [
+                    {
+                        "text": "Poor glycemic control. Target: <7%"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-fundoscopy-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "exam"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Fundoscopic Examination"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "valueString": "Early diabetic changes noted"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-foot-exam-02",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "exam"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Diabetic Foot Examination"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "valueString": "No diabetic foot ulcers. Monofilament test normal."
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:diag-type2-diabetes-02",
+            "resource": {
+                "resourceType": "Condition",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active"
+                        }
+                    ]
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                                "code": "encounter-diagnosis"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                            "code": "E11.9",
+                            "display": "Type 2 diabetes mellitus without complications"
+                        }
+                    ],
+                    "text": "Type 2 Diabetes Mellitus"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "onsetDateTime": "2025-07-23"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:diag-hypertension-02",
+            "resource": {
+                "resourceType": "Condition",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active"
+                        }
+                    ]
+                },
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                                "code": "encounter-diagnosis"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                            "code": "I10",
+                            "display": "Essential (primary) hypertension"
+                        }
+                    ],
+                    "text": "Mild Hypertension"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:composition-diabetes-02",
+            "resource": {
+                "resourceType": "Composition",
+                "status": "final",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "11506-3",
+                            "display": "Progress note"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-diabetes-02"
+                },
+                "date": "2025-07-23T11:45:00+03:00",
+                "author": [
+                    {
+                        "display": "Dr. Ahmed Al-Rashid"
+                    }
+                ],
+                "title": "New Diabetes Diagnosis Visit",
+                "section": [
+                    {
+                        "title": "Chief Complaint",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10159-8",
+                                    "display": "Chief complaint"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Excessive thirst, frequent urination, and unexplained weight loss for 2 weeks</div>"
+                        }
+                    },
+                    {
+                        "title": "History of Present Illness",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10164-8",
+                                    "display": "History of present illness"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">60-year-old Saudi male businessman presents with classic symptoms of diabetes. Reports drinking 4-5 liters of water daily, urinating every hour including nighttime (nocturia 6-8 times). Lost 8kg over 2 weeks despite normal appetite. Also reports fatigue and blurred vision. Onset: 2 weeks ago. Quality: Polyuria, polydipsia, weight loss. Severity: Significant impact on daily activities. Associated symptoms: Fatigue, blurred vision.</div>"
+                        }
+                    },
+                    {
+                        "title": "Past Medical History",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "11329-0",
+                                    "display": "History of past illness"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h3>Medical Conditions:</h3><ul><li>No significant past medical history</li><li>No previous hospitalizations</li></ul><h3>Surgical History:</h3><ul><li>None</li></ul></div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:pmh-prediabetes-02"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Review of Systems",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10187-9",
+                                    "display": "Review of systems"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Endocrine: Polyuria, polydipsia, weight loss, fatigue. Cardiovascular: No chest pain. Neurological: Blurred vision. Genitourinary: Nocturia. Constitutional: Fatigue, weight loss.</div>"
+                        }
+                    },
+                    {
+                        "title": "Current Medications",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10160-6",
+                                    "display": "Medications"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">No current medications prior to this visit.</div>"
+                        }
+                    },
+                    {
+                        "title": "Social History",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "29762-2",
+                                    "display": "Social history"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Smoking: Former smoker. Alcohol: Occasional. Exercise: Sedentary lifestyle due to desk job. Occupation: Businessman. Diet: Traditional Saudi meals, high carbohydrate intake.</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:social-smoking-02"
+                            },
+                            {
+                                "reference": "urn:uuid:social-alcohol-02"
+                            },
+                            {
+                                "reference": "urn:uuid:social-exercise-02"
+                            },
+                            {
+                                "reference": "urn:uuid:social-occupation-02"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Family History",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10157-2",
+                                    "display": "Family history"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Strong family history of diabetes mellitus. Father diagnosed with Type 2 DM at age 55, managed with oral medications until his death at 78 from cardiovascular complications. Elder brother (62 years) has Type 2 DM diagnosed 5 years ago, well-controlled with metformin. Younger brother (54 years) recently diagnosed with Type 2 DM. Mother (85 years) has hypertension and osteoporosis, no diabetes.</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:family-history-father-diabetes-02"
+                            },
+                            {
+                                "reference": "urn:uuid:family-history-brother1-diabetes-02"
+                            },
+                            {
+                                "reference": "urn:uuid:family-history-brother2-diabetes-02"
+                            },
+                            {
+                                "reference": "urn:uuid:family-history-mother-htn-02"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Objective",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10185-3",
+                                    "display": "Physical examination"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h3>Vital Signs:</h3><ul><li>BP: 145/90 mmHg</li><li>HR: 88 bpm</li><li>Weight: 88kg</li><li>Height: 172cm</li><li>BMI: 29.7</li></ul><h3>Physical Examination:</h3><ul><li>General: Patient appears well but tired. Mucous membranes dry suggesting mild dehydration.</li><li>Fundoscopic: Early diabetic changes</li><li>Foot Exam: No diabetic foot ulcers. Monofilament test normal.</li></ul><h3>Lab Results:</h3><ul><li>Random glucose: 285 mg/dL (High)</li><li>HbA1c: 11.2% (Poor glycemic control)</li></ul></div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:obs-bp-02"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-hr-02"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-weight-02"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-height-02"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-bmi-02"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-general-exam-02"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-fundoscopy-02"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-foot-exam-02"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-random-glucose-02"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-hba1c-02"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Assessment",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "51848-0",
+                                    "display": "Assessment"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">New diagnosis of Type 2 Diabetes Mellitus with poor glycemic control (HbA1c 11.2%). Mild hypertension likely related to diabetes. Risk factors include strong family history, obesity (BMI 29.7), sedentary lifestyle, and traditional high-carbohydrate diet. Early diabetic retinal changes noted on fundoscopy. No evidence of diabetic foot complications at this time. Requires immediate glycemic control and comprehensive diabetes education.</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:diag-type2-diabetes-02"
+                            },
+                            {
+                                "reference": "urn:uuid:diag-hypertension-02"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Plan",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "18776-5",
+                                    "display": "Plan of care"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">1. Start Metformin 500mg BID 2. Diabetes education and dietary counseling 3. Blood glucose monitoring 4. Lifestyle modifications - increase physical activity 5. Ophthalmology referral 6. Follow-up in 2 weeks 7. Annual diabetic screening labs 8. Consider ACE inhibitor for BP control</div>"
+                        }
+                    },
+                    {
+                        "title": "Planning Orders",
+                        "code": {
+                            "text": "Treatment Plan Orders"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:med-req-metformin-02"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-hba1c-followup-02"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-lipid-panel-02"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-microalbumin-02"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-ophthalmology-referral-02"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-diabetes-education-02"
+                            },
+                            {
+                                "reference": "urn:uuid:appt-followup-02"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Comments",
+                        "code": {
+                            "text": "Clinical Notes"
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Patient counseled on diabetes diagnosis, importance of medication compliance, dietary modifications, and lifestyle changes. Emphasized need for regular monitoring and follow-up. Family education provided regarding diabetes management. Patient expressed understanding and willingness to make necessary lifestyle changes.</div>"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Composition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:med-req-metformin-02",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "medicationCodeableConcept": {
+                    "text": "Metformin"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "authoredOn": "2025-07-23",
+                "dosageInstruction": [
+                    {
+                        "text": "500mg twice daily with meals",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 2,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "doseAndRate": [
+                            {
+                                "doseQuantity": {
+                                    "value": 500,
+                                    "unit": "mg"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "dispenseRequest": {
+                    "quantity": {
+                        "value": 30,
+                        "unit": "days"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-hba1c-followup-02",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "4548-4"
+                        }
+                    ],
+                    "text": "HbA1c Follow-up"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "occurrenceDateTime": "2025-08-23T08:00:00+03:00",
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "Repeat in 4 weeks to assess response to metformin therapy"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-lipid-panel-02",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Lipid Panel"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "occurrenceDateTime": "2025-08-06T08:00:00+03:00",
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "Fasting lipid profile for cardiovascular risk assessment"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-microalbumin-02",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "laboratory"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Microalbumin"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "Screening for diabetic nephropathy"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-ophthalmology-referral-02",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "referral"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Ophthalmology Referral"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "Diabetic retinal screening and management of early diabetic changes"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-diabetes-education-02",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "education"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Diabetes Education"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                },
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "Comprehensive diabetes self-management education including diet, exercise, glucose monitoring, and medication compliance"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:appt-followup-02",
+            "resource": {
+                "resourceType": "Appointment",
+                "status": "booked",
+                "description": "Diabetes follow-up visit - assess response to metformin, review glucose logs, adjust treatment plan",
+                "start": "2025-08-06T11:00:00+03:00",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:patient-omar-bin-khalid-02"
+                        },
+                        "status": "accepted"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Appointment"
+            }
+        }
+    ]
+}

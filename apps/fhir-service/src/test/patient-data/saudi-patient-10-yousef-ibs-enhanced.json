@@ -1,0 +1,676 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:patient-yousef-aldossari-10",
+            "resource": {
+                "resourceType": "Patient",
+                "active": true,
+                "identifier": [
+                    {
+                        "use": "usual",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR"
+                                }
+                            ]
+                        },
+                        "system": "http://moh.gov.sa/mrn",
+                        "value": "SA-10123456"
+                    },
+                    {
+                        "use": "official",
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "NI"
+                                }
+                            ]
+                        },
+                        "system": "http://saudi.gov.sa/national-id",
+                        "value": "2099292567"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Al-Dossari",
+                        "given": [
+                            "Yousef",
+                            "Ahmed"
+                        ]
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1992-11-25",
+                "address": [
+                    {
+                        "use": "home",
+                        "text": "Al-Fayhaa District, Abha, Saudi Arabia",
+                        "city": "Abha",
+                        "country": "SA"
+                    }
+                ],
+                "communication": [
+                    {
+                        "language": {
+                            "coding": [
+                                {
+                                    "system": "urn:ietf:bcp:47",
+                                    "code": "ar-SA"
+                                }
+                            ]
+                        },
+                        "preferred": true
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:encounter-gastroenterology-10",
+            "resource": {
+                "resourceType": "Encounter",
+                "status": "finished",
+                "class": {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code": "AMB"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-aldossari-10"
+                },
+                "period": {
+                    "start": "2025-07-23T11:30:00+03:00",
+                    "end": "2025-07-23T12:30:00+03:00"
+                },
+                "reasonCode": [
+                    {
+                        "text": "Recurrent abdominal cramping, bloating, and alternating diarrhea and constipation"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Encounter"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:condition-ibs-10",
+            "resource": {
+                "resourceType": "Condition",
+                "clinicalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                            "code": "active"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                            "code": "K58.9",
+                            "display": "Irritable bowel syndrome without diarrhea"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-aldossari-10"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-abdominal-exam-10",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "exam"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Abdominal Examination"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-aldossari-10"
+                },
+                "valueString": "Soft, mild tenderness in left lower quadrant, no masses or organomegaly"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:obs-bp-10",
+            "resource": {
+                "resourceType": "Observation",
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "vital-signs"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "85354-9",
+                            "display": "Blood pressure panel with all children optional"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-aldossari-10"
+                },
+                "component": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8480-6",
+                                    "display": "Systolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 125,
+                            "unit": "mmHg"
+                        }
+                    },
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "8462-4",
+                                    "display": "Diastolic blood pressure"
+                                }
+                            ]
+                        },
+                        "valueQuantity": {
+                            "value": 78,
+                            "unit": "mmHg"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Observation"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-member-yousef-mother-10",
+            "resource": {
+                "resourceType": "FamilyMemberHistory",
+                "status": "completed",
+                "patient": {
+                    "reference": "urn:uuid:patient-yousef-aldossari-10"
+                },
+                "date": "2025-07-23",
+                "name": "Fatima Bint Salem (Mother)",
+                "relationship": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                            "code": "MTH",
+                            "display": "mother"
+                        }
+                    ]
+                },
+                "sex": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "code": "female"
+                        }
+                    ]
+                },
+                "bornDate": "1965-03-20",
+                "condition": [
+                    {
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "10743008",
+                                    "display": "Irritable bowel syndrome"
+                                }
+                            ]
+                        },
+                        "onsetAge": {
+                            "value": 35,
+                            "unit": "years",
+                            "system": "http://unitsofmeasure.org",
+                            "code": "a"
+                        },
+                        "note": [
+                            {
+                                "text": "Long-standing IBS with mixed bowel habits. Manages symptoms with dietary modifications and stress reduction."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "FamilyMemberHistory"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-gastroenterology-referral-10",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "referral"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Gastroenterology Consultation"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-aldossari-10"
+                },
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "IBS evaluation and management, consider colonoscopy if red flag symptoms develop"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:svc-req-dietary-counseling-10",
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                                "code": "education"
+                            }
+                        ]
+                    }
+                ],
+                "code": {
+                    "text": "Dietary Counseling"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-aldossari-10"
+                },
+                "priority": "routine",
+                "note": [
+                    {
+                        "text": "FODMAP elimination diet education and IBS-specific nutritional counseling"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "ServiceRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-req-psyllium-10",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "medicationCodeableConcept": {
+                    "text": "Psyllium Husk Fiber Supplement"
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-aldossari-10"
+                },
+                "dosageInstruction": [
+                    {
+                        "text": "1 tablespoon in 8oz water twice daily",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 2,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral route"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dispenseRequest": {
+                    "quantity": {
+                        "value": 30,
+                        "unit": "days"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-req-simethicone-10",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "status": "active",
+                "intent": "order",
+                "medicationCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "9796",
+                            "display": "Simethicone"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-aldossari-10"
+                },
+                "dosageInstruction": [
+                    {
+                        "text": "40mg orally four times daily with meals and at bedtime",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 4,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "26643006",
+                                    "display": "Oral route"
+                                }
+                            ]
+                        },
+                        "doseAndRate": [
+                            {
+                                "doseQuantity": {
+                                    "value": 40,
+                                    "unit": "mg"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "dispenseRequest": {
+                    "quantity": {
+                        "value": 120,
+                        "unit": "tablets"
+                    }
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "MedicationRequest"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:appointment-followup-gi-10",
+            "resource": {
+                "resourceType": "Appointment",
+                "status": "booked",
+                "serviceCategory": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-category",
+                                "code": "1",
+                                "display": "Gastroenterology"
+                            }
+                        ]
+                    }
+                ],
+                "serviceType": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/service-type",
+                                "code": "1",
+                                "display": "Gastroenterology"
+                            }
+                        ]
+                    }
+                ],
+                "appointmentType": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+                            "code": "FOLLOWUP",
+                            "display": "Follow-up"
+                        }
+                    ]
+                },
+                "reasonCode": [
+                    {
+                        "text": "IBS follow-up and dietary modification assessment"
+                    }
+                ],
+                "start": "2025-08-20T11:30:00+03:00",
+                "end": "2025-08-20T12:00:00+03:00",
+                "participant": [
+                    {
+                        "actor": {
+                            "reference": "urn:uuid:patient-yousef-aldossari-10"
+                        },
+                        "status": "accepted"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Appointment"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:composition-gastroenterology-10",
+            "resource": {
+                "resourceType": "Composition",
+                "status": "final",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "11506-3",
+                            "display": "Provider-unspecified progress note"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "urn:uuid:patient-yousef-aldossari-10"
+                },
+                "encounter": {
+                    "reference": "urn:uuid:encounter-gastroenterology-10"
+                },
+                "date": "2025-07-23T12:00:00+03:00",
+                "title": "Gastroenterology Consultation - Irritable Bowel Syndrome",
+                "section": [
+                    {
+                        "title": "Chief Complaint",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10154-3",
+                                    "display": "Chief complaint"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Recurrent abdominal cramping, bloating, and alternating diarrhea and constipation</div>"
+                        }
+                    },
+                    {
+                        "title": "Subjective",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "61150-9",
+                                    "display": "Subjective"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">32-year-old Saudi male software engineer presents with 8-month history of recurrent abdominal cramping and bloating, worse with stress at work. Alternating between loose stools (3-4/day) and constipation lasting 2-3 days. Symptoms often triggered by certain foods (dairy, spicy foods). No blood in stool, no weight loss, no fever. Family history of IBS in mother. Symptoms significantly impact work productivity and social activities.</div>"
+                        }
+                    },
+                    {
+                        "title": "Objective",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "61149-1",
+                                    "display": "Objective"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Vital signs: BP 125/78, HR 72, afebrile. Abdomen soft, mild tenderness in left lower quadrant, no masses or organomegaly. Bowel sounds normal. No lymphadenopathy. Digital rectal exam normal. No red flag symptoms present.</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:obs-bp-10"
+                            },
+                            {
+                                "reference": "urn:uuid:obs-abdominal-exam-10"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Assessment",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "51847-2",
+                                    "display": "Assessment"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">1. Irritable bowel syndrome, mixed type (ICD-10: K58.9)<br/>2. Functional abdominal pain related to stress and dietary triggers<br/>3. Family history of IBS (mother affected)<br/>4. No red flag symptoms for inflammatory bowel disease or malignancy<br/>5. Stress-related exacerbation due to work demands</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:condition-ibs-10"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Planning",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "18776-5",
+                                    "display": "Plan"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Medications:</b></p><ul><li>Psyllium husk fiber supplement 1 tablespoon BID for bowel regulation</li><li>Simethicone 40mg QID for bloating and gas</li></ul><p><b>Referrals:</b></p><ul><li>Gastroenterology consultation for comprehensive IBS management</li><li>Dietary counseling for FODMAP elimination diet</li></ul><p><b>Follow-up:</b></p><ul><li>Return in 4 weeks to assess symptom improvement</li><li>Gastroenterology appointment as needed</li></ul><p><b>Lifestyle Modifications:</b></p><ul><li>Stress management techniques</li><li>Regular exercise regimen</li><li>Dietary modifications (avoid known triggers)</li><li>Adequate hydration and fiber intake</li><li>Probiotics trial</li></ul></div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:medication-req-psyllium-10"
+                            },
+                            {
+                                "reference": "urn:uuid:medication-req-simethicone-10"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-gastroenterology-referral-10"
+                            },
+                            {
+                                "reference": "urn:uuid:svc-req-dietary-counseling-10"
+                            },
+                            {
+                                "reference": "urn:uuid:appointment-followup-gi-10"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Family History",
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "http://loinc.org",
+                                    "code": "10157-2",
+                                    "display": "Family history"
+                                }
+                            ]
+                        },
+                        "text": {
+                            "status": "generated",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Positive family history for irritable bowel syndrome. Mother (58 years) has long-standing IBS with mixed bowel habits, managed with dietary modifications and stress reduction techniques. Family history supports the diagnosis and suggests genetic predisposition to functional gastrointestinal disorders, reinforcing the importance of lifestyle management strategies.</div>"
+                        },
+                        "entry": [
+                            {
+                                "reference": "urn:uuid:family-member-yousef-mother-10"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Composition"
+            }
+        }
+    ]
+}

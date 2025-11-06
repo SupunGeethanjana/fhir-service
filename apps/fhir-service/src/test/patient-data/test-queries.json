@@ -1,0 +1,46 @@
+{
+    "testConnection": {
+        "description": "Test if GraphQL endpoint is working",
+        "query": "query TestConnection { __schema { types { name } } }",
+        "variables": {}
+    },
+    "testPatientMinimal": {
+        "description": "Test patient query with minimal fields to check for null handling",
+        "query": "query TestPatientByMrn($mrn: String!, $system: String) { patientByMrn(mrn: $mrn, system: $system) { patient { id resourceType } } }",
+        "variables": {
+            "mrn": "000000002",
+            "system": "http://myhospital.org/mrn"
+        }
+    },
+    "testPatientBasic": {
+        "description": "Test patient query with basic fields",
+        "query": "query MinimalPatientData($mrn: String!, $system: String) { patientByMrn(mrn: $mrn, system: $system) { patient { id resourceType lastUpdated } encounters { id resourceType } conditions { id resourceType } } }",
+        "variables": {
+            "mrn": "000000002",
+            "system": "http://myhospital.org/mrn"
+        }
+    },
+    "testPatientNotFound": {
+        "description": "Test query with non-existent MRN (should return null gracefully)",
+        "query": "query TestPatientByMrn($mrn: String!, $system: String) { patientByMrn(mrn: $mrn, system: $system) { patient { id resourceType } } }",
+        "variables": {
+            "mrn": "NONEXISTENT",
+            "system": "http://myhospital.org/mrn"
+        }
+    },
+    "testPatientWithoutSystem": {
+        "description": "Test patient query without system parameter",
+        "query": "query TestPatientByMrn($mrn: String!) { patientByMrn(mrn: $mrn) { patient { id resourceType } } }",
+        "variables": {
+            "mrn": "000000002"
+        }
+    },
+    "comprehensivePatientQuery": {
+        "description": "Full comprehensive query with null handling",
+        "query": "query GetPatientByMrn($mrn: String!, $system: String) { patientByMrn(mrn: $mrn, system: $system) { patient { id resourceType versionId resource lastUpdated txid } encounters { id resourceType versionId resource lastUpdated txid } conditions { id resourceType versionId resource lastUpdated txid } observations { id resourceType versionId resource lastUpdated txid } allergies { id resourceType versionId resource lastUpdated txid } medications { id resourceType versionId resource lastUpdated txid } procedures { id resourceType versionId resource lastUpdated txid } familyHistory { id resourceType versionId resource lastUpdated txid } diagnosticReports { id resourceType versionId resource lastUpdated txid } medicationRequests { id resourceType versionId resource lastUpdated txid } serviceRequests { id resourceType versionId resource lastUpdated txid } appointments { id resourceType versionId resource lastUpdated txid } compositions { id resourceType versionId resource lastUpdated txid } } }",
+        "variables": {
+            "mrn": "000000002",
+            "system": "http://myhospital.org/mrn"
+        }
+    }
+}

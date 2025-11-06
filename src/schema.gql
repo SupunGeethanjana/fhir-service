@@ -1,0 +1,942 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AllergyIntoleranceType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type AppointmentType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+input BundleEntryInput {
+  fullUrl: String
+  request: BundleEntryRequestInput!
+  resource: JSONObject!
+}
+
+input BundleEntryRequestInput {
+  method: String!
+  url: String!
+}
+
+input BundleInput {
+  entry: [BundleEntryInput!]!
+  resourceType: String!
+  sourceSystem: String
+  submittedBy: String
+  type: String!
+}
+
+type CarePlanType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type CareTeamType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type ClaimType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type CodeSystem {
+  concept: [CodeSystemConcept!]!
+  count: Int!
+  date: String!
+  description: String!
+  id: ID!
+  name: String!
+  publisher: String!
+  status: String!
+  title: String!
+  url: String!
+  version: String!
+}
+
+type CodeSystemConcept {
+  code: String!
+  definition: String
+  display: String!
+}
+
+input CodeSystemSearchInput {
+  count: Int = 50
+  name: String
+  offset: Int = 0
+  status: String
+  title: String
+  url: String
+  version: String
+}
+
+input CodeValidationInput {
+  code: String!
+  display: String
+  system: String
+  url: String!
+}
+
+type CodeValidationResult {
+  code: String
+  display: String
+  message: String
+  result: Boolean!
+  system: String
+}
+
+input CompositionSearchInput {
+  author: String
+  class: String
+  date: String
+  dateRange: DateRangeInput
+  encounter: String
+  identifier: String
+  limit: Int = 50
+  offset: Int = 0
+  patient: String
+  section: String
+  sortBy: String
+  sortOrder: SortOrder = ASC
+  status: String
+  title: String
+  type: String
+}
+
+type CompositionType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+input ConceptLookupInput {
+  code: String!
+  system: String!
+  version: String
+}
+
+type ConceptLookupResult {
+  code: String!
+  definition: String
+  display: String!
+  found: Boolean!
+  system: String!
+}
+
+type ConditionType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type CoverageType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+input DateRangeInput {
+  end: String
+  endPrefix: SearchPrefix = LE
+  start: String
+  startPrefix: SearchPrefix = GE
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DeviceType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type DiagnosticReportType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type DocumentReferenceType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type DropdownOption {
+  description: String
+  label: String!
+  system: String
+  value: String!
+}
+
+input EncounterSearchInput {
+  class: String
+  identifier: String
+  limit: Int = 50
+  offset: Int = 0
+  patient: String
+  period: String
+  reasonCode: String
+  serviceProvider: String
+  sortBy: String
+  sortOrder: SortOrder = ASC
+  status: String
+  type: String
+}
+
+type EncounterType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type ExpandedValueSet {
+  contains: [ValueSetConcept!]!
+  count: Int
+  offset: Int!
+  total: Int!
+  url: String!
+  version: String!
+}
+
+type ExplanationOfBenefitType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type FamilyMemberHistoryType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+"""Generic FHIR Bundle Output"""
+type FhirBundleOutput {
+  entry: [FhirBundleResponseEntry!]
+  id: String
+  resourceType: String
+  total: Float
+  type: String
+}
+
+type FhirBundleResponseEntry {
+  resource: JSONObject
+  response: JSONObject
+}
+
+input FhirSearchInput {
+  address: String
+  addressCity: String
+  addressCountry: String
+  addressPostalCode: String
+  addressState: String
+  birthdate: String
+  birthdateRange: DateRangeInput
+  contains: Boolean
+  deceased: Boolean
+  email: String
+  exact: Boolean
+  family: String
+  gender: String
+  generalPractitioner: String
+  given: String
+  identifier: String
+  identifierSystem: String
+  includeConditions: Boolean
+  includeEncounters: Boolean
+  includeObservations: Boolean
+  includePractitioners: Boolean
+  language: String
+  lastUpdated: DateRangeInput
+  limit: Int = 50
+  name: String
+  offset: Int = 0
+  organization: String
+  phone: String
+  sortBy: String
+  sortOrder: SortOrder = ASC
+  text: String
+}
+
+type GoalType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+"""GraphQL JSONObject custom scalar type"""
+scalar GraphQLJSONObject
+
+type ImagingStudyType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+input ImmunizationSearchInput {
+  date: String
+  dateRange: DateRangeInput
+  encounter: String
+  identifier: String
+  limit: Int = 50
+  location: String
+  lotNumber: String
+  manufacturer: String
+  offset: Int = 0
+  patient: String
+  performer: String
+  reaction: String
+  reactionDate: String
+  reasonCode: String
+  reasonReference: String
+  series: String
+  sortBy: String
+  sortOrder: SortOrder = ASC
+  status: String
+  statusReason: String
+  targetDisease: String
+  vaccineCode: String
+}
+
+type ImmunizationType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+type LocationType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type MediaType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type MedicationAdministrationType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type MedicationRequestType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+input MedicationSearchInput {
+  code: String
+  form: String
+  identifier: String
+  ingredient: String
+  limit: Int = 50
+  manufacturer: String
+  offset: Int = 0
+  sortBy: String
+  sortOrder: SortOrder = ASC
+  status: String
+}
+
+type MedicationSearchResult {
+  hasMore: Boolean!
+  limit: Int!
+  medications: [MedicationType!]!
+  offset: Int!
+  total: Int!
+}
+
+type MedicationStatementType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type MedicationType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type Mutation {
+  """Create a new FHIR Composition resource"""
+  createComposition(resource: JSON!): CompositionType!
+
+  """Create a new FHIR Encounter resource"""
+  createEncounter(resource: JSON!): EncounterType!
+  createImmunization(immunization: JSON!): ImmunizationType!
+  createPractitionerRole(practitionerRole: JSON!): PractitionerRoleType!
+  createSlot(slot: JSON!): SlotType!
+  deleteImmunization(id: ID!): JSON!
+  deletePractitionerRole(id: ID!): JSON!
+  deleteSlot(id: ID!): JSON!
+  patchImmunization(id: ID!, patch: [JSON!]!): ImmunizationType!
+  patchPractitionerRole(id: ID!, patch: [JSON!]!): PractitionerRoleType!
+  patchSlot(id: ID!, patch: [JSON!]!): SlotType!
+  saveClinicalData(bundle: BundleInput!): FhirBundleOutput!
+
+  """Update an existing FHIR Composition resource"""
+  updateComposition(id: String!, resource: JSON!): CompositionType!
+
+  """Update an existing FHIR Encounter resource"""
+  updateEncounter(id: String!, resource: JSON!): EncounterType!
+  updateImmunization(id: ID!, immunization: JSON!): ImmunizationType!
+  updatePractitionerRole(id: ID!, practitionerRole: JSON!): PractitionerRoleType!
+  updateSlot(id: ID!, slot: JSON!): SlotType!
+}
+
+input ObservationSearchInput {
+  category: String
+  code: String
+  effective: String
+  encounter: String
+  interpretation: String
+  issued: String
+  limit: Int = 50
+  note: String
+  offset: Int = 0
+  patient: String
+  performer: String
+  sortBy: String
+  sortOrder: SortOrder = ASC
+  status: String
+  value: String
+}
+
+type ObservationSearchResult {
+  hasMore: Boolean!
+  limit: Int!
+  observations: [ObservationType!]!
+  offset: Int!
+  total: Int!
+}
+
+type ObservationType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type OrganizationType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type PatientDataType {
+  allergies: [AllergyIntoleranceType!]
+  appointments: [AppointmentType!]
+  carePlans: [CarePlanType!]
+  careTeams: [CareTeamType!]
+  claims: [ClaimType!]
+  compositions: [CompositionType!]
+  conditions: [ConditionType!]
+  coverages: [CoverageType!]
+  devices: [DeviceType!]
+  diagnosticReports: [DiagnosticReportType!]
+  documentReferences: [DocumentReferenceType!]
+  encounters: [EncounterType!]
+  explanationOfBenefits: [ExplanationOfBenefitType!]
+  familyHistory: [FamilyMemberHistoryType!]
+  goals: [GoalType!]
+  imagingStudies: [ImagingStudyType!]
+  immunizations: [ImmunizationType!]
+  locations: [LocationType!]
+  media: [MediaType!]
+  medicationAdministrations: [MedicationAdministrationType!]
+  medicationRequests: [MedicationRequestType!]
+  medicationResources: [MedicationType!]
+  medications: [MedicationStatementType!]
+  observations: [ObservationType!]
+  organizations: [OrganizationType!]
+  patient: PatientType
+  practitionerRoles: [PractitionerRoleType!]
+  practitioners: [PractitionerType!]
+  procedures: [ProcedureType!]
+  provenances: [ProvenanceType!]
+  schedules: [ScheduleType!]
+  serviceRequests: [ServiceRequestType!]
+  slots: [SlotType!]
+  specimens: [SpecimenType!]
+}
+
+type PatientSearchResult {
+  hasMore: Boolean!
+  limit: Int!
+  offset: Int!
+  patients: [PatientType!]!
+  searchId: String
+  total: Int!
+}
+
+type PatientType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type PatientWithClinicalData {
+  allergies: [AllergyIntoleranceType!]
+  appointments: [AppointmentType!]
+  compositions: [CompositionType!]
+  conditions: [ConditionType!]
+  diagnosticReports: [DiagnosticReportType!]
+  encounters: [EncounterType!]
+  familyHistory: [FamilyMemberHistoryType!]
+  medicationRequests: [MedicationRequestType!]
+  medicationStatements: [MedicationStatementType!]
+  observations: [ObservationType!]
+  patient: PatientType!
+  practitioners: [PractitionerType!]
+  procedures: [ProcedureType!]
+  serviceRequests: [ServiceRequestType!]
+  totalAllergies: Float
+  totalAppointments: Float
+  totalCompositions: Float
+  totalConditions: Float
+  totalDiagnosticReports: Float
+  totalEncounters: Float
+  totalFamilyHistory: Float
+  totalMedicationRequests: Float
+  totalMedicationStatements: Float
+  totalObservations: Float
+  totalProcedures: Float
+  totalServiceRequests: Float
+}
+
+type PractitionerRoleType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+input PractitionerSearchInput {
+  active: Boolean
+  address: String
+  addressCity: String
+  addressCountry: String
+  addressPostalCode: String
+  addressState: String
+  email: String
+  family: String
+  gender: String
+  given: String
+  identifier: String
+  limit: Int = 50
+  name: String
+  offset: Int = 0
+  phone: String
+  qualification: String
+  sortBy: String
+  sortOrder: SortOrder = ASC
+  specialty: String
+  telecom: String
+}
+
+type PractitionerSearchResult {
+  hasMore: Boolean!
+  limit: Int!
+  offset: Int!
+  practitioners: [PractitionerType!]!
+  total: Int!
+}
+
+type PractitionerType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type ProcedureType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type ProvenanceType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+type Query {
+  comprehensiveSearchEnhanced(dateRange: DateRangeInput, family: String!, includeTimeline: Boolean = false, limit: Int = 10): [PatientWithClinicalData!]!
+
+  """
+  Expand a ValueSet to get all its concepts with optional filtering and pagination
+  """
+  expandValueSet(input: ValueSetExpandInput!): ExpandedValueSet!
+
+  """Get a specific CodeSystem by ID"""
+  getCodeSystem(id: String!): CodeSystem
+
+  """Get a Composition resource by ID"""
+  getComposition(id: ID!): CompositionType
+
+  """Search for Compositions with FHIR search parameters"""
+  getCompositions(input: CompositionSearchInput): FhirBundleOutput
+
+  """Get an Encounter resource by ID"""
+  getEncounter(id: ID!): EncounterType
+
+  """Search for Encounters with FHIR search parameters"""
+  getEncounters(input: EncounterSearchInput): FhirBundleOutput
+  getImmunization(id: ID!): ImmunizationType
+
+  """Search for Immunizations with FHIR search parameters"""
+  getImmunizations(input: ImmunizationSearchInput): FhirBundleOutput
+
+  """Get a Medication resource by ID"""
+  getMedication(id: ID!): MedicationType
+
+  """Search for Medications with FHIR search parameters"""
+  getMedications(input: MedicationSearchInput): MedicationSearchResult
+  getSlot(id: ID!): SlotType
+
+  """Search for Slots with FHIR search parameters"""
+  getSlots(input: SlotSearchInput): FhirBundleOutput
+
+  """Get a specific ValueSet by ID"""
+  getValueSet(id: String!): ValueSet
+
+  """
+  Get ValueSet concepts formatted specifically for dropdown UI components with filtering and sorting options
+  """
+  getValueSetForDropdown(input: ValueSetDropdownInput!): ValueSetDropdownResult!
+
+  """Look up a concept by code and system to get its details"""
+  lookupConcept(input: ConceptLookupInput!): ConceptLookupResult!
+
+  """
+  Retrieve comprehensive patient data by Medical Record Number (MRN). GraphQL handles lazy loading automatically.
+  """
+  patientByMrn(
+    """Medical Record Number (MRN) of the patient"""
+    mrn: String!
+
+    """
+    Optional system identifier for the MRN (e.g., http://myhospital.org/mrn)
+    """
+    system: String
+  ): PatientDataType
+  practitionerRole(id: ID!): PractitionerRoleType
+  practitionerRoles(params: JSON): JSON
+
+  """Search for FHIR CodeSystems with optional filtering and pagination"""
+  searchCodeSystems(input: CodeSystemSearchInput): [CodeSystem!]!
+  searchObservationsEnhanced(search: ObservationSearchInput!): ObservationSearchResult!
+  searchPatients(search: FhirSearchInput!): PatientSearchResult!
+  searchPatientsEnhanced(search: FhirSearchInput!): PatientSearchResult!
+  searchPractitioners(identifier: String, limit: Int = 50, name: String): [PractitionerType!]!
+  searchPractitionersEnhanced(search: PractitionerSearchInput!): PractitionerSearchResult!
+
+  """
+  Search across all terminology resources (CodeSystems and ValueSets) with text and category filters
+  """
+  searchTerminology(input: TerminologySearchInput): TerminologySearchResult!
+
+  """Search for FHIR ValueSets with optional filtering and pagination"""
+  searchValueSets(input: ValueSetSearchInput): [ValueSet!]!
+
+  """Validate if a code exists in a specific ValueSet"""
+  validateCode(input: CodeValidationInput!): CodeValidationResult!
+}
+
+type ScheduleType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+"""Search prefix modifiers for date and number comparisons"""
+enum SearchPrefix {
+  AP
+  EB
+  EQ
+  GE
+  GT
+  LE
+  LT
+  NE
+  SA
+}
+
+type ServiceRequestType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+input SlotSearchInput {
+  actor: String
+  appointmentType: String
+  end: String
+  identifier: String
+  limit: Int = 50
+  offset: Int = 0
+  schedule: String
+  serviceType: String
+  sortBy: String
+  sortOrder: SortOrder = ASC
+  specialty: String
+  start: String
+  status: String
+}
+
+type SlotType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+"""Sort order for search results"""
+enum SortOrder {
+  ASC
+  DESC
+}
+
+type SpecimenType {
+  deletedAt: DateTime
+  id: ID!
+  lastUpdated: DateTime
+  resource: JSON!
+  resourceType: String!
+  txid: String
+  versionId: Float
+}
+
+input TerminologySearchInput {
+  category: String
+  code: String
+  count: Int = 50
+  offset: Int = 0
+  system: String
+  text: String
+}
+
+type TerminologySearchResult {
+  codeSystems: [CodeSystem!]
+  total: Int!
+  valueSets: [ValueSet!]
+}
+
+type ValueSet {
+  compose: ValueSetCompose!
+  date: String!
+  description: String!
+  id: ID!
+  name: String!
+  publisher: String!
+  purpose: String!
+  status: String!
+  title: String!
+  url: String!
+  version: String!
+}
+
+type ValueSetCompose {
+  include: [ValueSetInclude!]!
+}
+
+type ValueSetConcept {
+  code: String!
+  display: String!
+  system: String
+}
+
+input ValueSetDropdownInput {
+  filter: String
+  limit: Int = 100
+  name: String
+  sortBy: String
+  sortOrder: String = "asc"
+  url: String
+}
+
+type ValueSetDropdownResult {
+  options: [DropdownOption!]!
+  total: Int!
+  valueSetId: String!
+  valueSetTitle: String!
+}
+
+input ValueSetExpandInput {
+  count: Int = 100
+  filter: String
+  offset: Int = 0
+  url: String!
+}
+
+type ValueSetInclude {
+  concept: [ValueSetConcept!]
+  system: String!
+}
+
+input ValueSetSearchInput {
+  count: Int = 50
+  name: String
+  offset: Int = 0
+  status: String
+  title: String
+  url: String
+}

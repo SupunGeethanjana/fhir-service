@@ -1,0 +1,318 @@
+# GraphQL Queries for FHIR Patient Data
+
+# ================================================================
+# BASIC QUERY: Get patient with minimal data
+# ================================================================
+query GetBasicPatientData($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+      versionId
+      lastUpdated
+      resource
+    }
+  }
+}
+
+# ================================================================
+# COMPREHENSIVE QUERY: Get all patient data (matches your example)
+# ================================================================
+query GetPatientByMrn($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+      resource
+      lastUpdated
+    }
+    encounters {
+      id
+      resource
+      lastUpdated
+    }
+    conditions {
+      id
+      resource
+      lastUpdated
+    }
+    observations {
+      id
+      resource
+      lastUpdated
+    }
+    allergies {
+      id
+      resource
+      lastUpdated
+    }
+    medications {
+      id
+      resource
+      lastUpdated
+    }
+    procedures {
+      id
+      resource
+      lastUpdated
+    }
+    familyHistory {
+      id
+      resource
+      lastUpdated
+    }
+    diagnosticReports {
+      id
+      resource
+      lastUpdated
+    }
+    medicationRequests {
+      id
+      resource
+      lastUpdated
+    }
+    serviceRequests {
+      id
+      resource
+      lastUpdated
+    }
+    appointments {
+      id
+      resource
+      lastUpdated
+    }
+    compositions {
+      id
+      resource
+      lastUpdated
+    }
+  }
+}
+
+# ================================================================
+# CLINICAL SUMMARY QUERY: Get patient with key clinical data
+# ================================================================
+query GetPatientClinicalSummary($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+      resource
+      lastUpdated
+    }
+    encounters {
+      id
+      resource
+      lastUpdated
+    }
+    conditions {
+      id
+      resource
+      lastUpdated
+    }
+    allergies {
+      id
+      resource
+      lastUpdated
+    }
+    medications {
+      id
+      resource
+      lastUpdated
+    }
+    observations {
+      id
+      resource
+      lastUpdated
+    }
+  }
+}
+
+# ================================================================
+# MEDICATION FOCUSED QUERY: Get patient with medication data
+# ================================================================
+query GetPatientMedications($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+      resource
+      lastUpdated
+    }
+    medications {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+    medicationRequests {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+  }
+}
+
+# ================================================================
+# ENCOUNTER FOCUSED QUERY: Get patient with encounter and related data
+# ================================================================
+query GetPatientEncounters($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+      resource
+    }
+    encounters {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+    observations {
+      id
+      resource
+      lastUpdated
+    }
+    diagnosticReports {
+      id
+      resource
+      lastUpdated
+    }
+    conditions {
+      id
+      resource
+      lastUpdated
+    }
+  }
+}
+
+# ================================================================
+# DIAGNOSTIC QUERY: Get patient with diagnostic and lab data
+# ================================================================
+query GetPatientDiagnostics($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+      resource
+    }
+    observations {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+    diagnosticReports {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+    serviceRequests {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+  }
+}
+
+# ================================================================
+# CARE PLANNING QUERY: Get patient with appointments and service requests
+# ================================================================
+query GetPatientCarePlanning($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+      resource
+    }
+    appointments {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+    serviceRequests {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+    medicationRequests {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+  }
+}
+
+# ================================================================
+# HISTORICAL QUERY: Get patient with procedures and family history
+# ================================================================
+query GetPatientHistory($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+      resource
+    }
+    procedures {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+    familyHistory {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+    compositions {
+      id
+      resourceType
+      versionId
+      resource
+      lastUpdated
+      txid
+    }
+  }
+}
+
+# ================================================================
+# MINIMAL QUERY: Just check if patient exists
+# ================================================================
+query CheckPatientExists($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+    }
+  }
+}

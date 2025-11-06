@@ -1,0 +1,64 @@
+{
+  "name": "mcp-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/mcp-server/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/mcp-server",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/mcp-server/src/main.ts",
+        "tsConfig": "apps/mcp-server/tsconfig.app.json",
+        "assets": ["apps/mcp-server/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "mcp-server:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mcp-server:build:development"
+        },
+        "production": {
+          "buildTarget": "mcp-server:build:production"
+        }
+      }
+    },
+    "test": {
+      "command": "npx -y @modelcontextprotocol/inspector node ./dist/apps/mcp-server/main.js",
+      "dependsOn": ["build"],
+      "continuous": true
+    }
+  },
+  "tags": []
+}

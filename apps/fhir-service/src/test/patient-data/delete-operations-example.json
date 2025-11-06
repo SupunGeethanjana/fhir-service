@@ -1,0 +1,36 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "Observation",
+                "id": "obs-old-123"
+            },
+            "request": {
+                "method": "DELETE",
+                "url": "Observation/obs-old-123"
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Appointment",
+                "id": "appointment-cancelled-456"
+            },
+            "request": {
+                "method": "DELETE",
+                "url": "Appointment/appointment-cancelled-456"
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Condition",
+                "id": "condition-resolved-789"
+            },
+            "request": {
+                "method": "DELETE",
+                "url": "Condition/condition-resolved-789"
+            }
+        }
+    ]
+}

@@ -1,0 +1,2142 @@
+{
+    "resourceType": "Bundle",
+    "id": "master-data-transaction-bundle",
+    "meta": {
+        "versionId": "1.0.0",
+        "lastUpdated": "2025-08-14T10:00:00Z",
+        "profile": [
+            "http://hl7.org/fhir/StructureDefinition/Bundle"
+        ]
+    },
+    "type": "transaction",
+    "timestamp": "2025-08-14T10:00:00Z",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:snomed-ct-codesystem",
+            "resource": {
+                "resourceType": "CodeSystem",
+                "id": "snomed-ct",
+                "url": "http://snomed.info/sct",
+                "identifier": [
+                    {
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.96"
+                    }
+                ],
+                "version": "http://snomed.info/sct/900000000000207008/version/20240301",
+                "name": "SNOMED_CT",
+                "title": "SNOMED Clinical Terms",
+                "status": "active",
+                "experimental": false,
+                "date": "2024-03-01",
+                "publisher": "IHTSDO",
+                "contact": [
+                    {
+                        "name": "International Health Terminology Standards Development Organisation"
+                    }
+                ],
+                "description": "SNOMED Clinical Terms (SNOMED CT) is a systematically organized computer processable collection of medical terms providing codes, terms, synonyms and definitions used in clinical documentation and reporting.",
+                "copyright": "This material contains content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement.",
+                "caseSensitive": false,
+                "hierarchyMeaning": "is-a",
+                "compositional": true,
+                "versionNeeded": false,
+                "content": "not-present",
+                "property": [
+                    {
+                        "code": "inactive",
+                        "description": "True if the concept is not considered active - e.g. not a valid concept any more",
+                        "type": "boolean"
+                    },
+                    {
+                        "code": "definitionStatusId",
+                        "description": "The concept's definition status ID",
+                        "type": "code"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "CodeSystem"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:rxnorm-codesystem",
+            "resource": {
+                "resourceType": "CodeSystem",
+                "id": "rxnorm",
+                "url": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "identifier": [
+                    {
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.88"
+                    }
+                ],
+                "version": "2024-03-01",
+                "name": "RxNorm",
+                "title": "RxNorm",
+                "status": "active",
+                "experimental": false,
+                "date": "2024-03-01",
+                "publisher": "National Library of Medicine",
+                "contact": [
+                    {
+                        "name": "National Library of Medicine"
+                    }
+                ],
+                "description": "RxNorm provides normalized names for clinical drugs and links its names to many of the drug vocabularies commonly used in pharmacy management and drug interaction software",
+                "copyright": "This material contains content from RxNorm, a standardized nomenclature for clinical drugs produced by the National Library of Medicine.",
+                "caseSensitive": false,
+                "hierarchyMeaning": "is-a",
+                "compositional": false,
+                "versionNeeded": false,
+                "content": "not-present"
+            },
+            "request": {
+                "method": "POST",
+                "url": "CodeSystem"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:loinc-codesystem",
+            "resource": {
+                "resourceType": "CodeSystem",
+                "id": "loinc",
+                "url": "http://loinc.org",
+                "identifier": [
+                    {
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.1"
+                    }
+                ],
+                "version": "2.76",
+                "name": "LOINC",
+                "title": "Logical Observation Identifiers Names and Codes (LOINC)",
+                "status": "active",
+                "experimental": false,
+                "date": "2024-02-01",
+                "publisher": "Regenstrief Institute, Inc.",
+                "contact": [
+                    {
+                        "name": "Regenstrief Institute, Inc."
+                    }
+                ],
+                "description": "LOINC provides universal identifiers for laboratory and clinical tests, measurements, and observations.",
+                "copyright": "This material contains content from LOINC (http://loinc.org). LOINC is copyright © 1995-2025, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at http://loinc.org/license.",
+                "caseSensitive": false,
+                "hierarchyMeaning": "is-a",
+                "compositional": false,
+                "versionNeeded": false,
+                "content": "not-present",
+                "property": [
+                    {
+                        "code": "STATUS",
+                        "description": "Status of the term",
+                        "type": "string"
+                    },
+                    {
+                        "code": "COMPONENT",
+                        "description": "First major axis-component or analyte",
+                        "type": "string"
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "CodeSystem"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:cpt-codesystem",
+            "resource": {
+                "resourceType": "CodeSystem",
+                "id": "cpt",
+                "url": "http://www.ama-assn.org/go/cpt",
+                "identifier": [
+                    {
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.12"
+                    }
+                ],
+                "version": "2024",
+                "name": "CPT",
+                "title": "Current Procedural Terminology (CPT®)",
+                "status": "active",
+                "experimental": false,
+                "date": "2024-01-01",
+                "publisher": "American Medical Association",
+                "contact": [
+                    {
+                        "name": "American Medical Association"
+                    }
+                ],
+                "description": "The Current Procedural Terminology (CPT®) code set is a uniform coding system consisting of descriptive terms and identifying codes that are used primarily to identify medical services and procedures furnished by physicians and other health care professionals.",
+                "copyright": "This material contains content from CPT, which is copyright © American Medical Association.",
+                "caseSensitive": false,
+                "hierarchyMeaning": "is-a",
+                "compositional": false,
+                "versionNeeded": false,
+                "content": "not-present"
+            },
+            "request": {
+                "method": "POST",
+                "url": "CodeSystem"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:ucum-codesystem",
+            "resource": {
+                "resourceType": "CodeSystem",
+                "id": "ucum",
+                "url": "http://unitsofmeasure.org",
+                "identifier": [
+                    {
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.8"
+                    }
+                ],
+                "version": "2.1",
+                "name": "UCUM",
+                "title": "Unified Code for Units of Measure (UCUM)",
+                "status": "active",
+                "experimental": false,
+                "date": "2024-01-01",
+                "publisher": "Regenstrief Institute, Inc.",
+                "contact": [
+                    {
+                        "name": "Regenstrief Institute, Inc."
+                    }
+                ],
+                "description": "The Unified Code for Units of Measure (UCUM) is a code system intended to include all units of measures being contemporarily used in international science, engineering, and business.",
+                "copyright": "This material contains content from UCUM, which is copyright © 1999-2025, Regenstrief Institute, Inc. and The UCUM Organization.",
+                "caseSensitive": true,
+                "hierarchyMeaning": "is-a",
+                "compositional": true,
+                "versionNeeded": false,
+                "content": "not-present"
+            },
+            "request": {
+                "method": "POST",
+                "url": "CodeSystem"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:hl7-administrative-gender-codesystem",
+            "resource": {
+                "resourceType": "CodeSystem",
+                "id": "administrative-gender",
+                "url": "http://hl7.org/fhir/administrative-gender",
+                "identifier": [
+                    {
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.4.642.4.2"
+                    }
+                ],
+                "version": "4.0.1",
+                "name": "AdministrativeGender",
+                "title": "AdministrativeGender",
+                "status": "active",
+                "experimental": false,
+                "date": "2019-11-01T09:29:23+11:00",
+                "publisher": "HL7 (FHIR Project)",
+                "contact": [
+                    {
+                        "name": "HL7 (FHIR Project)"
+                    }
+                ],
+                "description": "The gender of a person used for administrative purposes.",
+                "copyright": "This resource includes content from HL7 FHIR, which is copyright © 2011+ HL7.",
+                "caseSensitive": true,
+                "valueSet": "http://hl7.org/fhir/ValueSet/administrative-gender",
+                "content": "complete",
+                "concept": [
+                    {
+                        "code": "male",
+                        "display": "Male",
+                        "definition": "Male."
+                    },
+                    {
+                        "code": "female",
+                        "display": "Female",
+                        "definition": "Female."
+                    },
+                    {
+                        "code": "other",
+                        "display": "Other",
+                        "definition": "Other."
+                    },
+                    {
+                        "code": "unknown",
+                        "display": "Unknown",
+                        "definition": "Unknown."
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "CodeSystem"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:iso3166-codesystem",
+            "resource": {
+                "resourceType": "CodeSystem",
+                "id": "iso3166-1-2",
+                "url": "urn:iso:std:iso:3166",
+                "identifier": [
+                    {
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:1.0.3166.1.2.2"
+                    }
+                ],
+                "version": "2020",
+                "name": "ISO3166Part1",
+                "title": "ISO 3166-1 Codes for the representation of names of countries and their subdivisions",
+                "status": "active",
+                "experimental": false,
+                "date": "2020-08-17",
+                "publisher": "International Organization for Standardization (ISO)",
+                "contact": [
+                    {
+                        "name": "International Organization for Standardization (ISO)"
+                    }
+                ],
+                "description": "ISO 3166-1 defines codes for the names of countries, dependent territories, and special areas of geographical interest for use in data processing and communications.",
+                "copyright": "This material contains content from ISO 3166, which is copyright © International Organization for Standardization.",
+                "caseSensitive": false,
+                "hierarchyMeaning": "is-a",
+                "compositional": false,
+                "versionNeeded": false,
+                "content": "not-present"
+            },
+            "request": {
+                "method": "POST",
+                "url": "CodeSystem"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:ietf-language-codesystem",
+            "resource": {
+                "resourceType": "CodeSystem",
+                "id": "ietf-bcp-47",
+                "url": "urn:ietf:bcp:47",
+                "identifier": [
+                    {
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.121"
+                    }
+                ],
+                "version": "2024",
+                "name": "Ietf3066",
+                "title": "Tags for the Identification of Languages",
+                "status": "active",
+                "experimental": false,
+                "date": "2024-01-01",
+                "publisher": "Internet Engineering Task Force (IETF)",
+                "contact": [
+                    {
+                        "name": "Internet Engineering Task Force (IETF)"
+                    }
+                ],
+                "description": "Identifies the language used in communication. Based on the IETF BCP 47 specification.",
+                "copyright": "This material contains content from IETF BCP 47.",
+                "caseSensitive": false,
+                "hierarchyMeaning": "is-a",
+                "compositional": true,
+                "versionNeeded": false,
+                "content": "not-present"
+            },
+            "request": {
+                "method": "POST",
+                "url": "CodeSystem"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:allergies-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "common-allergies-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/common-allergies",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2001"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-ALLERGIES-001"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "CommonAllergiesVS",
+                "title": "Common Allergies and Allergens",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "A comprehensive value set of common allergies and allergens for use in Saudi healthcare, based on international SNOMED CT codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To provide a standardized set of allergy codes for use in AllergyIntolerance resources in Saudi healthcare systems.",
+                "copyright": "This material contains content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "concept": [
+                                {
+                                    "code": "387322000",
+                                    "display": "Penicillin allergy",
+                                    "definition": "Allergy to Penicillin and related antibiotics"
+                                },
+                                {
+                                    "code": "226760005",
+                                    "display": "Dairy foods allergy",
+                                    "definition": "Allergy to dairy products including milk, cheese, yogurt"
+                                },
+                                {
+                                    "code": "102259006",
+                                    "display": "Citrus fruit allergy",
+                                    "definition": "Allergy to citrus fruits including oranges, lemons, limes"
+                                },
+                                {
+                                    "code": "260184002",
+                                    "display": "Peanut allergy",
+                                    "definition": "Allergy to peanuts and peanut products"
+                                },
+                                {
+                                    "code": "735053000",
+                                    "display": "Shellfish allergy",
+                                    "definition": "Allergy to shellfish including shrimp, crab, lobster"
+                                },
+                                {
+                                    "code": "28647000",
+                                    "display": "Egg allergy",
+                                    "definition": "Allergy to chicken eggs and egg products"
+                                },
+                                {
+                                    "code": "226934003",
+                                    "display": "Soy allergy",
+                                    "definition": "Allergy to soy and soy products"
+                                },
+                                {
+                                    "code": "102261002",
+                                    "display": "Tree nut allergy",
+                                    "definition": "Allergy to tree nuts including almonds, walnuts, cashews"
+                                },
+                                {
+                                    "code": "111095003",
+                                    "display": "Latex allergy",
+                                    "definition": "Allergy to natural rubber latex"
+                                },
+                                {
+                                    "code": "387475002",
+                                    "display": "Aspirin allergy",
+                                    "definition": "Allergy to aspirin and NSAIDs"
+                                },
+                                {
+                                    "code": "294505008",
+                                    "display": "Sulfonamide allergy",
+                                    "definition": "Allergy to sulfonamide antibiotics"
+                                },
+                                {
+                                    "code": "428607008",
+                                    "display": "No known allergies",
+                                    "definition": "Patient has no known allergies"
+                                },
+                                {
+                                    "code": "91935009",
+                                    "display": "Allergy to bee sting",
+                                    "definition": "Allergic reaction to bee venom"
+                                },
+                                {
+                                    "code": "762951007",
+                                    "display": "Gluten allergy",
+                                    "definition": "Allergy to gluten proteins"
+                                },
+                                {
+                                    "code": "414285001",
+                                    "display": "Food allergy",
+                                    "definition": "General food allergy"
+                                },
+                                {
+                                    "code": "782576004",
+                                    "display": "Environmental allergy",
+                                    "definition": "Allergy to environmental factors like pollen, dust"
+                                },
+                                {
+                                    "code": "424213003",
+                                    "display": "Contrast media allergy",
+                                    "definition": "Allergy to radiographic contrast agents"
+                                },
+                                {
+                                    "code": "91936005",
+                                    "display": "Allergy to insect sting",
+                                    "definition": "Allergic reaction to insect stings"
+                                },
+                                {
+                                    "code": "300916003",
+                                    "display": "Latex protein allergy",
+                                    "definition": "Specific allergy to latex proteins"
+                                },
+                                {
+                                    "code": "416098002",
+                                    "display": "Drug allergy",
+                                    "definition": "General drug or medication allergy"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medications-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "common-medications-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/common-medications",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2002"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-MEDICATIONS-002"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "CommonMedicationsVS",
+                "title": "Common Medications Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for commonly prescribed medications used in Medication and MedicationRequest resources, based on international RxNorm codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of codes that can be used for medication prescribing and documentation",
+                "copyright": "This material contains content from RxNorm, a standardized nomenclature for clinical drugs produced by the National Library of Medicine.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "concept": [
+                                {
+                                    "code": "161",
+                                    "display": "Acetaminophen",
+                                    "definition": "Pain reliever and fever reducer"
+                                },
+                                {
+                                    "code": "5640",
+                                    "display": "Ibuprofen",
+                                    "definition": "NSAID for pain, inflammation, and fever"
+                                },
+                                {
+                                    "code": "6809",
+                                    "display": "Metformin",
+                                    "definition": "Diabetes medication to control blood sugar"
+                                },
+                                {
+                                    "code": "29046",
+                                    "display": "Lisinopril",
+                                    "definition": "ACE inhibitor for high blood pressure"
+                                },
+                                {
+                                    "code": "17767",
+                                    "display": "Amlodipine",
+                                    "definition": "Calcium channel blocker for hypertension"
+                                },
+                                {
+                                    "code": "36567",
+                                    "display": "Atorvastatin",
+                                    "definition": "Statin medication for cholesterol management"
+                                },
+                                {
+                                    "code": "7804",
+                                    "display": "Omeprazole",
+                                    "definition": "Proton pump inhibitor for acid reflux"
+                                },
+                                {
+                                    "code": "723",
+                                    "display": "Amoxicillin",
+                                    "definition": "Penicillin antibiotic for bacterial infections"
+                                },
+                                {
+                                    "code": "1154",
+                                    "display": "Albuterol",
+                                    "definition": "Bronchodilator for asthma and COPD"
+                                },
+                                {
+                                    "code": "10582",
+                                    "display": "Levothyroxine",
+                                    "definition": "Thyroid hormone replacement therapy"
+                                },
+                                {
+                                    "code": "32968",
+                                    "display": "Simvastatin",
+                                    "definition": "HMG-CoA reductase inhibitor for cholesterol"
+                                },
+                                {
+                                    "code": "3008",
+                                    "display": "Aspirin",
+                                    "definition": "NSAID and antiplatelet agent"
+                                },
+                                {
+                                    "code": "38413",
+                                    "display": "Warfarin",
+                                    "definition": "Oral anticoagulant for blood clotting prevention"
+                                },
+                                {
+                                    "code": "5521",
+                                    "display": "Hydrochlorothiazide",
+                                    "definition": "Thiazide diuretic for hypertension"
+                                },
+                                {
+                                    "code": "1551",
+                                    "display": "Azithromycin",
+                                    "definition": "Macrolide antibiotic"
+                                },
+                                {
+                                    "code": "596",
+                                    "display": "Prednisone",
+                                    "definition": "Corticosteroid anti-inflammatory"
+                                },
+                                {
+                                    "code": "4603",
+                                    "display": "Furosemide",
+                                    "definition": "Loop diuretic for fluid retention"
+                                },
+                                {
+                                    "code": "5224",
+                                    "display": "Insulin",
+                                    "definition": "Hormone for diabetes management"
+                                },
+                                {
+                                    "code": "11289",
+                                    "display": "Losartan",
+                                    "definition": "ARB for hypertension"
+                                },
+                                {
+                                    "code": "43613",
+                                    "display": "Clopidogrel",
+                                    "definition": "Antiplatelet agent for cardiovascular protection"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:lab-tests-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "common-lab-tests-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/common-lab-tests",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2003"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-LABTESTS-003"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "CommonLabTestsVS",
+                "title": "Common Laboratory Tests Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for laboratory tests used in Observation and DiagnosticReport resources, based on international LOINC codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of codes that can be used for laboratory test ordering and documentation",
+                "copyright": "This material contains content from LOINC (http://loinc.org). LOINC is copyright © 1995-2025, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at http://loinc.org/license.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://loinc.org",
+                            "concept": [
+                                {
+                                    "code": "33747-0",
+                                    "display": "Complete Blood Count (CBC)",
+                                    "definition": "Complete blood count with differential"
+                                },
+                                {
+                                    "code": "24323-8",
+                                    "display": "Comprehensive Metabolic Panel (CMP)",
+                                    "definition": "Basic metabolic panel with liver function"
+                                },
+                                {
+                                    "code": "57021-8",
+                                    "display": "Lipid Panel",
+                                    "definition": "Cholesterol and triglyceride panel"
+                                },
+                                {
+                                    "code": "4548-4",
+                                    "display": "Hemoglobin A1c",
+                                    "definition": "Glycated hemoglobin for diabetes monitoring"
+                                },
+                                {
+                                    "code": "33762-6",
+                                    "display": "Thyroid Function Panel",
+                                    "definition": "TSH, T3, T4 thyroid hormone levels"
+                                },
+                                {
+                                    "code": "2339-0",
+                                    "display": "Glucose",
+                                    "definition": "Glucose measurement in blood"
+                                },
+                                {
+                                    "code": "33765-9",
+                                    "display": "White blood cell count",
+                                    "definition": "White blood cell count in blood"
+                                },
+                                {
+                                    "code": "718-7",
+                                    "display": "Hemoglobin",
+                                    "definition": "Hemoglobin measurement in blood"
+                                },
+                                {
+                                    "code": "787-2",
+                                    "display": "Mean corpuscular volume",
+                                    "definition": "Average volume of red blood cells"
+                                },
+                                {
+                                    "code": "777-3",
+                                    "display": "Platelet count",
+                                    "definition": "Number of platelets in blood"
+                                },
+                                {
+                                    "code": "3094-0",
+                                    "display": "Blood urea nitrogen",
+                                    "definition": "BUN - kidney function test"
+                                },
+                                {
+                                    "code": "2160-0",
+                                    "display": "Creatinine",
+                                    "definition": "Serum creatinine - kidney function"
+                                },
+                                {
+                                    "code": "1975-2",
+                                    "display": "Total bilirubin",
+                                    "definition": "Total bilirubin - liver function"
+                                },
+                                {
+                                    "code": "1742-6",
+                                    "display": "Alanine aminotransferase",
+                                    "definition": "ALT - liver enzyme"
+                                },
+                                {
+                                    "code": "1920-8",
+                                    "display": "Aspartate aminotransferase",
+                                    "definition": "AST - liver enzyme"
+                                },
+                                {
+                                    "code": "2951-2",
+                                    "display": "Sodium",
+                                    "definition": "Serum sodium electrolyte"
+                                },
+                                {
+                                    "code": "2823-3",
+                                    "display": "Potassium",
+                                    "definition": "Serum potassium electrolyte"
+                                },
+                                {
+                                    "code": "2075-0",
+                                    "display": "Chloride",
+                                    "definition": "Serum chloride electrolyte"
+                                },
+                                {
+                                    "code": "1963-8",
+                                    "display": "Carbon dioxide",
+                                    "definition": "CO2 - acid-base balance"
+                                },
+                                {
+                                    "code": "33747-0",
+                                    "display": "Erythrocyte sedimentation rate",
+                                    "definition": "ESR - inflammation marker"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:social-history-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "social-history-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/social-history",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2004"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-SOCIALHISTORY-004"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "SocialHistoryVS",
+                "title": "Social History and Lifestyle Factors Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for social history and lifestyle factors used in Observation resources, based on international SNOMED CT codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of codes that can be used for documenting social history and lifestyle factors",
+                "copyright": "This material contains content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "concept": [
+                                {
+                                    "code": "449868002",
+                                    "display": "Current every day smoker"
+                                },
+                                {
+                                    "code": "428041000124106",
+                                    "display": "Current some day smoker"
+                                },
+                                {
+                                    "code": "8517006",
+                                    "display": "Former smoker"
+                                },
+                                {
+                                    "code": "266919005",
+                                    "display": "Never smoker"
+                                },
+                                {
+                                    "code": "105542008",
+                                    "display": "Current drinker of alcohol"
+                                },
+                                {
+                                    "code": "8392000",
+                                    "display": "Non-drinker of alcohol"
+                                },
+                                {
+                                    "code": "228388006",
+                                    "display": "Sedentary lifestyle"
+                                },
+                                {
+                                    "code": "390995000",
+                                    "display": "Active lifestyle"
+                                },
+                                {
+                                    "code": "82581004",
+                                    "display": "Educational status",
+                                    "definition": "Level of education completed"
+                                },
+                                {
+                                    "code": "224361007",
+                                    "display": "Occupational history",
+                                    "definition": "Work and employment history"
+                                },
+                                {
+                                    "code": "425400000",
+                                    "display": "Toxic exposure history",
+                                    "definition": "History of exposure to toxic substances"
+                                },
+                                {
+                                    "code": "228272008",
+                                    "display": "Health-related behavior",
+                                    "definition": "Behaviors affecting health"
+                                },
+                                {
+                                    "code": "405052007",
+                                    "display": "Social support",
+                                    "definition": "Available social support systems"
+                                },
+                                {
+                                    "code": "365508006",
+                                    "display": "Finding of recreational drug use",
+                                    "definition": "Use of recreational or illicit drugs"
+                                },
+                                {
+                                    "code": "266948004",
+                                    "display": "Sexual history",
+                                    "definition": "Sexual behavior and history"
+                                },
+                                {
+                                    "code": "365980008",
+                                    "display": "Finding of tobacco use and exposure",
+                                    "definition": "Tobacco use patterns and exposure"
+                                },
+                                {
+                                    "code": "229819007",
+                                    "display": "Tobacco use status",
+                                    "definition": "Current tobacco use status"
+                                },
+                                {
+                                    "code": "395507008",
+                                    "display": "Premorbid personality",
+                                    "definition": "Personality before illness"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:radiology-orders-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "radiology-orders-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/radiology-orders",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2005"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-RADIOLOGYORDERS-005"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "RadiologyOrdersVS",
+                "title": "Radiology Orders and Imaging Studies Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for radiology orders and imaging studies used in ServiceRequest and DiagnosticReport resources, based on international LOINC codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of codes that can be used for radiology ordering and imaging documentation",
+                "copyright": "This material contains content from LOINC (http://loinc.org). LOINC is copyright © 1995-2025, Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee and is available at no cost under the license at http://loinc.org/license.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://loinc.org",
+                            "concept": [
+                                {
+                                    "code": "36643-5",
+                                    "display": "Chest X-ray"
+                                },
+                                {
+                                    "code": "30745-4",
+                                    "display": "CT Chest without contrast"
+                                },
+                                {
+                                    "code": "36572-6",
+                                    "display": "MRI Brain without contrast"
+                                },
+                                {
+                                    "code": "24627-2",
+                                    "display": "Abdominal Ultrasound"
+                                },
+                                {
+                                    "code": "36319-2",
+                                    "display": "Mammography bilateral"
+                                },
+                                {
+                                    "code": "26604-4",
+                                    "display": "CT Abdomen with contrast"
+                                },
+                                {
+                                    "code": "39267-0",
+                                    "display": "Echocardiography"
+                                },
+                                {
+                                    "code": "30746-2",
+                                    "display": "CT Head without contrast"
+                                },
+                                {
+                                    "code": "24531-6",
+                                    "display": "MRI Spine lumbar"
+                                },
+                                {
+                                    "code": "26688-7",
+                                    "display": "CT Pelvis with contrast"
+                                },
+                                {
+                                    "code": "36747-4",
+                                    "display": "Bone scan whole body"
+                                },
+                                {
+                                    "code": "36576-7",
+                                    "display": "MRI Knee"
+                                },
+                                {
+                                    "code": "36643-5",
+                                    "display": "Chest X-ray PA and lateral"
+                                },
+                                {
+                                    "code": "30759-5",
+                                    "display": "CT Angiography coronary arteries"
+                                },
+                                {
+                                    "code": "24638-9",
+                                    "display": "Ultrasound Thyroid"
+                                },
+                                {
+                                    "code": "36747-4",
+                                    "display": "Nuclear medicine bone scan"
+                                },
+                                {
+                                    "code": "37368-8",
+                                    "display": "MRI Brain with contrast"
+                                },
+                                {
+                                    "code": "36319-2",
+                                    "display": "Mammography screening bilateral"
+                                },
+                                {
+                                    "code": "30745-4",
+                                    "display": "CT Chest with contrast"
+                                },
+                                {
+                                    "code": "36576-7",
+                                    "display": "MRI Shoulder"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:chronic-diseases-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "chronic-diseases-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/chronic-diseases",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2006"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-CHRONICDISEASES-006"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "ChronicDiseasesVS",
+                "title": "Chronic Diseases and Long-term Conditions Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for chronic diseases and long-term conditions used in Condition resources, based on international SNOMED CT codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of codes that can be used for chronic disease documentation and management",
+                "copyright": "This material contains content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "concept": [
+                                {
+                                    "code": "44054006",
+                                    "display": "Type 2 diabetes mellitus"
+                                },
+                                {
+                                    "code": "38341003",
+                                    "display": "Hypertensive disorder"
+                                },
+                                {
+                                    "code": "195967001",
+                                    "display": "Asthma"
+                                },
+                                {
+                                    "code": "55822004",
+                                    "display": "Hyperlipidemia"
+                                },
+                                {
+                                    "code": "709044004",
+                                    "display": "Chronic kidney disease"
+                                },
+                                {
+                                    "code": "46635009",
+                                    "display": "Type 1 diabetes mellitus"
+                                },
+                                {
+                                    "code": "413838009",
+                                    "display": "Chronic ischemic heart disease"
+                                },
+                                {
+                                    "code": "13645005",
+                                    "display": "Chronic obstructive lung disease"
+                                },
+                                {
+                                    "code": "34000006",
+                                    "display": "Crohn's disease"
+                                },
+                                {
+                                    "code": "64766004",
+                                    "display": "Ulcerative colitis"
+                                },
+                                {
+                                    "code": "69896004",
+                                    "display": "Rheumatoid arthritis"
+                                },
+                                {
+                                    "code": "55464009",
+                                    "display": "Systemic lupus erythematosus"
+                                },
+                                {
+                                    "code": "13746004",
+                                    "display": "Bipolar disorder"
+                                },
+                                {
+                                    "code": "370143000",
+                                    "display": "Major depressive disorder"
+                                },
+                                {
+                                    "code": "84757009",
+                                    "display": "Epilepsy"
+                                },
+                                {
+                                    "code": "363346000",
+                                    "display": "Malignant neoplastic disease"
+                                },
+                                {
+                                    "code": "15497006",
+                                    "display": "Hypertensive heart disease"
+                                },
+                                {
+                                    "code": "414545008",
+                                    "display": "Ischemic heart disease"
+                                },
+                                {
+                                    "code": "236423003",
+                                    "display": "Chronic renal failure"
+                                },
+                                {
+                                    "code": "73211009",
+                                    "display": "Diabetes mellitus"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:procedures-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "procedures-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/procedures",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2007"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-PROCEDURES-007"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "ProceduresVS",
+                "title": "Medical Procedures Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for medical procedures used in Procedure resources, based on international SNOMED CT codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of codes that can be used for medical procedure documentation and billing",
+                "copyright": "This material contains content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "concept": [
+                                {
+                                    "code": "182836005",
+                                    "display": "Review of medication",
+                                    "definition": "Review of patient's current medications"
+                                },
+                                {
+                                    "code": "225358003",
+                                    "display": "Wound care",
+                                    "definition": "Wound care and dressing procedure"
+                                },
+                                {
+                                    "code": "386053000",
+                                    "display": "Evaluation procedure",
+                                    "definition": "General evaluation and assessment procedure"
+                                },
+                                {
+                                    "code": "33747000",
+                                    "display": "Consultation",
+                                    "definition": "Medical consultation procedure"
+                                },
+                                {
+                                    "code": "76601005",
+                                    "display": "Intramuscular injection",
+                                    "definition": "Intramuscular injection procedure"
+                                },
+                                {
+                                    "code": "129389006",
+                                    "display": "Subcutaneous injection",
+                                    "definition": "Subcutaneous injection procedure"
+                                },
+                                {
+                                    "code": "71388002",
+                                    "display": "Procedure",
+                                    "definition": "General medical procedure"
+                                },
+                                {
+                                    "code": "385763009",
+                                    "display": "Hospitalization",
+                                    "definition": "Hospital admission procedure"
+                                },
+                                {
+                                    "code": "182856006",
+                                    "display": "Discharge from hospital",
+                                    "definition": "Hospital discharge procedure"
+                                },
+                                {
+                                    "code": "432102000",
+                                    "display": "Administration of substance",
+                                    "definition": "Administration of medication or substance"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:clinics-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "clinics-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/clinics",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2008"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-CLINICS-008"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "ClinicsVS",
+                "title": "Medical Clinics and Departments Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for medical clinics and departments used in Organization and Encounter resources, based on international SNOMED CT codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of codes that can be used for clinic and department identification in healthcare organizations",
+                "copyright": "This material contains content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "concept": [
+                                {
+                                    "code": "394802001",
+                                    "display": "General medicine",
+                                    "definition": "General internal medicine clinic"
+                                },
+                                {
+                                    "code": "394579002",
+                                    "display": "Cardiology",
+                                    "definition": "Cardiovascular medicine clinic"
+                                },
+                                {
+                                    "code": "394584008",
+                                    "display": "Gastroenterology",
+                                    "definition": "Digestive system medicine clinic"
+                                },
+                                {
+                                    "code": "394582007",
+                                    "display": "Dermatology",
+                                    "definition": "Skin and dermatological conditions clinic"
+                                },
+                                {
+                                    "code": "394585009",
+                                    "display": "Obstetrics and gynecology",
+                                    "definition": "Women's health and reproductive medicine clinic"
+                                },
+                                {
+                                    "code": "394537008",
+                                    "display": "Pediatric specialty",
+                                    "definition": "Children's medicine and pediatric care clinic"
+                                },
+                                {
+                                    "code": "394609007",
+                                    "display": "General surgery",
+                                    "definition": "General surgical procedures clinic"
+                                },
+                                {
+                                    "code": "394583002",
+                                    "display": "Endocrinology",
+                                    "definition": "Hormonal and metabolic disorders clinic"
+                                },
+                                {
+                                    "code": "394611003",
+                                    "display": "Orthopedic surgery",
+                                    "definition": "Bone, joint, and musculoskeletal surgery clinic"
+                                },
+                                {
+                                    "code": "394821009",
+                                    "display": "Occupational medicine",
+                                    "definition": "Workplace health and occupational medicine clinic"
+                                },
+                                {
+                                    "code": "394913002",
+                                    "display": "Psychotherapy",
+                                    "definition": "Mental health and psychological therapy clinic"
+                                },
+                                {
+                                    "code": "394580004",
+                                    "display": "Clinical oncology",
+                                    "definition": "Cancer treatment and oncology clinic"
+                                },
+                                {
+                                    "code": "394801008",
+                                    "display": "Trauma and orthopedics",
+                                    "definition": "Trauma and orthopedic surgery clinic"
+                                },
+                                {
+                                    "code": "394581000",
+                                    "display": "Community medicine",
+                                    "definition": "Community and preventive medicine clinic"
+                                },
+                                {
+                                    "code": "394586005",
+                                    "display": "Gynecology",
+                                    "definition": "Gynecological specialty clinic"
+                                },
+                                {
+                                    "code": "394587001",
+                                    "display": "Psychiatry",
+                                    "definition": "Psychiatric and mental health clinic"
+                                },
+                                {
+                                    "code": "394588006",
+                                    "display": "Child and adolescent psychiatry",
+                                    "definition": "Pediatric psychiatry clinic"
+                                },
+                                {
+                                    "code": "394589003",
+                                    "display": "Nephrology",
+                                    "definition": "Kidney and renal disease clinic"
+                                },
+                                {
+                                    "code": "394590007",
+                                    "display": "Thoracic surgery",
+                                    "definition": "Chest and thoracic surgery clinic"
+                                },
+                                {
+                                    "code": "394591006",
+                                    "display": "Neurology",
+                                    "definition": "Neurological disorders clinic"
+                                },
+                                {
+                                    "code": "394592004",
+                                    "display": "Clinical oncology",
+                                    "definition": "Cancer treatment and clinical oncology"
+                                },
+                                {
+                                    "code": "394593009",
+                                    "display": "Medical oncology",
+                                    "definition": "Medical cancer treatment clinic"
+                                },
+                                {
+                                    "code": "394594003",
+                                    "display": "Ophthalmology",
+                                    "definition": "Eye and vision care clinic"
+                                },
+                                {
+                                    "code": "394649004",
+                                    "display": "Nuclear medicine",
+                                    "definition": "Nuclear medicine and imaging clinic"
+                                },
+                                {
+                                    "code": "394802001",
+                                    "display": "Emergency medicine",
+                                    "definition": "Emergency and urgent care clinic"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:family-history-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "family-history-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/family-history",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2009"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-FAMILYHISTORY-009"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "FamilyHistoryVS",
+                "title": "Family History Conditions Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for family history conditions used in FamilyMemberHistory resources, based on international SNOMED CT codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of codes that can be used for documenting family medical history and genetic predispositions",
+                "copyright": "This material contains content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "concept": [
+                                {
+                                    "code": "312824007",
+                                    "display": "Family history of carcinoma",
+                                    "definition": "Family history of cancer or malignant tumors"
+                                },
+                                {
+                                    "code": "160303001",
+                                    "display": "Family history of stroke",
+                                    "definition": "Family history of cerebrovascular accident"
+                                },
+                                {
+                                    "code": "160357008",
+                                    "display": "Family history of diabetes mellitus",
+                                    "definition": "Family history of diabetes or blood sugar disorders"
+                                },
+                                {
+                                    "code": "160351000",
+                                    "display": "Family history of heart disease",
+                                    "definition": "Family history of cardiovascular or cardiac conditions"
+                                },
+                                {
+                                    "code": "160355006",
+                                    "display": "Family history of mental disorder",
+                                    "definition": "Family history of psychiatric or mental health conditions"
+                                },
+                                {
+                                    "code": "429098002",
+                                    "display": "Family history of kidney disease",
+                                    "definition": "Family history of renal or kidney disorders"
+                                },
+                                {
+                                    "code": "160258005",
+                                    "display": "Family history of osteoporosis",
+                                    "definition": "Family history of bone density disorders"
+                                },
+                                {
+                                    "code": "160352007",
+                                    "display": "Family history of hypertension",
+                                    "definition": "Family history of high blood pressure"
+                                },
+                                {
+                                    "code": "425893002",
+                                    "display": "Family history of asthma",
+                                    "definition": "Family history of respiratory or asthma conditions"
+                                },
+                                {
+                                    "code": "444094005",
+                                    "display": "Family history of autoimmune disease",
+                                    "definition": "Family history of immune system disorders"
+                                },
+                                {
+                                    "code": "275918005",
+                                    "display": "Family history of genetic disorder",
+                                    "definition": "Family history of inherited genetic conditions"
+                                },
+                                {
+                                    "code": "416471007",
+                                    "display": "Family history of clinical finding",
+                                    "definition": "General family history of medical conditions"
+                                },
+                                {
+                                    "code": "160287008",
+                                    "display": "Family history of sudden death",
+                                    "definition": "Family history of sudden or unexpected death"
+                                },
+                                {
+                                    "code": "160300008",
+                                    "display": "Family history of epilepsy",
+                                    "definition": "Family history of seizure disorders"
+                                },
+                                {
+                                    "code": "432102000",
+                                    "display": "Family history of substance abuse",
+                                    "definition": "Family history of drug or alcohol abuse"
+                                },
+                                {
+                                    "code": "416340002",
+                                    "display": "Family history of obesity",
+                                    "definition": "Family history of weight disorders"
+                                },
+                                {
+                                    "code": "161445009",
+                                    "display": "Family history of thyroid disorder",
+                                    "definition": "Family history of thyroid conditions"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:units-of-measure-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "units-of-measure-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/units-of-measure",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2010"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-UNITS-010"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "UnitsOfMeasureVS",
+                "title": "Common Units of Measure Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for common units of measure used in Observation and other measurement resources, based on international UCUM codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of units that can be used for medical measurements and observations",
+                "copyright": "This material contains content from UCUM, which is copyright © 1999-2025, Regenstrief Institute, Inc. and The UCUM Organization.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://unitsofmeasure.org",
+                            "concept": [
+                                {
+                                    "code": "kg",
+                                    "display": "kilogram",
+                                    "definition": "Unit of mass"
+                                },
+                                {
+                                    "code": "g",
+                                    "display": "gram",
+                                    "definition": "Unit of mass"
+                                },
+                                {
+                                    "code": "cm",
+                                    "display": "centimeter",
+                                    "definition": "Unit of length"
+                                },
+                                {
+                                    "code": "m",
+                                    "display": "meter",
+                                    "definition": "Unit of length"
+                                },
+                                {
+                                    "code": "Cel",
+                                    "display": "degree Celsius",
+                                    "definition": "Unit of temperature"
+                                },
+                                {
+                                    "code": "mm[Hg]",
+                                    "display": "millimeter of mercury",
+                                    "definition": "Unit of pressure"
+                                },
+                                {
+                                    "code": "/min",
+                                    "display": "per minute",
+                                    "definition": "Unit of frequency"
+                                },
+                                {
+                                    "code": "mg/dL",
+                                    "display": "milligram per deciliter",
+                                    "definition": "Unit of concentration"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:administrative-gender-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "administrative-gender-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/administrative-gender",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2011"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-GENDER-011"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "AdministrativeGenderVS",
+                "title": "Administrative Gender Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for administrative gender used in Patient and Person resources, based on HL7 administrative gender codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of gender codes that can be used for administrative purposes",
+                "copyright": "This resource includes content from HL7 FHIR, which is copyright © 2011+ HL7.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "http://hl7.org/fhir/administrative-gender",
+                            "concept": [
+                                {
+                                    "code": "male",
+                                    "display": "Male",
+                                    "definition": "Male gender for administrative purposes"
+                                },
+                                {
+                                    "code": "female",
+                                    "display": "Female",
+                                    "definition": "Female gender for administrative purposes"
+                                },
+                                {
+                                    "code": "other",
+                                    "display": "Other",
+                                    "definition": "Other gender for administrative purposes"
+                                },
+                                {
+                                    "code": "unknown",
+                                    "display": "Unknown",
+                                    "definition": "Unknown gender for administrative purposes"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:countries-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "countries-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/countries",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2012"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-COUNTRIES-012"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "CountriesVS",
+                "title": "Countries Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for country codes used in Address and other location resources, based on ISO 3166 country codes.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of country codes that can be used for address and location purposes",
+                "copyright": "This material contains content from ISO 3166, which is copyright © International Organization for Standardization.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "urn:iso:std:iso:3166",
+                            "concept": [
+                                {
+                                    "code": "SA",
+                                    "display": "Saudi Arabia",
+                                    "definition": "Kingdom of Saudi Arabia"
+                                },
+                                {
+                                    "code": "US",
+                                    "display": "United States",
+                                    "definition": "United States of America"
+                                },
+                                {
+                                    "code": "AE",
+                                    "display": "United Arab Emirates",
+                                    "definition": "United Arab Emirates"
+                                },
+                                {
+                                    "code": "KW",
+                                    "display": "Kuwait",
+                                    "definition": "State of Kuwait"
+                                },
+                                {
+                                    "code": "QA",
+                                    "display": "Qatar",
+                                    "definition": "State of Qatar"
+                                },
+                                {
+                                    "code": "BH",
+                                    "display": "Bahrain",
+                                    "definition": "Kingdom of Bahrain"
+                                },
+                                {
+                                    "code": "OM",
+                                    "display": "Oman",
+                                    "definition": "Sultanate of Oman"
+                                },
+                                {
+                                    "code": "JO",
+                                    "display": "Jordan",
+                                    "definition": "Hashemite Kingdom of Jordan"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:languages-valueset",
+            "resource": {
+                "resourceType": "ValueSet",
+                "id": "languages-valueset",
+                "url": "http://moh.gov.sa/fhir/ValueSet/languages",
+                "identifier": [
+                    {
+                        "use": "official",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:2.16.840.1.113883.6.301.2013"
+                    },
+                    {
+                        "use": "secondary",
+                        "system": "http://moh.gov.sa/identifier/valueset",
+                        "value": "VS-LANGUAGES-013"
+                    }
+                ],
+                "version": "1.0.0",
+                "name": "LanguagesVS",
+                "title": "Languages Value Set",
+                "status": "active",
+                "experimental": false,
+                "date": "2025-08-14",
+                "publisher": "Saudi Ministry of Health - FHIR Service",
+                "contact": [
+                    {
+                        "name": "FHIR Service Team",
+                        "telecom": [
+                            {
+                                "system": "email",
+                                "value": "support@fhir-service.com"
+                            }
+                        ]
+                    }
+                ],
+                "description": "Value set for language codes used in Patient and other communication resources, based on IETF BCP 47 language tags.",
+                "jurisdiction": [
+                    {
+                        "coding": [
+                            {
+                                "system": "urn:iso:std:iso:3166",
+                                "code": "SA",
+                                "display": "Saudi Arabia"
+                            }
+                        ]
+                    }
+                ],
+                "purpose": "To define the set of language codes that can be used for communication and documentation purposes",
+                "copyright": "This material contains content from IETF BCP 47.",
+                "compose": {
+                    "include": [
+                        {
+                            "system": "urn:ietf:bcp:47",
+                            "concept": [
+                                {
+                                    "code": "ar",
+                                    "display": "Arabic",
+                                    "definition": "Arabic language"
+                                },
+                                {
+                                    "code": "ar-SA",
+                                    "display": "Arabic (Saudi Arabia)",
+                                    "definition": "Arabic language as used in Saudi Arabia"
+                                },
+                                {
+                                    "code": "en",
+                                    "display": "English",
+                                    "definition": "English language"
+                                },
+                                {
+                                    "code": "en-US",
+                                    "display": "English (United States)",
+                                    "definition": "English language as used in United States"
+                                },
+                                {
+                                    "code": "fr",
+                                    "display": "French",
+                                    "definition": "French language"
+                                },
+                                {
+                                    "code": "ur",
+                                    "display": "Urdu",
+                                    "definition": "Urdu language"
+                                },
+                                {
+                                    "code": "hi",
+                                    "display": "Hindi",
+                                    "definition": "Hindi language"
+                                },
+                                {
+                                    "code": "ta",
+                                    "display": "Tamil",
+                                    "definition": "Tamil language"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "ValueSet"
+            }
+        }
+    ]
+}

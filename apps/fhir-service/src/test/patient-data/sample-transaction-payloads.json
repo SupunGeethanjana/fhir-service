@@ -1,0 +1,906 @@
+{
+    "complete_crud_transaction_bundle": {
+        "description": "Complete FHIR Transaction Bundle demonstrating all CRUD operations (POST, PUT, PATCH, DELETE)",
+        "resourceType": "Bundle",
+        "type": "transaction",
+        "entry": [
+            {
+                "fullUrl": "urn:uuid:patient-create-1",
+                "resource": {
+                    "resourceType": "Patient",
+                    "identifier": [
+                        {
+                            "system": "http://hospital.example.org/patients",
+                            "value": "12345"
+                        },
+                        {
+                            "system": "http://national-id.example.org",
+                            "value": "NID-789012"
+                        }
+                    ],
+                    "active": true,
+                    "name": [
+                        {
+                            "use": "official",
+                            "family": "Doe",
+                            "given": [
+                                "John",
+                                "Michael"
+                            ]
+                        }
+                    ],
+                    "telecom": [
+                        {
+                            "system": "phone",
+                            "value": "+1-555-0123",
+                            "use": "home"
+                        },
+                        {
+                            "system": "email",
+                            "value": "john.doe@email.com",
+                            "use": "home"
+                        }
+                    ],
+                    "gender": "male",
+                    "birthDate": "1985-07-15",
+                    "address": [
+                        {
+                            "use": "home",
+                            "line": [
+                                "123 Main St",
+                                "Apt 4B"
+                            ],
+                            "city": "Springfield",
+                            "state": "IL",
+                            "postalCode": "62701",
+                            "country": "US"
+                        }
+                    ],
+                    "maritalStatus": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                                "code": "M",
+                                "display": "Married"
+                            }
+                        ]
+                    }
+                },
+                "request": {
+                    "method": "POST",
+                    "url": "Patient"
+                }
+            },
+            {
+                "fullUrl": "urn:uuid:observation-create-1",
+                "resource": {
+                    "resourceType": "Observation",
+                    "status": "final",
+                    "category": [
+                        {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                    "code": "vital-signs",
+                                    "display": "Vital Signs"
+                                }
+                            ]
+                        }
+                    ],
+                    "code": {
+                        "coding": [
+                            {
+                                "system": "http://loinc.org",
+                                "code": "85354-9",
+                                "display": "Blood pressure panel with all children optional"
+                            }
+                        ]
+                    },
+                    "subject": {
+                        "reference": "urn:uuid:patient-create-1"
+                    },
+                    "effectiveDateTime": "2025-07-30T10:30:00Z",
+                    "component": [
+                        {
+                            "code": {
+                                "coding": [
+                                    {
+                                        "system": "http://loinc.org",
+                                        "code": "8480-6",
+                                        "display": "Systolic blood pressure"
+                                    }
+                                ]
+                            },
+                            "valueQuantity": {
+                                "value": 120,
+                                "unit": "mmHg",
+                                "system": "http://unitsofmeasure.org",
+                                "code": "mm[Hg]"
+                            }
+                        },
+                        {
+                            "code": {
+                                "coding": [
+                                    {
+                                        "system": "http://loinc.org",
+                                        "code": "8462-4",
+                                        "display": "Diastolic blood pressure"
+                                    }
+                                ]
+                            },
+                            "valueQuantity": {
+                                "value": 80,
+                                "unit": "mmHg",
+                                "system": "http://unitsofmeasure.org",
+                                "code": "mm[Hg]"
+                            }
+                        }
+                    ]
+                },
+                "request": {
+                    "method": "POST",
+                    "url": "Observation"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Patient",
+                    "id": "patient-456",
+                    "identifier": [
+                        {
+                            "system": "http://hospital.example.org/patients",
+                            "value": "67890"
+                        }
+                    ],
+                    "active": true,
+                    "name": [
+                        {
+                            "use": "official",
+                            "family": "Smith",
+                            "given": [
+                                "Jane",
+                                "Elizabeth"
+                            ]
+                        }
+                    ],
+                    "telecom": [
+                        {
+                            "system": "phone",
+                            "value": "+1-555-0456",
+                            "use": "mobile"
+                        },
+                        {
+                            "system": "email",
+                            "value": "jane.smith@email.com",
+                            "use": "work"
+                        }
+                    ],
+                    "gender": "female",
+                    "birthDate": "1990-03-22",
+                    "address": [
+                        {
+                            "use": "home",
+                            "line": [
+                                "456 Oak Avenue"
+                            ],
+                            "city": "Chicago",
+                            "state": "IL",
+                            "postalCode": "60601",
+                            "country": "US"
+                        }
+                    ],
+                    "maritalStatus": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                                "code": "S",
+                                "display": "Single"
+                            }
+                        ]
+                    }
+                },
+                "request": {
+                    "method": "PUT",
+                    "url": "Patient/patient-456"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Observation",
+                    "id": "obs-789",
+                    "status": "final",
+                    "category": [
+                        {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                    "code": "laboratory",
+                                    "display": "Laboratory"
+                                }
+                            ]
+                        }
+                    ],
+                    "code": {
+                        "coding": [
+                            {
+                                "system": "http://loinc.org",
+                                "code": "33747-0",
+                                "display": "Hemoglobin A1c"
+                            }
+                        ]
+                    },
+                    "subject": {
+                        "reference": "Patient/patient-456"
+                    },
+                    "effectiveDateTime": "2025-07-30T08:15:00Z",
+                    "valueQuantity": {
+                        "value": 6.2,
+                        "unit": "%",
+                        "system": "http://unitsofmeasure.org",
+                        "code": "%"
+                    }
+                },
+                "request": {
+                    "method": "PUT",
+                    "url": "Observation/obs-789"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Patient",
+                    "id": "patient-123",
+                    "telecom": [
+                        {
+                            "system": "email",
+                            "value": "john.updated@email.com",
+                            "use": "work"
+                        },
+                        {
+                            "system": "phone",
+                            "value": "+1-555-9999",
+                            "use": "work"
+                        }
+                    ],
+                    "address": [
+                        {
+                            "use": "work",
+                            "line": [
+                                "789 Business Plaza",
+                                "Suite 100"
+                            ],
+                            "city": "Springfield",
+                            "state": "IL",
+                            "postalCode": "62702",
+                            "country": "US"
+                        }
+                    ],
+                    "contact": [
+                        {
+                            "relationship": [
+                                {
+                                    "coding": [
+                                        {
+                                            "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+                                            "code": "C",
+                                            "display": "Emergency Contact"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "name": {
+                                "family": "Doe",
+                                "given": [
+                                    "Mary"
+                                ]
+                            },
+                            "telecom": [
+                                {
+                                    "system": "phone",
+                                    "value": "+1-555-0789"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "request": {
+                    "method": "PATCH",
+                    "url": "Patient/patient-123"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Observation",
+                    "id": "obs-456",
+                    "status": "amended",
+                    "note": [
+                        {
+                            "text": "Updated after review - corrected measurement error"
+                        }
+                    ],
+                    "valueQuantity": {
+                        "value": 78,
+                        "unit": "beats/min",
+                        "system": "http://unitsofmeasure.org",
+                        "code": "/min"
+                    }
+                },
+                "request": {
+                    "method": "PATCH",
+                    "url": "Observation/obs-456"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Observation",
+                    "id": "obs-old-123"
+                },
+                "request": {
+                    "method": "DELETE",
+                    "url": "Observation/obs-old-123"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Appointment",
+                    "id": "appointment-cancelled-456"
+                },
+                "request": {
+                    "method": "DELETE",
+                    "url": "Appointment/appointment-cancelled-456"
+                }
+            }
+        ]
+    },
+    "post_operations_only": {
+        "description": "Transaction bundle with only POST operations demonstrating smart duplicate detection",
+        "resourceType": "Bundle",
+        "type": "transaction",
+        "entry": [
+            {
+                "fullUrl": "urn:uuid:patient-new-1",
+                "resource": {
+                    "resourceType": "Patient",
+                    "identifier": [
+                        {
+                            "system": "http://hospital.example.org/patients",
+                            "value": "NEW-001"
+                        }
+                    ],
+                    "active": true,
+                    "name": [
+                        {
+                            "use": "official",
+                            "family": "Johnson",
+                            "given": [
+                                "Robert",
+                                "James"
+                            ]
+                        }
+                    ],
+                    "telecom": [
+                        {
+                            "system": "phone",
+                            "value": "+1-555-1111",
+                            "use": "home"
+                        }
+                    ],
+                    "gender": "male",
+                    "birthDate": "1978-12-10"
+                },
+                "request": {
+                    "method": "POST",
+                    "url": "Patient"
+                }
+            },
+            {
+                "fullUrl": "urn:uuid:patient-duplicate-1",
+                "resource": {
+                    "resourceType": "Patient",
+                    "identifier": [
+                        {
+                            "system": "http://hospital.example.org/patients",
+                            "value": "NEW-001"
+                        }
+                    ],
+                    "active": true,
+                    "name": [
+                        {
+                            "use": "official",
+                            "family": "Johnson",
+                            "given": [
+                                "Robert",
+                                "James"
+                            ]
+                        }
+                    ],
+                    "telecom": [
+                        {
+                            "system": "email",
+                            "value": "robert.johnson@email.com",
+                            "use": "home"
+                        }
+                    ],
+                    "address": [
+                        {
+                            "use": "home",
+                            "line": [
+                                "321 Cedar St"
+                            ],
+                            "city": "Springfield",
+                            "state": "IL",
+                            "postalCode": "62703"
+                        }
+                    ]
+                },
+                "request": {
+                    "method": "POST",
+                    "url": "Patient"
+                }
+            },
+            {
+                "fullUrl": "urn:uuid:encounter-1",
+                "resource": {
+                    "resourceType": "Encounter",
+                    "status": "finished",
+                    "class": {
+                        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                        "code": "AMB",
+                        "display": "ambulatory"
+                    },
+                    "subject": {
+                        "reference": "urn:uuid:patient-new-1"
+                    },
+                    "period": {
+                        "start": "2025-07-30T09:00:00Z",
+                        "end": "2025-07-30T10:00:00Z"
+                    },
+                    "reasonCode": [
+                        {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "185347001",
+                                    "display": "Encounter for check up"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "request": {
+                    "method": "POST",
+                    "url": "Encounter"
+                }
+            }
+        ]
+    },
+    "put_operations_only": {
+        "description": "Transaction bundle with only PUT operations demonstrating upsert behavior",
+        "resourceType": "Bundle",
+        "type": "transaction",
+        "entry": [
+            {
+                "resource": {
+                    "resourceType": "Patient",
+                    "id": "patient-upsert-1",
+                    "identifier": [
+                        {
+                            "system": "http://hospital.example.org/patients",
+                            "value": "UPSERT-001"
+                        }
+                    ],
+                    "active": true,
+                    "name": [
+                        {
+                            "use": "official",
+                            "family": "Wilson",
+                            "given": [
+                                "Sarah",
+                                "Marie"
+                            ]
+                        }
+                    ],
+                    "gender": "female",
+                    "birthDate": "1995-05-18"
+                },
+                "request": {
+                    "method": "PUT",
+                    "url": "Patient/patient-upsert-1"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Practitioner",
+                    "id": "practitioner-update-1",
+                    "identifier": [
+                        {
+                            "system": "http://hospital.example.org/practitioners",
+                            "value": "PRAC-001"
+                        }
+                    ],
+                    "active": true,
+                    "name": [
+                        {
+                            "use": "official",
+                            "family": "Brown",
+                            "given": [
+                                "Michael",
+                                "David"
+                            ],
+                            "prefix": [
+                                "Dr."
+                            ]
+                        }
+                    ],
+                    "telecom": [
+                        {
+                            "system": "phone",
+                            "value": "+1-555-2222",
+                            "use": "work"
+                        }
+                    ],
+                    "qualification": [
+                        {
+                            "code": {
+                                "coding": [
+                                    {
+                                        "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+                                        "code": "MD",
+                                        "display": "Doctor of Medicine"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "request": {
+                    "method": "PUT",
+                    "url": "Practitioner/practitioner-update-1"
+                }
+            }
+        ]
+    },
+    "patch_operations_only": {
+        "description": "Transaction bundle with only PATCH operations demonstrating partial updates",
+        "resourceType": "Bundle",
+        "type": "transaction",
+        "entry": [
+            {
+                "resource": {
+                    "resourceType": "Patient",
+                    "id": "patient-patch-1",
+                    "telecom": [
+                        {
+                            "system": "email",
+                            "value": "updated.email@example.com",
+                            "use": "home"
+                        }
+                    ],
+                    "maritalStatus": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                                "code": "D",
+                                "display": "Divorced"
+                            }
+                        ]
+                    }
+                },
+                "request": {
+                    "method": "PATCH",
+                    "url": "Patient/patient-patch-1"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Observation",
+                    "id": "obs-patch-1",
+                    "status": "corrected",
+                    "note": [
+                        {
+                            "text": "Corrected value after calibration check"
+                        }
+                    ],
+                    "valueQuantity": {
+                        "value": 98.7,
+                        "unit": "degF",
+                        "system": "http://unitsofmeasure.org",
+                        "code": "[degF]"
+                    }
+                },
+                "request": {
+                    "method": "PATCH",
+                    "url": "Observation/obs-patch-1"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Appointment",
+                    "id": "appointment-patch-1",
+                    "status": "cancelled",
+                    "cancelationReason": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/appointment-cancellation-reason",
+                                "code": "pat",
+                                "display": "Patient"
+                            }
+                        ]
+                    },
+                    "comment": "Patient requested cancellation due to scheduling conflict"
+                },
+                "request": {
+                    "method": "PATCH",
+                    "url": "Appointment/appointment-patch-1"
+                }
+            }
+        ]
+    },
+    "delete_operations_only": {
+        "description": "Transaction bundle with only DELETE operations for data cleanup",
+        "resourceType": "Bundle",
+        "type": "transaction",
+        "entry": [
+            {
+                "resource": {
+                    "resourceType": "Observation",
+                    "id": "obs-delete-1"
+                },
+                "request": {
+                    "method": "DELETE",
+                    "url": "Observation/obs-delete-1"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Appointment",
+                    "id": "appointment-delete-1"
+                },
+                "request": {
+                    "method": "DELETE",
+                    "url": "Appointment/appointment-delete-1"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Condition",
+                    "id": "condition-resolved-1"
+                },
+                "request": {
+                    "method": "DELETE",
+                    "url": "Condition/condition-resolved-1"
+                }
+            }
+        ]
+    },
+    "patient_smart_merging_scenario": {
+        "description": "POST operation demonstrating smart patient merging with duplicate detection",
+        "resourceType": "Bundle",
+        "type": "transaction",
+        "entry": [
+            {
+                "fullUrl": "urn:uuid:patient-with-additional-info",
+                "resource": {
+                    "resourceType": "Patient",
+                    "identifier": [
+                        {
+                            "system": "http://hospital.example.org/patients",
+                            "value": "EXISTING-123"
+                        }
+                    ],
+                    "active": true,
+                    "name": [
+                        {
+                            "use": "official",
+                            "family": "Davis",
+                            "given": [
+                                "Jennifer",
+                                "Lynn"
+                            ]
+                        },
+                        {
+                            "use": "maiden",
+                            "family": "Miller"
+                        }
+                    ],
+                    "telecom": [
+                        {
+                            "system": "phone",
+                            "value": "+1-555-3333",
+                            "use": "mobile"
+                        },
+                        {
+                            "system": "email",
+                            "value": "jennifer.davis@work.com",
+                            "use": "work"
+                        }
+                    ],
+                    "gender": "female",
+                    "birthDate": "1988-09-14",
+                    "address": [
+                        {
+                            "use": "home",
+                            "line": [
+                                "987 Maple Drive"
+                            ],
+                            "city": "Springfield",
+                            "state": "IL",
+                            "postalCode": "62704"
+                        },
+                        {
+                            "use": "work",
+                            "line": [
+                                "555 Corporate Blvd"
+                            ],
+                            "city": "Springfield",
+                            "state": "IL",
+                            "postalCode": "62705"
+                        }
+                    ],
+                    "contact": [
+                        {
+                            "relationship": [
+                                {
+                                    "coding": [
+                                        {
+                                            "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
+                                            "code": "N",
+                                            "display": "Next-of-Kin"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "name": {
+                                "family": "Davis",
+                                "given": [
+                                    "Michael"
+                                ]
+                            },
+                            "telecom": [
+                                {
+                                    "system": "phone",
+                                    "value": "+1-555-4444"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "request": {
+                    "method": "POST",
+                    "url": "Patient"
+                }
+            }
+        ]
+    },
+    "complex_clinical_workflow": {
+        "description": "Real-world clinical workflow with mixed operations",
+        "resourceType": "Bundle",
+        "type": "transaction",
+        "entry": [
+            {
+                "fullUrl": "urn:uuid:patient-workflow-1",
+                "resource": {
+                    "resourceType": "Patient",
+                    "identifier": [
+                        {
+                            "system": "http://hospital.example.org/patients",
+                            "value": "WORKFLOW-001"
+                        }
+                    ],
+                    "active": true,
+                    "name": [
+                        {
+                            "use": "official",
+                            "family": "Thompson",
+                            "given": [
+                                "David",
+                                "Andrew"
+                            ]
+                        }
+                    ],
+                    "gender": "male",
+                    "birthDate": "1975-11-23"
+                },
+                "request": {
+                    "method": "POST",
+                    "url": "Patient"
+                }
+            },
+            {
+                "fullUrl": "urn:uuid:encounter-workflow-1",
+                "resource": {
+                    "resourceType": "Encounter",
+                    "status": "in-progress",
+                    "class": {
+                        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                        "code": "IMP",
+                        "display": "inpatient encounter"
+                    },
+                    "subject": {
+                        "reference": "urn:uuid:patient-workflow-1"
+                    },
+                    "period": {
+                        "start": "2025-07-30T06:00:00Z"
+                    }
+                },
+                "request": {
+                    "method": "POST",
+                    "url": "Encounter"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Condition",
+                    "id": "condition-update-1",
+                    "clinicalStatus": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                                "code": "resolved",
+                                "display": "Resolved"
+                            }
+                        ]
+                    },
+                    "verificationStatus": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                                "code": "confirmed",
+                                "display": "Confirmed"
+                            }
+                        ]
+                    },
+                    "code": {
+                        "coding": [
+                            {
+                                "system": "http://snomed.info/sct",
+                                "code": "233604007",
+                                "display": "Pneumonia"
+                            }
+                        ]
+                    },
+                    "subject": {
+                        "reference": "urn:uuid:patient-workflow-1"
+                    },
+                    "onsetDateTime": "2025-07-25T00:00:00Z",
+                    "abatementDateTime": "2025-07-30T00:00:00Z"
+                },
+                "request": {
+                    "method": "PUT",
+                    "url": "Condition/condition-update-1"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "Observation",
+                    "id": "vitals-patch-1",
+                    "status": "final",
+                    "valueQuantity": {
+                        "value": 98.6,
+                        "unit": "degF",
+                        "system": "http://unitsofmeasure.org",
+                        "code": "[degF]"
+                    },
+                    "note": [
+                        {
+                            "text": "Temperature normalized after treatment"
+                        }
+                    ]
+                },
+                "request": {
+                    "method": "PATCH",
+                    "url": "Observation/vitals-patch-1"
+                }
+            },
+            {
+                "resource": {
+                    "resourceType": "MedicationRequest",
+                    "id": "discontinued-med-1"
+                },
+                "request": {
+                    "method": "DELETE",
+                    "url": "MedicationRequest/discontinued-med-1"
+                }
+            }
+        ]
+    }
+}

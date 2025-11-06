@@ -1,0 +1,426 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:medication-ibuprofen-08",
+            "resource": {
+                "resourceType": "Medication",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "5640",
+                            "display": "Ibuprofen"
+                        }
+                    ],
+                    "text": "Ibuprofen 400mg tablets"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "TAB",
+                            "display": "Tablet"
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-paracetamol-08",
+            "resource": {
+                "resourceType": "Medication",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "161",
+                            "display": "Paracetamol"
+                        }
+                    ],
+                    "text": "Paracetamol 500mg tablets"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "TAB",
+                            "display": "Tablet"
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-amoxicillin-08",
+            "resource": {
+                "resourceType": "Medication",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "723",
+                            "display": "Amoxicillin"
+                        }
+                    ],
+                    "text": "Amoxicillin 500mg capsules"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "CAP",
+                            "display": "Capsule"
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-atorvastatin-08",
+            "resource": {
+                "resourceType": "Medication",
+                "status": "active",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "83367",
+                            "display": "Atorvastatin"
+                        }
+                    ],
+                    "text": "Atorvastatin 20mg tablets"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "TAB",
+                            "display": "Tablet"
+                        }
+                    ]
+                },
+                "manufacturer": {
+                    "display": "Pfizer"
+                },
+                "batch": {
+                    "lotNumber": "A1234567",
+                    "expirationDate": "2026-12-31"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-insulin-glargine-08",
+            "resource": {
+                "resourceType": "Medication",
+                "status": "active",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "285019",
+                            "display": "Insulin Glargine"
+                        }
+                    ],
+                    "text": "Insulin Glargine 100 units/mL solution for injection"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "INJ",
+                            "display": "Injection"
+                        }
+                    ]
+                },
+                "manufacturer": {
+                    "display": "Sanofi"
+                },
+                "batch": {
+                    "lotNumber": "G9876543",
+                    "expirationDate": "2027-05-31"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-salbutamol-inhaler-08",
+            "resource": {
+                "resourceType": "Medication",
+                "status": "active",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "435",
+                            "display": "Salbutamol"
+                        }
+                    ],
+                    "text": "Salbutamol 100mcg/dose inhaler"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "INH",
+                            "display": "Inhaler"
+                        }
+                    ]
+                },
+                "manufacturer": {
+                    "display": "GlaxoSmithKline"
+                },
+                "batch": {
+                    "lotNumber": "S1234567",
+                    "expirationDate": "2026-08-31"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-azithromycin-08",
+            "resource": {
+                "resourceType": "Medication",
+                "status": "active",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "310798",
+                            "display": "Azithromycin"
+                        }
+                    ],
+                    "text": "Azithromycin 500mg tablets"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "TAB",
+                            "display": "Tablet"
+                        }
+                    ]
+                },
+                "manufacturer": {
+                    "display": "Pfizer"
+                },
+                "batch": {
+                    "lotNumber": "AZ123456",
+                    "expirationDate": "2026-10-31"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-metformin-08",
+            "resource": {
+                "resourceType": "Medication",
+                "status": "active",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "860975",
+                            "display": "Metformin"
+                        }
+                    ],
+                    "text": "Metformin 500mg tablets"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "TAB",
+                            "display": "Tablet"
+                        }
+                    ]
+                },
+                "manufacturer": {
+                    "display": "Merck"
+                },
+                "batch": {
+                    "lotNumber": "MF654321",
+                    "expirationDate": "2027-01-31"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-warfarin-08",
+            "resource": {
+                "resourceType": "Medication",
+                "status": "active",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "11289",
+                            "display": "Warfarin"
+                        }
+                    ],
+                    "text": "Warfarin 5mg tablets"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "TAB",
+                            "display": "Tablet"
+                        }
+                    ]
+                },
+                "manufacturer": {
+                    "display": "Bristol-Myers Squibb"
+                },
+                "batch": {
+                    "lotNumber": "WF987654",
+                    "expirationDate": "2026-09-30"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-olanzapine-08",
+            "resource": {
+                "resourceType": "Medication",
+                "status": "active",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "197361",
+                            "display": "Olanzapine"
+                        }
+                    ],
+                    "text": "Olanzapine 10mg tablets"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "TAB",
+                            "display": "Tablet"
+                        }
+                    ]
+                },
+                "manufacturer": {
+                    "display": "Eli Lilly"
+                },
+                "batch": {
+                    "lotNumber": "OL123789",
+                    "expirationDate": "2027-03-31"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-hepatitisb-vaccine-08",
+            "resource": {
+                "resourceType": "Medication",
+                "status": "active",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "308186",
+                            "display": "Hepatitis B Vaccine"
+                        }
+                    ],
+                    "text": "Hepatitis B Vaccine, recombinant"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "INJ",
+                            "display": "Injection"
+                        }
+                    ]
+                },
+                "manufacturer": {
+                    "display": "GSK"
+                },
+                "batch": {
+                    "lotNumber": "HBV2025A",
+                    "expirationDate": "2027-12-31"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:medication-lisinopril-08",
+            "resource": {
+                "resourceType": "Medication",
+                "status": "active",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "29046",
+                            "display": "Lisinopril"
+                        }
+                    ],
+                    "text": "Lisinopril 10mg tablets"
+                },
+                "form": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                            "code": "TAB",
+                            "display": "Tablet"
+                        }
+                    ]
+                },
+                "manufacturer": {
+                    "display": "AstraZeneca"
+                },
+                "batch": {
+                    "lotNumber": "LSN2025B",
+                    "expirationDate": "2027-06-30"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Medication"
+            }
+        }
+    ]
+}

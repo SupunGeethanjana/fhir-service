@@ -1,0 +1,39 @@
+# Simple test queries for debugging null value issues
+
+# Test if GraphQL endpoint is working (should always return something)
+query TestConnection {
+  __schema {
+    types {
+      name
+    }
+  }
+}
+
+# Test patient query with null handling
+query TestPatientByMrn($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+    }
+  }
+}
+
+# Minimal patient data query (just check if patient exists)
+query MinimalPatientData($mrn: String!, $system: String) {
+  patientByMrn(mrn: $mrn, system: $system) {
+    patient {
+      id
+      resourceType
+      lastUpdated
+    }
+    encounters {
+      id
+      resourceType
+    }
+    conditions {
+      id
+      resourceType
+    }
+  }
+}

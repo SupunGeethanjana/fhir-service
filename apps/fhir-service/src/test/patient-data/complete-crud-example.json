@@ -1,0 +1,89 @@
+{
+    "resourceType": "Bundle",
+    "type": "transaction",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:patient-create-1",
+            "resource": {
+                "resourceType": "Patient",
+                "identifier": [
+                    {
+                        "system": "http://hospital.example.org/patients",
+                        "value": "12345"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Doe",
+                        "given": [
+                            "John",
+                            "Michael"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "+1-555-0123",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1985-07-15"
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Patient",
+                "id": "patient-456",
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Smith",
+                        "given": [
+                            "Jane"
+                        ]
+                    }
+                ],
+                "gender": "female",
+                "birthDate": "1990-03-22"
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Patient/patient-456"
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Patient",
+                "id": "patient-789",
+                "telecom": [
+                    {
+                        "system": "email",
+                        "value": "updated@email.com"
+                    }
+                ]
+            },
+            "request": {
+                "method": "PATCH",
+                "url": "Patient/patient-789"
+            }
+        },
+        {
+            "resource": {
+                "resourceType": "Observation",
+                "id": "obs-old"
+            },
+            "request": {
+                "method": "DELETE",
+                "url": "Observation/obs-old"
+            }
+        }
+    ]
+}

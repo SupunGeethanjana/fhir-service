@@ -1,0 +1,721 @@
+{
+    "terminology_graphql_rest_api_examples": {
+        "description": "Complete REST API examples for GraphQL Terminology Service queries - Database powered FHIR terminology search",
+        "base_url": "http://localhost:3000/fhir-service/graphql",
+        "authentication": {
+            "type": "Bearer Token",
+            "header": "Authorization: Bearer YOUR_JWT_TOKEN"
+        },
+        "examples": [
+            {
+                "name": "Search CodeSystems",
+                "description": "Search for FHIR CodeSystems with filtering and pagination",
+                "graphql_query_name": "searchCodeSystems",
+                "request": {
+                    "method": "POST",
+                    "url": "/fhir-service/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query SearchCodeSystems($input: CodeSystemSearchInput) { searchCodeSystems(input: $input) { id url name title status version date publisher description count concept { code display definition } } }",
+                        "variables": {
+                            "input": {
+                                "name": "allergy",
+                                "status": "active",
+                                "count": 10,
+                                "offset": 0
+                            }
+                        }
+                    }
+                },
+                "response": {
+                    "data": {
+                        "searchCodeSystems": [
+                            {
+                                "id": "allergies",
+                                "url": "http://terminology.hl7.org/CodeSystem/allergies",
+                                "name": "AllergiesCodeSystem",
+                                "title": "Allergies Code System",
+                                "status": "active",
+                                "version": "1.0.0",
+                                "date": "2024-01-01T00:00:00.000Z",
+                                "publisher": "Hospital System",
+                                "description": "Code system for common allergies",
+                                "count": 26924,
+                                "concept": [
+                                    {
+                                        "code": "PEANUT",
+                                        "display": "Peanut allergy",
+                                        "definition": "Allergic reaction to peanuts"
+                                    },
+                                    {
+                                        "code": "SHELLFISH",
+                                        "display": "Shellfish allergy",
+                                        "definition": "Allergic reaction to shellfish"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "title": "Create Encounter (GraphQL Mutation)",
+                "description": "Creates a new FHIR Encounter resource using the createEncounter mutation.",
+                "operation": "mutation",
+                "query": "mutation CreateEncounter {  createEncounter(    resource: {      resourceType: \"Encounter\"      status: \"in-progress\"      class: {        system: \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"        code: \"AMB\"        display: \"ambulatory\"      }      subject: {        reference: \"Patient/123\"      }      period: {        start: \"2025-08-19T09:00:00Z\"      }      reasonCode: [        {          coding: [            {              system: \"http://snomed.info/sct\",              code: \"65363002\",              display: \"Otitis media\"            }          ]        }      ]      // ...add other FHIR Encounter fields as needed    }  ) {    id    resourceType    status    class    subject    period    reasonCode    // ...other fields as needed  }}",
+                "variables": null,
+                "response": {
+                    "data": {
+                        "createEncounter": {
+                            "resourceType": "Encounter",
+                            "status": "in-progress",
+                            "class": {
+                                "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                                "code": "AMB",
+                                "display": "ambulatory"
+                            },
+                            "subject": {
+                                "reference": "Patient/123"
+                            },
+                            "period": {
+                                "start": "2025-08-19T09:00:00Z"
+                            },
+                            "reasonCode": [
+                                {
+                                    "coding": [
+                                        {
+                                            "system": "http://snomed.info/sct",
+                                            "code": "65363002",
+                                            "display": "Otitis media"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Search ValueSets",
+                "description": "Search for FHIR ValueSets with filtering",
+                "graphql_query_name": "searchValueSets",
+                "request": {
+                    "method": "POST",
+                    "url": "/fhir-service/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query SearchValueSets($input: ValueSetSearchInput) { searchValueSets(input: $input) { id url name title status version description purpose compose { include { system concept { code display } } } } }",
+                        "variables": {
+                            "input": {
+                                "title": "medication",
+                                "status": "active",
+                                "count": 5
+                            }
+                        }
+                    }
+                },
+                "response": {
+                    "data": {
+                        "searchValueSets": [
+                            {
+                                "id": "brand-medications-vs",
+                                "url": "http://terminology.hl7.org/ValueSet/brand-medications",
+                                "name": "BrandMedicationsValueSet",
+                                "title": "Brand Medications",
+                                "status": "active",
+                                "version": "1.0.0",
+                                "description": "ValueSet for brand medications",
+                                "purpose": "Define available brand medications for prescribing",
+                                "compose": {
+                                    "include": [
+                                        {
+                                            "system": "http://terminology.hl7.org/CodeSystem/brand-medications",
+                                            "concept": [
+                                                {
+                                                    "code": "TYLENOL",
+                                                    "display": "Tylenol"
+                                                },
+                                                {
+                                                    "code": "ADVIL",
+                                                    "display": "Advil"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "Search Medications",
+                "description": "Search for FHIR Medications with filtering and pagination",
+                "graphql_query_name": "getMedications",
+                "request": {
+                    "method": "POST",
+                    "url": "/fhir-service/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query SearchMedications($input: MedicationSearchInput) { getMedications(input: $input) { medications { id resourceType resource total limit offset hasMore } }",
+                        "variables": {
+                            "input": {
+                                "code": "12345",
+                                "status": "active",
+                                "manufacturer": "Acme Pharma",
+                                "limit": 10,
+                                "offset": 0
+                            }
+                        }
+                    }
+                },
+                "response": {
+                    "data": {
+                        "getMedications": {
+                            "medications": [
+                                {
+                                    "id": "med-001",
+                                    "resourceType": "Medication",
+                                    "resource": {
+                                        "code": {
+                                            "coding": [
+                                                {
+                                                    "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                                                    "code": "12345",
+                                                    "display": "Acetaminophen 500mg Tablet"
+                                                }
+                                            ]
+                                        },
+                                        "status": "active",
+                                        "manufacturer": "Acme Pharma",
+                                        "form": "tablet",
+                                        "ingredient": "Acetaminophen"
+                                    },
+                                    "versionId": 1,
+                                    "lastUpdated": "2025-08-19T10:00:00.000Z",
+                                    "txid": null,
+                                    "deletedAt": null
+                                }
+                            ],
+                            "total": 1,
+                            "limit": 10,
+                            "offset": 0,
+                            "hasMore": false
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Get CodeSystem by ID",
+                "description": "Retrieve a specific CodeSystem by its ID",
+                "graphql_query_name": "getCodeSystem",
+                "request": {
+                    "method": "POST",
+                    "url": "/fhir-service/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query GetCodeSystem($id: String!) { getCodeSystem(id: $id) { id url name title status version description count concept { code display definition } } }",
+                        "variables": {
+                            "id": "allergies"
+                        }
+                    }
+                },
+                "response": {
+                    "data": {
+                        "getCodeSystem": {
+                            "id": "allergies",
+                            "url": "http://terminology.hl7.org/CodeSystem/allergies",
+                            "name": "AllergiesCodeSystem",
+                            "title": "Allergies Code System",
+                            "status": "active",
+                            "version": "1.0.0",
+                            "description": "Code system for common allergies",
+                            "count": 26924,
+                            "concept": [
+                                {
+                                    "code": "PEANUT",
+                                    "display": "Peanut allergy",
+                                    "definition": "Allergic reaction to peanuts"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Get ValueSet by ID",
+                "description": "Retrieve a specific ValueSet by its ID",
+                "graphql_query_name": "getValueSet",
+                "request": {
+                    "method": "POST",
+                    "url": "/fhir-service/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query GetValueSet($id: String!) { getValueSet(id: $id) { id url name title status version description purpose compose { include { system concept { code display } } } } }",
+                        "variables": {
+                            "id": "allergies-vs"
+                        }
+                    }
+                },
+                "response": {
+                    "data": {
+                        "getValueSet": {
+                            "id": "allergies-vs",
+                            "url": "http://terminology.hl7.org/ValueSet/allergies",
+                            "name": "AllergiesValueSet",
+                            "title": "Common Allergies",
+                            "status": "active",
+                            "version": "1.0.0",
+                            "description": "ValueSet containing common allergies",
+                            "purpose": "Define common allergies for clinical use",
+                            "compose": {
+                                "include": [
+                                    {
+                                        "system": "http://terminology.hl7.org/CodeSystem/allergies",
+                                        "concept": [
+                                            {
+                                                "code": "PEANUT",
+                                                "display": "Peanut allergy"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Lookup Concept",
+                "description": "Look up a specific concept by code and system",
+                "graphql_query_name": "lookupConcept",
+                "request": {
+                    "method": "POST",
+                    "url": "/fhir-service/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query LookupConcept($input: ConceptLookupInput!) { lookupConcept(input: $input) { code display definition system found } }",
+                        "variables": {
+                            "input": {
+                                "system": "http://terminology.hl7.org/CodeSystem/allergies",
+                                "code": "PEANUT"
+                            }
+                        }
+                    }
+                },
+                "response": {
+                    "data": {
+                        "lookupConcept": {
+                            "code": "PEANUT",
+                            "display": "Peanut allergy",
+                            "definition": "Allergic reaction to peanuts and peanut-containing products",
+                            "system": "http://terminology.hl7.org/CodeSystem/allergies",
+                            "found": true
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Expand ValueSet",
+                "description": "Expand a ValueSet to get all its concepts with optional filtering",
+                "graphql_query_name": "expandValueSet",
+                "request": {
+                    "method": "POST",
+                    "url": "/fhir-service/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query ExpandValueSet($input: ValueSetExpandInput!) { expandValueSet(input: $input) { url version total offset contains { code display system } } }",
+                        "variables": {
+                            "input": {
+                                "url": "http://terminology.hl7.org/ValueSet/allergies",
+                                "filter": "nut",
+                                "count": 20,
+                                "offset": 0
+                            }
+                        }
+                    }
+                },
+                "response": {
+                    "data": {
+                        "expandValueSet": {
+                            "url": "http://terminology.hl7.org/ValueSet/allergies",
+                            "version": "1.0.0",
+                            "total": 15,
+                            "offset": 0,
+                            "contains": [
+                                {
+                                    "code": "PEANUT",
+                                    "display": "Peanut allergy",
+                                    "system": "http://terminology.hl7.org/CodeSystem/allergies"
+                                },
+                                {
+                                    "code": "TREE_NUT",
+                                    "display": "Tree nut allergy",
+                                    "system": "http://terminology.hl7.org/CodeSystem/allergies"
+                                },
+                                {
+                                    "code": "WALNUT",
+                                    "display": "Walnut allergy",
+                                    "system": "http://terminology.hl7.org/CodeSystem/allergies"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Validate Code",
+                "description": "Validate if a code exists in a specific ValueSet",
+                "graphql_query_name": "validateCode",
+                "request": {
+                    "method": "POST",
+                    "url": "/fhir-service/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query ValidateCode($input: CodeValidationInput!) { validateCode(input: $input) { result message display code system } }",
+                        "variables": {
+                            "input": {
+                                "url": "http://terminology.hl7.org/ValueSet/allergies",
+                                "code": "PEANUT",
+                                "system": "http://terminology.hl7.org/CodeSystem/allergies"
+                            }
+                        }
+                    }
+                },
+                "response": {
+                    "data": {
+                        "validateCode": {
+                            "result": true,
+                            "message": "Code is valid",
+                            "display": "Peanut allergy",
+                            "code": "PEANUT",
+                            "system": "http://terminology.hl7.org/CodeSystem/allergies"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Search All Terminology",
+                "description": "Search across all terminology resources with text and category filters",
+                "graphql_query_name": "searchTerminology",
+                "request": {
+                    "method": "POST",
+                    "url": "/fhir-service/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query SearchTerminology($input: TerminologySearchInput) { searchTerminology(input: $input) { codeSystems { id title description count } valueSets { id title description } total } }",
+                        "variables": {
+                            "input": {
+                                "text": "medication",
+                                "category": "medications",
+                                "count": 10,
+                                "offset": 0
+                            }
+                        }
+                    }
+                },
+                "response": {
+                    "data": {
+                        "searchTerminology": {
+                            "codeSystems": [
+                                {
+                                    "id": "brand-medications",
+                                    "title": "Brand Medications",
+                                    "description": "Code system for brand medications",
+                                    "count": 2061
+                                },
+                                {
+                                    "id": "formulary",
+                                    "title": "Hospital Formulary",
+                                    "description": "Hospital formulary medications",
+                                    "count": 2011
+                                }
+                            ],
+                            "valueSets": [
+                                {
+                                    "id": "brand-medications-vs",
+                                    "title": "Brand Medications ValueSet",
+                                    "description": "ValueSet for brand medications"
+                                },
+                                {
+                                    "id": "formulary-vs",
+                                    "title": "Hospital Formulary ValueSet",
+                                    "description": "ValueSet for hospital formulary"
+                                }
+                            ],
+                            "total": 4
+                        }
+                    }
+                }
+            }
+        ],
+        "curl_examples": [
+            {
+                "name": "Search CodeSystems - cURL",
+                "description": "Search for CodeSystems using cURL",
+                "command": "curl -X POST http://localhost:3000/fhir-service/graphql \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\" \\\n  -d '{\n    \"query\": \"query SearchCodeSystems($input: CodeSystemSearchInput) { searchCodeSystems(input: $input) { id url name title status version description count concept { code display definition } } }\",\n    \"variables\": {\n      \"input\": {\n        \"name\": \"allergy\",\n        \"status\": \"active\",\n        \"count\": 10\n      }\n    }\n  }'"
+            },
+            {
+                "name": "Expand ValueSet - cURL",
+                "description": "Expand a ValueSet to get all concepts using cURL",
+                "command": "curl -X POST http://localhost:3000/fhir-service/graphql \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\" \\\n  -d '{\n    \"query\": \"query ExpandValueSet($input: ValueSetExpandInput!) { expandValueSet(input: $input) { url version total contains { code display system } } }\",\n    \"variables\": {\n      \"input\": {\n        \"url\": \"http://terminology.hl7.org/ValueSet/allergies\",\n        \"filter\": \"peanut\",\n        \"count\": 20\n      }\n    }\n  }'"
+            },
+            {
+                "name": "Search All Terminology - cURL",
+                "description": "Search across all terminology resources using cURL",
+                "command": "curl -X POST http://localhost:3000/fhir-service/graphql \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\" \\\n  -d '{\n    \"query\": \"query SearchTerminology($input: TerminologySearchInput) { searchTerminology(input: $input) { codeSystems { id title count } valueSets { id title } total } }\",\n    \"variables\": {\n      \"input\": {\n        \"text\": \"medication\",\n        \"category\": \"medications\",\n        \"count\": 10\n      }\n    }\n  }'"
+            }
+        ],
+        "input_types": {
+            "CodeSystemSearchInput": {
+                "url": "String - Filter by CodeSystem URL",
+                "name": "String - Filter by CodeSystem name",
+                "title": "String - Filter by CodeSystem title",
+                "status": "String - Filter by status (active, inactive, etc.)",
+                "version": "String - Filter by specific version",
+                "count": "Int - Number of results to return (default: 50)",
+                "offset": "Int - Number of results to skip (default: 0)"
+            },
+            "ValueSetSearchInput": {
+                "url": "String - Filter by ValueSet URL",
+                "name": "String - Filter by ValueSet name",
+                "title": "String - Filter by ValueSet title",
+                "status": "String - Filter by status (active, inactive, etc.)",
+                "count": "Int - Number of results to return (default: 50)",
+                "offset": "Int - Number of results to skip (default: 0)"
+            },
+            "ConceptLookupInput": {
+                "system": "String! - REQUIRED: CodeSystem URL",
+                "code": "String! - REQUIRED: Concept code to lookup"
+            },
+            "ValueSetExpandInput": {
+                "url": "String! - REQUIRED: ValueSet URL to expand",
+                "filter": "String - Text filter for concept codes/displays",
+                "count": "Int - Number of concepts to return (default: 100)",
+                "offset": "Int - Number of concepts to skip (default: 0)"
+            },
+            "CodeValidationInput": {
+                "url": "String! - REQUIRED: ValueSet URL",
+                "code": "String! - REQUIRED: Code to validate",
+                "system": "String - CodeSystem URL (optional)"
+            },
+            "TerminologySearchInput": {
+                "text": "String - Text to search for across all terminology",
+                "category": "String - Category filter (allergies, medications, procedures, departments, specialties)",
+                "count": "Int - Number of results to return (default: 50)",
+                "offset": "Int - Number of results to skip (default: 0)"
+            }
+        },
+        "available_categories": {
+            "allergies": "Search allergy-related terminology",
+            "medications": "Search medication-related terminology (brands, formulary, routes, frequencies, strengths, instructions)",
+            "procedures": "Search medical procedures",
+            "departments": "Search hospital departments",
+            "specialties": "Search medical specialties (hospital and medical specialties)"
+        },
+        "error_responses": {
+            "database_error": {
+                "errors": [
+                    {
+                        "message": "Database connection failed",
+                        "locations": [
+                            {
+                                "line": 2,
+                                "column": 3
+                            }
+                        ],
+                        "path": [
+                            "searchCodeSystems"
+                        ],
+                        "extensions": {
+                            "code": "INTERNAL_ERROR"
+                        }
+                    }
+                ],
+                "data": null
+            },
+            "validation_error": {
+                "errors": [
+                    {
+                        "message": "Variable \"$input\" got invalid value {\"invalidField\": \"value\"}; Field \"invalidField\" is not defined by type \"CodeSystemSearchInput\".",
+                        "locations": [
+                            {
+                                "line": 1,
+                                "column": 8
+                            }
+                        ],
+                        "extensions": {
+                            "code": "GRAPHQL_VALIDATION_FAILED"
+                        }
+                    }
+                ],
+                "data": null
+            }
+        },
+        "postman_collection": {
+            "info": {
+                "name": "FHIR Terminology GraphQL API",
+                "description": "Complete collection for testing GraphQL Terminology Service",
+                "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+            },
+            "item": [
+                {
+                    "name": "Search CodeSystems",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"query SearchCodeSystems($input: CodeSystemSearchInput) { searchCodeSystems(input: $input) { id url name title status version description count concept { code display definition } } }\",\n  \"variables\": {\n    \"input\": {\n      \"name\": \"{{search_term}}\",\n      \"status\": \"active\",\n      \"count\": 10\n    }\n  }\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/fhir-service/graphql",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "fhir-service",
+                                "graphql"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Expand ValueSet",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"query ExpandValueSet($input: ValueSetExpandInput!) { expandValueSet(input: $input) { url version total contains { code display system } } }\",\n  \"variables\": {\n    \"input\": {\n      \"url\": \"{{valueset_url}}\",\n      \"filter\": \"{{filter_text}}\",\n      \"count\": 20\n    }\n  }\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/fhir-service/graphql",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "fhir-service",
+                                "graphql"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Search All Terminology",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"query SearchTerminology($input: TerminologySearchInput) { searchTerminology(input: $input) { codeSystems { id title description count } valueSets { id title description } total } }\",\n  \"variables\": {\n    \"input\": {\n      \"text\": \"{{search_text}}\",\n      \"category\": \"{{category}}\",\n      \"count\": 10\n    }\n  }\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/fhir-service/graphql",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "fhir-service",
+                                "graphql"
+                            ]
+                        }
+                    }
+                }
+            ],
+            "variable": [
+                {
+                    "key": "base_url",
+                    "value": "http://localhost:3000"
+                },
+                {
+                    "key": "jwt_token",
+                    "value": "YOUR_JWT_TOKEN_HERE"
+                },
+                {
+                    "key": "search_term",
+                    "value": "allergy"
+                },
+                {
+                    "key": "valueset_url",
+                    "value": "http://terminology.hl7.org/ValueSet/allergies"
+                },
+                {
+                    "key": "filter_text",
+                    "value": "peanut"
+                },
+                {
+                    "key": "search_text",
+                    "value": "medication"
+                },
+                {
+                    "key": "category",
+                    "value": "medications"
+                }
+            ]
+        },
+        "usage_notes": {
+            "database_integration": "All queries now search the PostgreSQL database directly using FHIR services",
+            "performance": "Leverages database indexes for fast searches across large datasets (26K+ allergies, 68K+ procedures)",
+            "real_time": "Always returns current data from the database",
+            "pagination": "Use offset and count parameters for efficient pagination",
+            "text_search": "Uses FHIR _text parameter for full-text search capabilities",
+            "error_handling": "Graceful error handling with detailed GraphQL error responses",
+            "categories": "Support for categorized searches across different terminology types"
+        }
+    }
+}

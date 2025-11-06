@@ -1,0 +1,630 @@
+{
+    "comprehensiveSearchEnhanced_REST_API_Examples": {
+        "description": "REST API JSON examples for the comprehensiveSearchEnhanced GraphQL query",
+        "graphql_endpoint": "POST /graphql",
+        "examples": [
+            {
+                "name": "Basic Comprehensive Search by Family Name",
+                "description": "Search for patients by family name and retrieve all related clinical resources",
+                "request": {
+                    "method": "POST",
+                    "url": "/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query ComprehensiveSearch($family: String!) { comprehensiveSearchEnhanced(family: $family) { patient { id resourceType resource } encounters { id resource } conditions { id resource } observations { id resource } allergies { id resource } procedures { id resource } diagnosticReports { id resource } serviceRequests { id resource } medicationRequests { id resource } medicationStatements { id resource } familyHistory { id resource } appointments { id resource } compositions { id resource } totalEncounters totalConditions totalObservations totalAllergies totalProcedures totalDiagnosticReports totalServiceRequests totalMedicationRequests totalMedicationStatements totalFamilyHistory totalAppointments totalCompositions } }",
+                        "variables": {
+                            "family": "Smith"
+                        }
+                    }
+                },
+                "response": {
+                    "data": {
+                        "comprehensiveSearchEnhanced": [
+                            {
+                                "patient": {
+                                    "id": "patient-123",
+                                    "resourceType": "Patient",
+                                    "resource": {
+                                        "resourceType": "Patient",
+                                        "id": "patient-123",
+                                        "name": [
+                                            {
+                                                "family": "Smith",
+                                                "given": [
+                                                    "John",
+                                                    "Michael"
+                                                ]
+                                            }
+                                        ],
+                                        "gender": "male",
+                                        "birthDate": "1980-01-15",
+                                        "identifier": [
+                                            {
+                                                "system": "http://hospital.org/mrn",
+                                                "value": "MRN-123456"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "encounters": [
+                                    {
+                                        "id": "encounter-456",
+                                        "resource": {
+                                            "resourceType": "Encounter",
+                                            "id": "encounter-456",
+                                            "status": "finished",
+                                            "class": {
+                                                "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                                                "code": "AMB"
+                                            },
+                                            "subject": {
+                                                "reference": "Patient/patient-123"
+                                            },
+                                            "period": {
+                                                "start": "2024-01-15T09:00:00Z",
+                                                "end": "2024-01-15T10:30:00Z"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "id": "condition-789",
+                                        "resource": {
+                                            "resourceType": "Condition",
+                                            "id": "condition-789",
+                                            "clinicalStatus": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                                                        "code": "active"
+                                                    }
+                                                ]
+                                            },
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://snomed.info/sct",
+                                                        "code": "38341003",
+                                                        "display": "Hypertension"
+                                                    }
+                                                ]
+                                            },
+                                            "subject": {
+                                                "reference": "Patient/patient-123"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "observations": [
+                                    {
+                                        "id": "observation-321",
+                                        "resource": {
+                                            "resourceType": "Observation",
+                                            "id": "observation-321",
+                                            "status": "final",
+                                            "category": [
+                                                {
+                                                    "coding": [
+                                                        {
+                                                            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                                            "code": "vital-signs"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://loinc.org",
+                                                        "code": "85354-9",
+                                                        "display": "Blood pressure"
+                                                    }
+                                                ]
+                                            },
+                                            "subject": {
+                                                "reference": "Patient/patient-123"
+                                            },
+                                            "valueQuantity": {
+                                                "value": 140,
+                                                "unit": "mmHg"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "allergies": [
+                                    {
+                                        "id": "allergy-654",
+                                        "resource": {
+                                            "resourceType": "AllergyIntolerance",
+                                            "id": "allergy-654",
+                                            "clinicalStatus": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+                                                        "code": "active"
+                                                    }
+                                                ]
+                                            },
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://snomed.info/sct",
+                                                        "code": "227493005",
+                                                        "display": "Penicillin allergy"
+                                                    }
+                                                ]
+                                            },
+                                            "patient": {
+                                                "reference": "Patient/patient-123"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "procedures": [
+                                    {
+                                        "id": "procedure-987",
+                                        "resource": {
+                                            "resourceType": "Procedure",
+                                            "id": "procedure-987",
+                                            "status": "completed",
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://snomed.info/sct",
+                                                        "code": "80146002",
+                                                        "display": "Appendectomy"
+                                                    }
+                                                ]
+                                            },
+                                            "subject": {
+                                                "reference": "Patient/patient-123"
+                                            },
+                                            "performedDateTime": "2023-06-15T14:30:00Z"
+                                        }
+                                    }
+                                ],
+                                "diagnosticReports": [
+                                    {
+                                        "id": "report-147",
+                                        "resource": {
+                                            "resourceType": "DiagnosticReport",
+                                            "id": "report-147",
+                                            "status": "final",
+                                            "category": [
+                                                {
+                                                    "coding": [
+                                                        {
+                                                            "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                                                            "code": "LAB"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://loinc.org",
+                                                        "code": "24323-8",
+                                                        "display": "Comprehensive metabolic panel"
+                                                    }
+                                                ]
+                                            },
+                                            "subject": {
+                                                "reference": "Patient/patient-123"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "serviceRequests": [
+                                    {
+                                        "id": "service-258",
+                                        "resource": {
+                                            "resourceType": "ServiceRequest",
+                                            "id": "service-258",
+                                            "status": "active",
+                                            "intent": "order",
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://snomed.info/sct",
+                                                        "code": "363679005",
+                                                        "display": "Physical therapy"
+                                                    }
+                                                ]
+                                            },
+                                            "subject": {
+                                                "reference": "Patient/patient-123"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "medicationRequests": [
+                                    {
+                                        "id": "med-request-369",
+                                        "resource": {
+                                            "resourceType": "MedicationRequest",
+                                            "id": "med-request-369",
+                                            "status": "active",
+                                            "intent": "order",
+                                            "medicationCodeableConcept": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                                                        "code": "314076",
+                                                        "display": "Lisinopril"
+                                                    }
+                                                ]
+                                            },
+                                            "subject": {
+                                                "reference": "Patient/patient-123"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "medicationStatements": [
+                                    {
+                                        "id": "med-statement-741",
+                                        "resource": {
+                                            "resourceType": "MedicationStatement",
+                                            "id": "med-statement-741",
+                                            "status": "active",
+                                            "medicationCodeableConcept": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                                                        "code": "314076",
+                                                        "display": "Lisinopril"
+                                                    }
+                                                ]
+                                            },
+                                            "subject": {
+                                                "reference": "Patient/patient-123"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "familyHistory": [
+                                    {
+                                        "id": "family-852",
+                                        "resource": {
+                                            "resourceType": "FamilyMemberHistory",
+                                            "id": "family-852",
+                                            "status": "completed",
+                                            "patient": {
+                                                "reference": "Patient/patient-123"
+                                            },
+                                            "relationship": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                                                        "code": "FTH",
+                                                        "display": "Father"
+                                                    }
+                                                ]
+                                            },
+                                            "condition": [
+                                                {
+                                                    "code": {
+                                                        "coding": [
+                                                            {
+                                                                "system": "http://snomed.info/sct",
+                                                                "code": "22298006",
+                                                                "display": "Myocardial infarction"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "appointments": [
+                                    {
+                                        "id": "appointment-963",
+                                        "resource": {
+                                            "resourceType": "Appointment",
+                                            "id": "appointment-963",
+                                            "status": "booked",
+                                            "serviceType": [
+                                                {
+                                                    "coding": [
+                                                        {
+                                                            "system": "http://terminology.hl7.org/CodeSystem/service-type",
+                                                            "code": "124",
+                                                            "display": "General Practice"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "start": "2024-02-15T10:00:00Z",
+                                            "end": "2024-02-15T10:30:00Z",
+                                            "participant": [
+                                                {
+                                                    "actor": {
+                                                        "reference": "Patient/patient-123"
+                                                    },
+                                                    "status": "accepted"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "compositions": [
+                                    {
+                                        "id": "composition-174",
+                                        "resource": {
+                                            "resourceType": "Composition",
+                                            "id": "composition-174",
+                                            "status": "final",
+                                            "type": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://loinc.org",
+                                                        "code": "11506-3",
+                                                        "display": "Progress note"
+                                                    }
+                                                ]
+                                            },
+                                            "subject": {
+                                                "reference": "Patient/patient-123"
+                                            },
+                                            "date": "2024-01-15T10:30:00Z"
+                                        }
+                                    }
+                                ],
+                                "totalEncounters": 5,
+                                "totalConditions": 3,
+                                "totalObservations": 12,
+                                "totalAllergies": 2,
+                                "totalProcedures": 1,
+                                "totalDiagnosticReports": 4,
+                                "totalServiceRequests": 2,
+                                "totalMedicationRequests": 3,
+                                "totalMedicationStatements": 3,
+                                "totalFamilyHistory": 1,
+                                "totalAppointments": 2,
+                                "totalCompositions": 1
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "Comprehensive Search with Date Range and Timeline",
+                "description": "Search with date filtering and timeline inclusion",
+                "request": {
+                    "method": "POST",
+                    "url": "/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query ComprehensiveSearchWithDates($family: String!, $includeTimeline: Boolean, $dateRange: DateRangeInput, $limit: Int) { comprehensiveSearchEnhanced(family: $family, includeTimeline: $includeTimeline, dateRange: $dateRange, limit: $limit) { patient { id resourceType resource } encounters { id resource } conditions { id resource } observations { id resource } totalEncounters totalConditions totalObservations } }",
+                        "variables": {
+                            "family": "Johnson",
+                            "includeTimeline": true,
+                            "dateRange": {
+                                "start": "2024-01-01",
+                                "end": "2024-12-31"
+                            },
+                            "limit": 5
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Comprehensive Search with Minimal Fields",
+                "description": "Search requesting only essential fields for performance",
+                "request": {
+                    "method": "POST",
+                    "url": "/graphql",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_JWT_TOKEN"
+                    },
+                    "body": {
+                        "query": "query MinimalComprehensiveSearch($family: String!) { comprehensiveSearchEnhanced(family: $family) { patient { id resourceType } totalEncounters totalConditions totalObservations totalAllergies totalProcedures totalDiagnosticReports totalServiceRequests totalMedicationRequests totalMedicationStatements totalFamilyHistory totalAppointments totalCompositions } }",
+                        "variables": {
+                            "family": "Williams"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Error Response Example",
+                "description": "Example of error response when search fails",
+                "response": {
+                    "errors": [
+                        {
+                            "message": "Enhanced comprehensive search failed: Database connection timeout",
+                            "locations": [
+                                {
+                                    "line": 2,
+                                    "column": 3
+                                }
+                            ],
+                            "path": [
+                                "comprehensiveSearchEnhanced"
+                            ],
+                            "extensions": {
+                                "code": "INTERNAL_ERROR",
+                                "exception": {
+                                    "stacktrace": [
+                                        "Error: Database connection timeout",
+                                        "    at FhirSearchResolver.comprehensiveSearchEnhanced (/app/src/graphql/resolvers/fhir-search.resolver.ts:705:13)"
+                                    ]
+                                }
+                            }
+                        }
+                    ],
+                    "data": null
+                }
+            }
+        ],
+        "query_parameters": {
+            "family": {
+                "type": "String!",
+                "description": "Required family name to search for patients",
+                "example": "Smith"
+            },
+            "includeTimeline": {
+                "type": "Boolean",
+                "description": "Optional flag to include timeline data",
+                "default": false,
+                "example": true
+            },
+            "dateRange": {
+                "type": "DateRangeInput",
+                "description": "Optional date range to filter results",
+                "properties": {
+                    "start": {
+                        "type": "String",
+                        "description": "Start date in ISO format",
+                        "example": "2024-01-01"
+                    },
+                    "end": {
+                        "type": "String",
+                        "description": "End date in ISO format",
+                        "example": "2024-12-31"
+                    }
+                }
+            },
+            "limit": {
+                "type": "Int",
+                "description": "Maximum number of patients to return",
+                "default": 10,
+                "example": 5
+            }
+        },
+        "response_structure": {
+            "comprehensiveSearchEnhanced": {
+                "type": "Array[PatientWithClinicalData]",
+                "description": "Array of patients with their complete clinical data",
+                "fields": {
+                    "patient": {
+                        "type": "PatientType",
+                        "description": "Core patient demographic information"
+                    },
+                    "encounters": {
+                        "type": "Array[EncounterType]",
+                        "description": "Healthcare encounters and visits"
+                    },
+                    "conditions": {
+                        "type": "Array[ConditionType]",
+                        "description": "Medical conditions and diagnoses"
+                    },
+                    "observations": {
+                        "type": "Array[ObservationType]",
+                        "description": "Clinical observations and measurements"
+                    },
+                    "allergies": {
+                        "type": "Array[AllergyIntoleranceType]",
+                        "description": "Known allergies and intolerances"
+                    },
+                    "procedures": {
+                        "type": "Array[ProcedureType]",
+                        "description": "Medical procedures performed"
+                    },
+                    "diagnosticReports": {
+                        "type": "Array[DiagnosticReportType]",
+                        "description": "Lab results and diagnostic reports"
+                    },
+                    "serviceRequests": {
+                        "type": "Array[ServiceRequestType]",
+                        "description": "Ordered services and referrals"
+                    },
+                    "medicationRequests": {
+                        "type": "Array[MedicationRequestType]",
+                        "description": "Prescribed medications"
+                    },
+                    "medicationStatements": {
+                        "type": "Array[MedicationStatementType]",
+                        "description": "Patient reported medications"
+                    },
+                    "familyHistory": {
+                        "type": "Array[FamilyMemberHistoryType]",
+                        "description": "Family medical history"
+                    },
+                    "appointments": {
+                        "type": "Array[AppointmentType]",
+                        "description": "Scheduled appointments"
+                    },
+                    "compositions": {
+                        "type": "Array[CompositionType]",
+                        "description": "Clinical documents and notes"
+                    },
+                    "totals": {
+                        "description": "Count totals for each resource type for pagination"
+                    }
+                }
+            }
+        },
+        "curl_examples": [
+            {
+                "name": "Basic cURL Request",
+                "command": "curl -X POST http://localhost:3000/graphql \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\" \\\n  -d '{\n    \"query\": \"query ComprehensiveSearch($family: String!) { comprehensiveSearchEnhanced(family: $family) { patient { id resourceType resource } encounters { id resource } conditions { id resource } observations { id resource } totalEncounters totalConditions totalObservations } }\",\n    \"variables\": {\n      \"family\": \"Smith\"\n    }\n  }'"
+            },
+            {
+                "name": "cURL with Date Range",
+                "command": "curl -X POST http://localhost:3000/graphql \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer YOUR_JWT_TOKEN\" \\\n  -d '{\n    \"query\": \"query ComprehensiveSearchWithDates($family: String!, $dateRange: DateRangeInput, $limit: Int) { comprehensiveSearchEnhanced(family: $family, dateRange: $dateRange, limit: $limit) { patient { id resourceType } totalEncounters totalConditions totalObservations } }\",\n    \"variables\": {\n      \"family\": \"Johnson\",\n      \"dateRange\": {\n        \"start\": \"2024-01-01\",\n        \"end\": \"2024-12-31\"\n      },\n      \"limit\": 5\n    }\n  }'"
+            }
+        ],
+        "postman_collection": {
+            "info": {
+                "name": "FHIR Comprehensive Search API",
+                "description": "Collection for testing comprehensive search functionality",
+                "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+            },
+            "item": [
+                {
+                    "name": "Comprehensive Search - Basic",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{jwt_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"query ComprehensiveSearch($family: String!) { comprehensiveSearchEnhanced(family: $family) { patient { id resourceType resource } encounters { id resource } conditions { id resource } observations { id resource } allergies { id resource } procedures { id resource } diagnosticReports { id resource } serviceRequests { id resource } medicationRequests { id resource } medicationStatements { id resource } familyHistory { id resource } appointments { id resource } compositions { id resource } totalEncounters totalConditions totalObservations totalAllergies totalProcedures totalDiagnosticReports totalServiceRequests totalMedicationRequests totalMedicationStatements totalFamilyHistory totalAppointments totalCompositions } }\",\n  \"variables\": {\n    \"family\": \"{{family_name}}\"\n  }\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/graphql",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        }
+                    }
+                }
+            ],
+            "variable": [
+                {
+                    "key": "base_url",
+                    "value": "http://localhost:3000"
+                },
+                {
+                    "key": "jwt_token",
+                    "value": "YOUR_JWT_TOKEN_HERE"
+                },
+                {
+                    "key": "family_name",
+                    "value": "Smith"
+                }
+            ]
+        }
+    }
+}
